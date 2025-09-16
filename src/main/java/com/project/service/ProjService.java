@@ -55,7 +55,7 @@ public interface ProjService {
      * 例会列表
      * @return
      */
-    PageInfo<MeetListForm> meetList(MeetListForm params);
+    List<MeetListForm> meetList(Long projId);
     /**
      * 例会详细
      * @return

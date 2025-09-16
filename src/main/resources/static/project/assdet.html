@@ -70,12 +70,6 @@
                             </select>
                           </div>
                         </div>
-                        <div class="layui-col-lg6">
-                          <label class="layui-form-label">合同编号</label>
-                          <div class="layui-input-block">
-                            <input id="assContr" type="text" name="fullname" lay-verify="" placeholder="" autocomplete="off" class="layui-input">
-                          </div>
-                        </div>
                       </div>
                       <div class="layui-row layui-col-space10 layui-form-item">
                         <div class="layui-col-lg6">
@@ -95,7 +89,7 @@
                         <div class="layui-col-lg6">
                           <label class="layui-form-label">分类编码</label>
                           <div class="layui-input-block">
-                            <input id="assCatg" type="text" name="assCatg" lay-verify="" placeholder="" autocomplete="off" class="layui-input">
+                            <input id="typeCode" type="text" name="typeCode" lay-verify="" placeholder="" autocomplete="off" class="layui-input">
                           </div>
                         </div>
                         <div class="layui-col-lg6">
@@ -115,7 +109,7 @@
                         <div class="layui-col-lg6">
                           <label class="layui-form-label">出厂编号</label>
                           <div class="layui-input-block">
-                            <input id="assFactoryno" type="text" name="assFactoryno" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                            <input id="factoryNo" type="text" name="factoryNo" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                           </div>
                         </div>
                       </div>
@@ -135,20 +129,6 @@
                       </div>
                       <div class="layui-row layui-col-space10 layui-form-item">
                         <div class="layui-col-lg6">
-                          <label class="layui-form-label">单位</label>
-                          <div class="layui-input-block">
-                            <input id="assUnit" type="text" name="assUnit" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                          </div>
-                        </div>
-                        <div class="layui-col-lg6">
-                          <label class="layui-form-label">数量</label>
-                          <div class="layui-input-block">
-                            <input id="assNum" type="text" name="assNum" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="layui-row layui-col-space10 layui-form-item">
-                        <div class="layui-col-lg6">
                           <label class="layui-form-label">购入金额</label>
                           <div class="layui-input-block">
                             <input id="assCost" type="text" name="assCost" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
@@ -163,15 +143,9 @@
                       </div>
                       <div class="layui-row layui-col-space10 layui-form-item">
                         <div class="layui-col-lg6">
-                          <label class="layui-form-label">责任部门</label>
+                          <label class="layui-form-label">使用部门</label>
                           <div class="layui-input-block">
                             <input id="assDept" type="text" name="assDept" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                          </div>
-                        </div>
-                        <div class="layui-col-lg6">
-                          <label class="layui-form-label">责任人</label>
-                          <div class="layui-input-block">
-                            <input id="assOwner" type="text" name="assOwner" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                           </div>
                         </div>
                       </div>
@@ -444,26 +418,21 @@
       dataType:"json",
       data:assId,
       success:function(detObj){
-        if(detObj.msg=="sucess"){
+        if(detObj.msg=="success"){
           var detJson=detObj.data[0];
           $('#assType1').val(detJson.assType1);
           $('#assType2').val(detJson.assType2);
           $('#assType3').val(detJson.assType3);
-          $('#assContr').val(detJson.assContr);
           $('#assNo').val(detJson.assNo);
           $('#assName').val(detJson.assName);
-          $('#assCatg').val(detJson.assCatg);
           $('#assTag').val(detJson.assTag);
           $('#assModel').val(detJson.assModel);
-          $('#assFactoryno').val(detJson.assFactoryno);
+          $('#factoryNo').val(detJson.factoryNo);
           $('#assManufacturer').val(detJson.assManufacturer);
           $('#assSupplier').val(detJson.assSupplier);
-          $('#assUnit').val(detJson.assUnit);
-          $('#assNum').val(detJson.assNum);
           $('#assCost').val(detJson.assCost);
           $('#purchaseDate').val(detJson.purchaseDate);
           $('#assDept').val(detJson.assDept);
-          $('#assOwner').val(detJson.assOwner);
           $('#assAddr').val(detJson.assAddr);
           $('#assState').val(detJson.assState);
           $('#assRemark').val(detJson.assRemark);
@@ -488,7 +457,7 @@
             dataType:"json",
             data:data.value,
             success:function(detObj){
-              if(detObj.msg=="sucess"){
+              if(detObj.msg=="success"){
                 document.getElementById("assType1").options.length = 0;
                 for (var i=0; i<detObj.data.length; i++) {
                   document.getElementById("assType1").options.add(new Option(detObj.data[i].assName,detObj.data[i].assType));
@@ -508,7 +477,7 @@
           dataType:"json",
           data:data.value,
           success:function(detObj){
-            if(detObj.msg=="sucess"){
+            if(detObj.msg=="success"){
               document.getElementById("assType2").options.length = 0;
               for (var i=0; i<detObj.data.length; i++) {
                 document.getElementById("assType2").options.add(new Option(detObj.data[i].assName,detObj.data[i].assType));
@@ -527,7 +496,7 @@
           dataType:"json",
           data:data.value,
           success:function(detObj){
-            if(detObj.msg=="sucess"){
+            if(detObj.msg=="success"){
               document.getElementById("assType3").options.length = 0;
               for (var i=0; i<detObj.data.length; i++) {
                 document.getElementById("assType3").options.add(new Option(detObj.data[i].assName,detObj.data[i].assType));
@@ -551,21 +520,16 @@
     params.assType1=$('#assType1').val();
     params.assType2=$('#assType2').val();
     params.assType3=$('#assType3').val();
-    params.assContr=$('#assContr').val();
     params.assNo=$('#assNo').val();
     params.assName=$('#assName').val();
-    params.assCatg=$('#assCatg').val();
     params.assTag=$('#assTag').val();
     params.assModel=$('#assModel').val();
-    params.assFactoryno=$('#assFactoryno').val();
+    params.factoryNo=$('#factoryNo').val();
     params.assManufacturer=$('#assManufacturer').val();
     params.assSupplier=$('#assSupplier').val();
-    params.assUnit=$('#assUnit').val();
-    params.assNum=$('#assNum').val();
     params.assCost=$('#assCost').val();
     params.purchaseDate=$('#purchaseDate').val();
     params.assDept=$('#assDept').val();
-    params.assOwner=$('#assOwner').val();
     params.assAddr=$('#assAddr').val();
     params.assState=$('#assState').val();
     params.assRemark=$('#assRemark').val();

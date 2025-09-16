@@ -101,10 +101,9 @@ public class ProjServiceImpl implements ProjService {
     }
 
     @Override
-    public PageInfo<MeetListForm> meetList(MeetListForm params) {
-        PageHelper.startPage(params.getPage(), 10);
-        List<MeetListForm> meetList=projMapper.meetList(params);
-        return PageInfo.of(meetList);
+    public List<MeetListForm> meetList(Long projId) {
+        List<MeetListForm> meetList=projMapper.meetList(projId);
+        return meetList;
     }
 
     @Override

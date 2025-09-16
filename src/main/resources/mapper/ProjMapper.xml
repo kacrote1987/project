@@ -82,15 +82,15 @@
     </select>
     <select id="meetList" resultType="com.project.entity.MeetListForm" >
         select meet_id,proj_id,meet_topic,meet_time,meet_addr,meet_host,meet_member from t_proj_meet where proj_id=#{params.projId}
-        <if test="params.meetTopic!=null and params.meetTopic!=''">
-            and meet_topic like '%' #{params.meetTopic} '%'
-        </if>
-        <if test="params.meetTime1!=null and params.meetTime1!=''">
-            and meet_time&gt;=#{params.meetTime1}
-        </if>
-        <if test="params.meetTime2!=null and params.meetTime2!=''">
-            and meet_time&lt;=#{params.meetTime2}
-        </if>
+<!--        <if test="params.meetTopic!=null and params.meetTopic!=''">-->
+<!--            and meet_topic like '%' #{params.meetTopic} '%'-->
+<!--        </if>-->
+<!--        <if test="params.meetTime1!=null and params.meetTime1!=''">-->
+<!--            and meet_time&gt;=#{params.meetTime1}-->
+<!--        </if>-->
+<!--        <if test="params.meetTime2!=null and params.meetTime2!=''">-->
+<!--            and meet_time&lt;=#{params.meetTime2}-->
+<!--        </if>-->
     </select>
     <select id="selGanttDet" resultType="com.project.entity.GanttDetForm" >
         select a.gantt_id,a.gantt_type,a.gantt_proce,a.gantt_time1,a.gantt_time2,a.total,a.sum

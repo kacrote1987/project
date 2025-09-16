@@ -12,7 +12,7 @@ public class AssDet {
     private String assCatg;
     private String assTag;
     private String assModel;
-    private String assFactoryno;
+    private String factoryNo;
     private String assManufacturer;
     private String assSupplier;
     private String assUnit;
@@ -113,12 +113,12 @@ public class AssDet {
         this.assModel = assModel;
     }
 
-    public String getAssFactoryno() {
-        return assFactoryno;
+    public String getFactoryNo() {
+        return factoryNo;
     }
 
-    public void setAssFactoryno(String assFactoryno) {
-        this.assFactoryno = assFactoryno;
+    public void setFactoryNo(String factoryNo) {
+        this.factoryNo = factoryNo;
     }
 
     public String getAssManufacturer() {

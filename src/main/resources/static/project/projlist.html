@@ -87,19 +87,19 @@
           <button class="layui-btn layui-btn-sm" lay-event="flow">流程图示</button>
           <button class="layui-btn layui-btn-sm" lay-event="submit">提交</button>
           <button class="layui-btn layui-btn-sm" lay-event="backoff">回退</button>
-          <button class="layui-btn layui-btn-sm" name="step1" lay-event="add" style="visibility: hidden">新增</button>
-          <button class="layui-btn layui-btn-sm" name="step1" lay-event="del" style="visibility: hidden">删除</button>
-          <button class="layui-btn layui-btn-sm" name="step2" lay-event="" style="visibility: hidden">合同操作</button>
-          <button class="layui-btn layui-btn-sm" name="step3" lay-event="" style="visibility: hidden">实施操作</button>
-          <button class="layui-btn layui-btn-sm" name="step4" lay-event="" style="visibility: hidden">初验操作</button>
-          <button class="layui-btn layui-btn-sm" name="step5" lay-event="" style="visibility: hidden">终验操作</button>
+          <button class="layui-btn layui-btn-sm" name="action1" lay-event="add" style="display: none">新增</button>
+          <button class="layui-btn layui-btn-sm" name="action2" lay-event="del" style="display: none">删除</button>
+          <button class="layui-btn layui-btn-sm" name="action3" lay-event="contract" style="display: none">合同操作</button>
+          <button class="layui-btn layui-btn-sm" name="action4" lay-event="impl" style="display: none">实施操作</button>
+          <button class="layui-btn layui-btn-sm" name="action5" lay-event="first" style="display: none">初验操作</button>
+          <button class="layui-btn layui-btn-sm" name="action6" lay-event="final" style="display: none">终验操作</button>
         </div>
       </script>
 
       <script type="text/html" id="test-table-toolbar-barDemo">
         <a name="det" class="layui-btn layui-btn-xs" lay-event="det">详细</a>
 <!--        <a name="det" class="layui-btn layui-btn-xs" lay-event="gantt">进度</a>-->
-        <a name="det" class="layui-btn layui-btn-xs" lay-event="log">例会</a>
+        <a name="meet" class="layui-btn layui-btn-xs" lay-event="meet">例会</a>
       </script>
 
       <div class="layui-card-body">
@@ -193,8 +193,9 @@
           }
         }, 'data');
         element.progress('component-progress-demo', str);
+
         for(var i=0;i<document.getElementsByName(projStepcode.val()).length;i++){
-          document.getElementsByName(projStepcode.val())[i].style.visibility='visible';
+          document.getElementsByName("action")[i].style.display='block';
         }
       }
     };
@@ -268,6 +269,42 @@
                 table.reload('projReload');layer.msg("回退成功");});}}
           });
           break;
+        case 'contract':
+          layer.open({
+            type: 2
+            ,title: '合同阶段'
+            ,content: 'projflow.html'
+            ,maxmin: true
+            ,area: ['1200px', '600px']
+          });
+          break;
+        case 'impl':
+          layer.open({
+            type: 2
+            ,title: '实施阶段'
+            ,content: 'projflow.html'
+            ,maxmin: true
+            ,area: ['1200px', '600px']
+          });
+          break;
+        case 'first':
+          layer.open({
+            type: 2
+            ,title: '初验阶段'
+            ,content: 'projflow.html'
+            ,maxmin: true
+            ,area: ['1200px', '600px']
+          });
+          break;
+        case 'final':
+          layer.open({
+            type: 2
+            ,title: '终验阶段'
+            ,content: 'projflow.html'
+            ,maxmin: true
+            ,area: ['1200px', '600px']
+          });
+          break;
       };
     });
 
@@ -290,11 +327,11 @@
           ,maxmin: true
           ,area: ['1200px', '600px']
         });
-      } else if(obj.event === 'log'){
+      } else if(obj.event === 'meet'){
         layer.open({
           type: 2
           ,title: '项目例会'
-          ,content: 'meetlist.html?' + data.projId
+          ,content: 'meetdet.html?' + data.projId
           ,maxmin: true
           ,area: ['1200px', '600px']
         });

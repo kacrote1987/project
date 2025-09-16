@@ -6,10 +6,7 @@ import com.project.service.ProjService;
 import com.project.config.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -86,8 +83,8 @@ public class ProjController {
 
     @ApiOperation("例会列表")
     @PostMapping("/meetlist")
-    public Result meetList(@RequestBody MeetListForm params){
-        PageInfo<MeetListForm> meetList= projService.meetList(params);
+    public Result meetList(@RequestParam Long projId){
+        List<MeetListForm> meetList= projService.meetList(projId);
         return Result.success(meetList);
     }
 

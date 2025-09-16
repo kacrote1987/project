@@ -24,7 +24,7 @@ public interface ProjMapper {
     String getAssTbl(Long projId);
     List<AssProj> assProj(Long projId);
     List<ProjCostForm> projCost(Long projId);
-    List<MeetListForm> meetList(@Param("params") MeetListForm params);
+    List<MeetListForm> meetList(Long projId);
     List<GanttDetForm> selGanttDet(Long projId);
     boolean insertGantt(Long projId);
     boolean deleteGantt(Long ganttId);
