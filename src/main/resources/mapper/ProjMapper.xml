@@ -2,9 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybaselectByUsernametiselectUsers.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.mapper.ProjMapper">
     <select id="selProjList" resultType="com.project.entity.ProjListForm" >
-        select a.proj_id,a.proj_type,a.proj_busin,a.proj_name,a.proj_manager,a.bid_state,a.contract_state,a.budget_amount
-        ,a.budget_percent,budget_complete,b.dict_value as proj_stepcode FROM t_proj_main a left join
+        select a.proj_id,a.proj_tag,a.proj_type,a.proj_busin,a.proj_name,a.proj_manager,a.budget_amount,a.budget_percent
+        ,a.pay_percent,budget_complete,b.dict_value as proj_stepcode FROM t_proj_main a left join
         (select dict_code,dict_value from t_sys_dict where dict_field='proj_stepcode') b on a.proj_stepcode=b.dict_code where 1=1
+        <if test="params.projTag!=null and params.projTag!=''">
+            and a.proj_tag=#{params.projTag}
+        </if>
         <if test="params.projType!=null and params.projType!=''">
             and a.proj_type=#{params.projType}
         </if>
@@ -17,26 +20,26 @@
         <if test="params.projManager!=null and params.projManager!=''">
             and a.proj_manager like '%' #{params.projManager} '%'
         </if>
-        <if test="projStepcode!=0">
-            and a.proj_stepcode = #{projStepcode}
+        <if test="params.projStepcode!=null and params.projStepcode!=''">
+            and a.proj_stepcode = #{params.projStepcode}
         </if>
         order by a.proj_id
     </select>
     <select id="selProjDet" resultType="com.project.entity.ProjDetForm">
-        select a.proj_id,a.proj_type,a.proj_busin,a.proj_name,a.proj_manager,a.bid_state,a.contract_state,a.budget_amount
-        ,a.budget_percent,budget_complete,a.proj_stepcode FROM t_proj_main a where a.proj_id=#{projId}
+        select a.proj_id,a.proj_tag,a.proj_type,a.proj_busin,a.proj_name,a.proj_manager,a.budget_amount,a.budget_percent
+        ,a.pay_percent,budget_complete,a.proj_stepcode FROM t_proj_main a where a.proj_id=#{projId}
     </select>
     <insert id="insertProj">
-        insert into t_proj_main(proj_type,proj_busin,proj_name,proj_manager,bid_state,contract_state,budget_amount,budget_percent
-        ,budget_complete,proj_stepcode) values(#{params.projType},#{params.projBusin},#{params.projName},#{params.projManager}
-        ,#{params.bidState},#{params.contractState},#{params.budgetAmount},#{params.budgetPercent},#{params.budgetComplete},1)
+        insert into t_proj_main(proj_tag,proj_type,proj_busin,proj_name,proj_manager,budget_amount,budget_percent,pay_percent
+        ,budget_complete,proj_stepcode) values(#{params.projTag},#{params.projType},#{params.projBusin},#{params.projName},#{params.projManager}
+        ,#{params.budgetAmount},#{params.budgetPercent},#{params.payPercent},#{params.budgetComplete},1)
     </insert>
     <delete id="deleteProj">
         delete from t_proj_main where proj_id=#{projId}
     </delete>
     <update id="updateProj">
-        update t_proj_main set proj_type=#{params.projType},proj_busin=#{params.projBusin},proj_name=#{params.projName},proj_manager=#{params.projManager}
-        ,bid_state=#{params.bidState},contract_state=#{params.contractState},budget_amount=#{params.budgetAmount},budget_percent=#{params.budgetPercent}
+        update t_proj_main set proj_tag=#{params.projTag},proj_type=#{params.projType},proj_busin=#{params.projBusin},proj_name=#{params.projName},proj_manager=#{params.projManager}
+        ,budget_amount=#{params.budgetAmount},budget_percent=#{params.budgetPercent},pay_percent=#{params.payPercent}
         ,budget_complete=#{params.budgetComplete},proj_stepcode=#{params.projStepcode} where proj_id=#{params.projId}
     </update>
     <update id="projStep">

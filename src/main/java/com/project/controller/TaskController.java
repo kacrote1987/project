@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Api(description = "文件管理")
+@Api(description = "工单管理")
 @RestController
 @RequestMapping("/doc")
-public class DocController {
+public class TaskController {
     @Resource
     DocService docService;
 

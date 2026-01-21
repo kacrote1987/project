@@ -3,14 +3,14 @@ package com.project.entity;
 public class ProjDetForm {
     private String action;
     private Long projId;
+    private String projTag;
     private String projType;
     private String projBusin;
     private String projName;
     private String projManager;
-    private String bidState;
-    private String contractState;
     private String budgetAmount;
     private String budgetPercent;
+    private String payPercent;
     private String budgetComplete;
     private String projStepcode;
 
@@ -28,6 +28,14 @@ public class ProjDetForm {
 
     public void setProjId(Long projId) {
         this.projId = projId;
+    }
+
+    public String getProjTag() {
+        return projTag;
+    }
+
+    public void setProjTag(String projTag) {
+        this.projTag = projTag;
     }
 
     public String getProjType() {
@@ -62,22 +70,6 @@ public class ProjDetForm {
         this.projManager = projManager;
     }
 
-    public String getBidState() {
-        return bidState;
-    }
-
-    public void setBidState(String bidState) {
-        this.bidState = bidState;
-    }
-
-    public String getContractState() {
-        return contractState;
-    }
-
-    public void setContractState(String contractState) {
-        this.contractState = contractState;
-    }
-
     public String getBudgetAmount() {
         return budgetAmount;
     }
@@ -92,6 +84,14 @@ public class ProjDetForm {
 
     public void setBudgetPercent(String budgetPercent) {
         this.budgetPercent = budgetPercent;
+    }
+
+    public String getPayPercent() {
+        return payPercent;
+    }
+
+    public void setPayPercent(String payPercent) {
+        this.payPercent = payPercent;
     }
 
     public String getBudgetComplete() {

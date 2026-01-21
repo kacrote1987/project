@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>人事管理</title>
+  <title>用户管理</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -23,30 +23,55 @@
   <div class="layui-row layui-col-space15">
     <div class="layui-col-md2">
 
+      <div class="layui-card">
+        <div class="layui-card-header">组织目录</div>
+        <div class="layui-card-body">
+          <div id="test-tree-demo4"></div>
+        </div>
+      </div>
+
     </div>
-    <div class="layui-col-md12">
+    <div class="layui-col-md10">
 
       <div class="layui-card">
-        <div class="layui-card-header"></div>
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
           <div class="layui-form-item">
             <div class="layui-inline">
-              <label class="layui-form-label">所属部门</label>
+              <label class="layui-form-label">部门</label>
               <div class="layui-input-block">
-                <select id="userDept">
-                  <option value="">全部</option>
-                  <option value="技术部">技术部<option>
-                  <option value="质检部">质检部<option>
-                  <option value="生产部">生产部</option>
-                  <option value="行政部">行政部</option>
-                  <option value="仓储部">仓储部</option>
-                </select>
+                <input type="text" id="deptName" placeholder="只读" autocomplete="off" class="layui-input" readonly>
+                <input type="text" id="deptId" placeholder="" autocomplete="off" class="layui-input" readonly style="display: none">
               </div>
             </div>
             <div class="layui-inline">
               <label class="layui-form-label">姓名</label>
               <div class="layui-input-block">
                 <input type="text" id="userName" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">角色</label>
+              <div class="layui-input-block">
+                <select id="roleName">
+                  <option value="">全部</option>
+                  <option value="管理员">管理员<option>
+                  <option value="部门领导">部门领导</option>
+                  <option value="部门经办人">部门经办人</option>
+                  <option value="综合运维组">综合运维组</option>
+                  <option value="硬件支撑组">硬件支撑组</option>
+                  <option value="软件支撑组">软件支撑组</option>
+                  <option value="安全支撑组">安全支撑组</option>
+                </select>
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">状态</label>
+              <div class="layui-input-block">
+                <select id="userState">
+                  <option value="">全部</option>
+                  <option value="在用">在用<option>
+                  <option value="废止">停用</option>
+                </select>
               </div>
             </div>
             <div class="layui-inline">
@@ -65,7 +90,9 @@
         </script>
 
         <script type="text/html" id="test-table-toolbar-barDemo">
-          <a name="det" class="layui-btn layui-btn-xs" lay-event="det">详细</a>
+          <a id="det" class="layui-btn layui-btn-xs" lay-event="det">详细</a>
+          <a id="scan" class="layui-btn layui-btn-xs" lay-event="scan">预览</a>
+          <a id="rec" class="layui-btn layui-btn-xs" lay-event="rec">记录</a>
         </script>
 
         <div class="layui-card-body">
@@ -80,44 +107,94 @@
   </div>
 </div>
 
-  <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
-  <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/script/login.js"></script>
-  <script src="js/demo.js"></script>
-  <script src="js/laypage.js"></script>
-  <script src="layuiadmin/layui/layui.js"></script>
-  <script>
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/script/login.js"></script>
+<script src="js/demo.js"></script>
+<script src="layuiadmin/layui/layui.js"></script>
+<script>
   layui.config({
     base: 'layuiadmin/' //静态资源所在路径
   }).extend({
     index: 'lib/index' //主入口模块
-  }).use(['index', 'tree', 'form', 'util', 'table', 'laypage', 'layer'], function(){
-    var $ = layui.$
+  }).use(['index', 'tree' , 'form' , 'util' ,'table', 'laydate'], function(){
+    var admin = layui.admin
             ,table = layui.table
+            ,$ = layui.$
+            ,element = layui.element
+            ,laydate = layui.laydate
             ,tree = layui.tree
-            ,layer = layui.layer
-            ,laypage = layui.laypage
+            ,util = layui.util
+            ,form = layui.form
+
+            //模拟数据
+            ,data = [{
+              title: '浙政钉吴兴区政府'
+              ,id: 5
+              ,field: 'qual0'
+              ,spread: true
+              ,children: [{
+                title: '数据局'
+                ,id: 6
+                ,field: 'qual6'
+              },{
+                title: '公安分局'
+                ,id: 6
+                ,field: 'qual6'
+              },{
+                title: '执法局'
+                ,id: 7
+                ,field: 'qual7'
+              },{
+                title: '应急管理局'
+                ,id: 7
+                ,field: 'qual7'
+              }]
+            },{
+              title: '维护单位'
+              ,id: 5
+              ,field: 'qual0'
+              ,spread: true
+              ,children: [{
+                title: '神威公司'
+                ,id: 6
+                ,field: 'qual6'
+              },{
+                title: '远方公司'
+                ,id: 6
+                ,field: 'qual6'
+              },{
+                title: '因迈公司'
+                ,id: 7
+                ,field: 'qual7'
+              },{
+                title: '英旭公司'
+                ,id: 7
+                ,field: 'qual7'
+              }]
+            }]
 
     table.render({
       elem: '#test-table-toolbar'
-      ,id: 'userReload'
+      ,id: 'docReload'
       ,method: 'post'
-      ,url: '/user/userList/' //数据接口
+      ,url: '/doc/doclist/' //数据接口
       ,response:{
         statusName:'code',
         statusCode:'200'
       }
       ,toolbar: '#test-table-toolbar-toolbarDemo'
-      ,title: '人员基本信息表'
+      ,title: '文件基本信息表'
       ,cols: [[
         {type: 'checkbox', fixed: 'left', width:'5%'}
-        ,{field: 'number', title: 'ID', width:'5%'}
-        ,{field: 'userDept', title: '所属部门',sort: true, width:'15%'}
-        ,{field: 'userName', title: '姓名',sort: true, width:'15%'}
-        ,{field: 'userSex', title: '性别',sort: true, width:'15%'}
-        ,{field: 'userCode', title: '账号',sort: true, width:'15%'}
-        ,{field: 'userState', title: '状态',sort: true, width:'15%'}
-        ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:'15%'}
+        ,{type: 'rowNum', title: '序号', width:'5%'}
+        ,{field: 'typeName', title: '文件类别',sort: true, width:'12%'}
+        ,{field: 'docName', title: '文件名称',sort: true, width:'17%'}
+        ,{field: 'docPuber', title: '发布人',sort: true, width:'12%'}
+        ,{field: 'docTime', title: '更新时间',sort: true, width:'12%'}
+        ,{field: 'docAnnex', title: '附件数量',sort: true, width:'12%'}
+        ,{field: 'docState', title: '文件状态',sort: true, width:'12%'}
+        ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:'13%'}
       ]]
       ,page: true
       ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
@@ -133,15 +210,15 @@
     //执行重载
     var $ = layui.$, active = {
       reload: function(){
-        var userDept = $('#userDept');
-        var userName = $('#userName');
-        table.reload('userReload', {
+        var deptId = $('#deptId');
+        var deptName = $('#deptName');
+        table.reload('docReload', {
           page: {
             curr: 1 //重新从第 1 页开始
           }
           ,where: {
-            userDept: userDept.val(),
-            userName: userName.val()
+            deptId: deptId.val(),
+            deptName: deptName.val()
           }
         }, 'data');
       }
@@ -154,8 +231,8 @@
         case 'add':
           layer.open({
             type: 2
-            ,title: '人员信息新增'
-            ,content: 'useradd.html'
+            ,title: '文件新增'
+            ,content: 'docdet.html?add'
             ,maxmin: true
             ,area: ['1200px', '600px']
           });
@@ -164,8 +241,7 @@
           layer.confirm('是否删除？', {
             btn: ['是','否'] //按钮
           }, function(){
-            postdata(checkStatus.data[0].userId,"/user/userDel",function () {
-              table.reload('userReload');layer.msg("删除成功");})
+            layer.msg("已删除");
           });
           break;
       };
@@ -177,11 +253,48 @@
       if(obj.event === 'det'){
         layer.open({
           type: 2
-          ,title: '人员信息详细'
-          ,content: 'userdet.html?' + data.userId
+          ,title: '文件详细'
+          ,content: 'docdet.html?' + data.docId
           ,maxmin: true
           ,area: ['1200px', '600px']
         });
+      }else if(obj.event === 'rec'){
+        layer.open({
+          type: 2
+          ,title: '操作记录'
+          ,content: 'docdet.html?' + data.docId
+          ,maxmin: true
+          ,area: ['1200px', '600px']
+        });
+      }else if(obj.event === 'scan' && obj.event === 'scan'){
+        layer.open({
+          type: 2
+          ,title: '文件预览'
+          ,content: 'docscan.html?' + data.docId
+          ,maxmin: true
+          ,area: ['1200px', '600px']
+        });
+      }else {
+        layer.msg("无法预览");
+      }
+    });
+
+    //仅节点左侧图标控制收缩
+    tree.render({
+      elem: '#test-tree-demo4'
+      ,data: data
+      ,onlyIconControl: true  //是否仅允许节点左侧图标控制展开收缩
+      ,click: function(obj){
+        $('#deptId').val(obj.data.field);
+        $('#deptName').val(obj.data.title);
+        table.reload('docReload', {
+          page: {
+            curr: 1 //重新从第 1 页开始
+          }
+          ,where: {
+            deptId: obj.data.field
+          }
+        }, 'data');
       }
     });
 
@@ -190,6 +303,6 @@
       active[type] ? active[type].call(this) : '';
     });
   })
-  </script>
+</script>
 </body>
 </html>

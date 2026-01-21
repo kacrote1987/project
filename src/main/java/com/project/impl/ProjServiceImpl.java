@@ -21,11 +21,7 @@ public class ProjServiceImpl implements ProjService {
     @Override
     public PageInfo<ProjListForm> projList(ProjListForm params) {
         PageHelper.startPage(params.getPage(), 10);
-        String projStepcode=params.getProjStepcode();
-        if(projStepcode==null){
-            projStepcode="step0"; }
-        projStepcode=projStepcode.substring(4,projStepcode.length());
-        List<ProjListForm> projList=projMapper.selProjList(projStepcode,params);
+        List<ProjListForm> projList=projMapper.selProjList(params);
         return PageInfo.of(projList);
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface ProjMapper {
-    List<ProjListForm> selProjList(String projStepcode, @Param("params") ProjListForm params);
+    List<ProjListForm> selProjList(@Param("params") ProjListForm params);
     List<ProjDetForm> selProjDet(String projId);
     boolean insertProj(@Param("params") ProjDetForm params);
     boolean deleteProj(Long projId);

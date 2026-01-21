@@ -15,167 +15,74 @@
 <div class="layui-fluid">
     <div class="layui-card">
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
-            <div class="layui-form-item">
-                <div class="layui-inline">
-                    <label class="layui-form-label">资产类别</label>
-                    <div class="layui-input-block">
-                        <select id="assType" name="assType" lay-filter="assType">
-                            <option value="">全部</option>
-                            <option value="A">项目资产</option>
-                            <option value="B">无形资产</option>
-                            <option value="C">办公资产</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">一级目录</label>
-                    <div class="layui-input-block">
-                        <select id="assType1" name="assType1" lay-filter="assType1">
-                            <option value="">全部</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">二级目录</label>
-                    <div class="layui-input-block">
-                        <select id="assType2" name="assType2" lay-filter="assType2">
-                            <option value="">全部</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">三级目录</label>
-                    <div class="layui-input-block">
-                        <select id="assType3" name="assType3">
-                            <option value="">全部</option>
-                        </select>
-                    </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">业务部门</label>
+                <div class="layui-input-block">
+                    <input type="text" id="projDept" name="assNo" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <div class="layui-form-item">
-                <div class="layui-inline">
-                    <label class="layui-form-label">资产编号</label>
-                    <div class="layui-input-block">
-                        <input type="text" id="assNo" name="assNo" placeholder="请输入" autocomplete="off" class="layui-input">
-                    </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">所属项目</label>
+                <div class="layui-input-block">
+                    <input type="text" id="projName" name="assNo" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">资产名称</label>
-                    <div class="layui-input-block">
-                        <input type="text" id="assName" name="assName" placeholder="请输入" autocomplete="off"
-                               class="layui-input">
-                    </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">资产类别</label>
+                <div class="layui-input-block">
+                    <select id="assType" name="assType" lay-filter="assType">
+                        <option value="">全部</option>
+                        <option value="硬件设备">硬件设备</option>
+                        <option value="软件系统">软件系统</option>
+                        <option value="云资源">云资源</option>
+                    </select>
                 </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">责任人</label>
-                    <div class="layui-input-block">
-                        <input type="text" id="assOwner" name="assOwner" placeholder="请输入" autocomplete="off"
-                               class="layui-input">
-                    </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">资产大类</label>
+                <div class="layui-input-block">
+                    <select id="assType1" name="assType1" lay-filter="assType1">
+                        <option value="">全部</option>
+                    </select>
                 </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">状态</label>
-                    <div class="layui-input-block">
-                        <select id="assState" name="assState">
-                            <option value="">全部</option>
-                            <option value="在用">在用</option>
-                            <option value="维修">维修</option>
-                            <option value="报废">报废</option>
-                            <option value="库存">库存</option>
-                        </select>
-                    </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">资产小类</label>
+                <div class="layui-input-block">
+                    <select id="assType2" name="assType2" lay-filter="assType2">
+                        <option value="">全部</option>
+                    </select>
                 </div>
-                <div class="layui-inline">
-                    <button class="layui-btn layuiadmin-btn-useradmin" data-type="reload">
-                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                    </button>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">资产编号</label>
+                <div class="layui-input-block">
+                    <input type="text" id="assNo" name="assNo" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
-                <hr>
-                <!--            扩展查询条件（办公类）-->
-                <div id="offic" class="layui-inline" style="display: none">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">合同编号</label>
-                        <div class="layui-input-block">
-                            <input type="text" id="" name="" placeholder="请输入" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">资产名称</label>
+                <div class="layui-input-block">
+                    <input type="text" id="assName" name="assName" placeholder="请输入" autocomplete="off"
+                           class="layui-input">
                 </div>
-                <!--            扩展查询条件（耗材类）-->
-                <div id="consp" class="layui-inline" style="display: none">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">数量</label>
-                        <div class="layui-input-block">
-                            <input type="text" id="" name="" placeholder="请输入" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">资产状态</label>
+                <div class="layui-input-block">
+                    <select id="assState" name="assState">
+                        <option value="">全部</option>
+                        <option value="正常">正常</option>
+                        <option value="告警">告警</option>
+                        <option value="离线">离线</option>
+                        <option value="报备">报备</option>
+                    </select>
                 </div>
-                <!--            扩展查询条件（车辆类）-->
-                <div id="car" class="layui-inline" style="display: none">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">车辆类型</label>
-                        <div class="layui-input-block">
-                            <input type="text" id="" name="" placeholder="请输入" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">车牌号码</label>
-                        <div class="layui-input-block">
-                            <input type="text" id="" name="" placeholder="请输入" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">车辆颜色</label>
-                        <div class="layui-input-block">
-                            <input type="text" id="" name="" placeholder="请输入" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">燃料重类</label>
-                        <div class="layui-input-block">
-                            <select id="" name="">
-                                <option value="">全部</option>
-                                <option value="燃油">燃油</option>
-                                <option value="电动">电动</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <!--            扩展查询条件（电子类）-->
-                <div id="server" class="layui-inline" style="display: none">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">电子类</label>
-                        <div class="layui-input-block">
-                            <input type="text" id="" name="" placeholder="请输入" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                </div>
-                <!--            扩展查询条件（监控类）-->
-                <div id="camera" class="layui-inline" style="display: none">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">监控类</label>
-                        <div class="layui-input-block">
-                            <input type="text" id="" name="" placeholder="请输入" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                </div>
-                <!--            扩展查询条件（道闸类）-->
-                <div id="gate" class="layui-inline" style="display: none">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">道闸类</label>
-                        <div class="layui-input-block">
-                            <input type="text" id="" name="" placeholder="请输入" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                </div>
-                <!--            扩展查询条件（仪表类）-->
-                <div id="instr" class="layui-inline" style="display: none">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">仪表类</label>
-                        <div class="layui-input-block">
-                            <input type="text" id="" name="" placeholder="请输入" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-useradmin" data-type="reload">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
             </div>
         </div>
 

@@ -15,13 +15,24 @@
       <div class="layui-form layui-card-header layuiadmin-card-header-auto">
         <div class="layui-form-item">
           <div class="layui-inline">
+            <label class="layui-form-label">项目标识</label>
+            <div class="layui-input-block">
+              <select id="projTag" name="projTag">
+                <option value="">全部</option>
+                <option value="前向">前向</option>
+                <option value="后向">后向</option>
+              </select>
+            </div>
+          </div>
+          <div class="layui-inline">
             <label class="layui-form-label">项目类型</label>
             <div class="layui-input-block">
               <select id="projType" name="projType">
                 <option value="">全部</option>
-                  <option value="数改项目">数改项目</option>
-                  <option value="市场项目">市场项目</option>
-                  <option value="集团项目">集团项目</option>
+                <option value="硬件类">硬件类</option>
+                <option value="软件类">软件类</option>
+                <option value="服务类">服务类</option>
+                <option value="集成类">集成类</option>
               </select>
             </div>
           </div>
@@ -56,6 +67,23 @@
             </div>
           </div>
           <div class="layui-inline">
+            <label class="layui-form-label">流转状态</label>
+            <div class="layui-input-block">
+              <select id="projStepcode" name="projStepcode">
+                <option value="">全部</option>
+                <option value="1">需求阶段</option>
+                <option value="2">方案阶段</option>
+                <option value="3">合同阶段</option>
+                <option value="4">实施阶段</option>
+                <option value="5">初验阶段</option>
+                <option value="6">试运行阶段</option>
+                <option value="7">终验阶段</option>
+                <option value="8">维护阶段</option>
+                <option value="0">归档阶段</option>
+              </select>
+            </div>
+          </div>
+          <div class="layui-inline">
             <button class="layui-btn layuiadmin-btn-useradmin" data-type="reload">
               <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
             </button>
@@ -63,43 +91,20 @@
         </div>
       </div>
 
-      <div class="layui-card layui-form" lay-filter="component-form-element" id="LAY-component-projress">
-        <div class="layui-card-body layui-row layui-col-space10">
-          <div class="layui-col-md12">
-            <input class="layui-radio" type="radio" id="step0" name="projStepcode" value="step0" title="全部" checked>
-            <input class="layui-radio" type="radio" id="step1" name="projStepcode" value="step1" title="需求阶段">
-            <input class="layui-radio" type="radio" id="step2" name="projStepcode" value="step2" title="方案阶段">
-            <input class="layui-radio" type="radio" id="step3" name="projStepcode" value="step3" title="合同阶段">
-            <input class="layui-radio" type="radio" id="step4" name="projStepcode" value="step4" title="实施阶段">
-            <input class="layui-radio" type="radio" id="step5" name="projStepcode" value="step5" title="初验阶段">
-            <input class="layui-radio" type="radio" id="step6" name="projStepcode" value="step6" title="试运行阶段">
-            <input class="layui-radio" type="radio" id="step7" name="projStepcode" value="step7" title="终验阶段">
-            <input class="layui-radio" type="radio" id="step8" name="projStepcode" value="step8" title="维护阶段">
-          </div>
-        </div>
-        <div class="layui-progress" lay-filter="component-progress-demo">
-          <div class="layui-progress-bar layui-bg-red" lay-percent="0%"></div>
-        </div>
-      </div>
-
       <script type="text/html" id="test-table-toolbar-toolbarDemo">
         <div class="layui-btn-container">
           <button class="layui-btn layui-btn-sm" lay-event="flow">流程图示</button>
+          <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+          <button class="layui-btn layui-btn-sm" lay-event="del">删除</button>
           <button class="layui-btn layui-btn-sm" lay-event="submit">提交</button>
           <button class="layui-btn layui-btn-sm" lay-event="backoff">回退</button>
-          <button class="layui-btn layui-btn-sm" name="action1" lay-event="add" style="display: none">新增</button>
-          <button class="layui-btn layui-btn-sm" name="action2" lay-event="del" style="display: none">删除</button>
-          <button class="layui-btn layui-btn-sm" name="action3" lay-event="contract" style="display: none">合同操作</button>
-          <button class="layui-btn layui-btn-sm" name="action4" lay-event="impl" style="display: none">实施操作</button>
-          <button class="layui-btn layui-btn-sm" name="action5" lay-event="first" style="display: none">初验操作</button>
-          <button class="layui-btn layui-btn-sm" name="action6" lay-event="final" style="display: none">终验操作</button>
         </div>
       </script>
 
       <script type="text/html" id="test-table-toolbar-barDemo">
         <a name="det" class="layui-btn layui-btn-xs" lay-event="det">详细</a>
-<!--        <a name="det" class="layui-btn layui-btn-xs" lay-event="gantt">进度</a>-->
-        <a name="meet" class="layui-btn layui-btn-xs" lay-event="meet">例会</a>
+        <a name="impl" class="layui-btn layui-btn-xs" lay-event="impl">实施</a>
+        <a name="doc" class="layui-btn layui-btn-xs" lay-event="doc">材料</a>
       </script>
 
       <div class="layui-card-body">
@@ -148,16 +153,16 @@
       ,cols: [[
         {type: 'checkbox', fixed: 'left', width:'5%'}
         ,{type: 'numbers', title: '序号', width:'5%'}
-        ,{field: 'projTag', title: '项目标识',sort: true, width:'8%'}
-        ,{field: 'projType', title: '项目类型',sort: true, width:'8%'}
-        ,{field: 'projBusin', title: '业务主线',sort: true, width:'8%'}
-        ,{field: 'projName', title: '收入项目名称',sort: true, width:'20%'}
-        ,{field: 'projManager', title: '项目经理',sort: true, width:'8%'}
-        ,{field: 'budgetAmount', title: '合同金额',sort: true, width:'8%'}
-        ,{field: 'budgetPercent', title: '收入比例',sort: true, width:'8%'}
-        ,{field: 'budgetPercent', title: '支付比例',sort: true, width:'8%'}
-        ,{field: 'projStepcode', title: '项目状态',sort: true, width:'8%'}
-        ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:'7%'}
+        ,{field: 'projTag', title: '项目标识',sort: true, width:'7.5%'}
+        ,{field: 'projType', title: '项目类型',sort: true, width:'7.5%'}
+        ,{field: 'projName', title: '项目名称',sort: true, width:'20%'}
+        ,{field: 'projBusin', title: '业务主线',sort: true, width:'7.5%'}
+        ,{field: 'projManager', title: '项目经理',sort: true, width:'7.5%'}
+        ,{field: 'budgetAmount', title: '合同金额',sort: true, width:'7.5%'}
+        ,{field: 'budgetPercent', title: '资金保障',sort: true, width:'7.5%'}
+        ,{field: 'budgetPercent', title: '支付比例',sort: true, width:'7.5%'}
+        ,{field: 'projStepcode', title: '项目状态',sort: true, width:'7.5%'}
+        ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:'10%'}
       ]]
       ,page: true
       ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
@@ -173,17 +178,18 @@
     //执行重载
     var $ = layui.$, active = {
       reload: function(){
+        var projTag = $('#projTag');
         var projType = $('#projType');
         var projBusin = $('#projBusin');
         var projName = $('#projName');
         var projManager = $('#projManager');
-        var projStepcode = $("input[type=radio]:checked");
-        var str=(projStepcode.val().substr(4,projStepcode.val().length))*12.5+'%';
+        var projStepcode = $("#projStepcode");
         table.reload('projReload', {
           page: {
             curr: 1 //重新从第 1 页开始
           }
           ,where: {
+            projTag: projTag.val(),
             projType: projType.val(),
             projBusin: projBusin.val(),
             projName: projName.val(),
@@ -191,7 +197,6 @@
             projStepcode: projStepcode.val()
           }
         }, 'data');
-        element.progress('component-progress-demo', str);
 
         for(var i=0;i<document.getElementsByName(projStepcode.val()).length;i++){
           document.getElementsByName("action")[i].style.display='block';
@@ -318,19 +323,19 @@
           ,maxmin: true
           ,area: ['1200px', '600px']
         });
-      } else if(obj.event === 'gantt'){
+      } else if(obj.event === 'impl'){
         layer.open({
           type: 2
-          ,title: '进度'
-          ,content: 'projgantt.html?' + data.projId
+          ,title: '实施'
+          ,content: 'meetdet.html?' + data.projId
           ,maxmin: true
           ,area: ['1200px', '600px']
         });
-      } else if(obj.event === 'meet'){
+      } else if(obj.event === 'doc'){
         layer.open({
           type: 2
-          ,title: '项目例会'
-          ,content: 'meetdet.html?' + data.projId
+          ,title: '材料'
+          ,content: 'projgantt.html?' + data.projId
           ,maxmin: true
           ,area: ['1200px', '600px']
         });

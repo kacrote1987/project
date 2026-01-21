@@ -33,20 +33,64 @@
                 <input id="projId" type="text" name="projId" placeholder="" autocomplete="off" class="layui-input" style="display: none">
                 <div class="layui-card-body">
                   <form class="layui-form" action="" lay-filter="component-form-element">
-                    <blockquote class="layui-elem-quote">一、前项收入情况</blockquote>
+                    <blockquote class="layui-elem-quote">一、项目概况</blockquote>
                     <div class="layui-row layui-col-space10 layui-form-item">
+                      <div class="layui-col-lg6">
+                        <label class="layui-form-label">项目标识</label>
+                        <div class="layui-input-block">
+                          <select id="projTag" name="projTag">
+                            <option value="">全部</option>
+                            <option value="前向">前向</option>
+                            <option value="后向">后向</option>
+                          </select>
+                        </div>
+                      </div>
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">项目类型</label>
                         <div class="layui-input-block">
                           <select id="projType" name="projType">
                             <option value="">全部</option>
-                            <option value="数改项目">数改项目</option>
-                            <option value="市场项目">市场项目</option>
-                            <option value="集团项目">集团项目</option>
-                            <option value="其他项目">其他项目</option>
+                            <option value="硬件类">硬件类</option>
+                            <option value="软件类">软件类</option>
+                            <option value="服务类">服务类</option>
+                            <option value="集成类">集成类</option>
                           </select>
                         </div>
                       </div>
+                    </div>
+                    <div class="layui-row layui-col-space10 layui-form-item">
+                      <div class="layui-col-lg12">
+                        <label class="layui-form-label">项目名称</label>
+                        <div class="layui-input-block">
+                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="layui-row layui-col-space10 layui-form-item">
+                      <div class="layui-col-lg6">
+                        <label class="layui-form-label">合同金额</label>
+                        <div class="layui-input-block">
+                          <input id="budgetAmount" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                      </div>
+                      <div class="layui-col-lg6">
+                        <label class="layui-form-label">项目状态</label>
+                        <div class="layui-input-block">
+                          <select id="projStepcode" name="projStepcode" disabled>
+                            <option value="">全部</option>
+                            <option value="1">需求阶段</option>
+                            <option value="2">方案阶段</option>
+                            <option value="3">合同阶段</option>
+                            <option value="4">实施阶段</option>
+                            <option value="5">初验阶段</option>
+                            <option value="6">试运行阶段</option>
+                            <option value="7">终验阶段</option>
+                            <option value="8">维护阶段</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="layui-row layui-col-space10 layui-form-item">
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">业务主线</label>
                         <div class="layui-input-block">
@@ -65,109 +109,87 @@
                           </select>
                         </div>
                       </div>
-                    </div>
-                    <div class="layui-row layui-col-space10 layui-form-item">
                       <div class="layui-col-lg6">
-                        <label class="layui-form-label">项目名称</label>
+                        <label class="layui-form-label">工期</label>
                         <div class="layui-input-block">
-                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                        </div>
-                      </div>
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">项目经理</label>
-                        <div class="layui-input-block">
-                          <input id="projManager" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                          <input id="deadLine" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                     </div>
                     <div class="layui-row layui-col-space10 layui-form-item">
                       <div class="layui-col-lg6">
-                        <label class="layui-form-label">投标情况</label>
-                        <div class="layui-input-block">
-                          <select id="bidState" name="bidState">
-                            <option value="">全部</option>
-                            <option value="未完成">未完成</option>
-                            <option value="已完成">已完成</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">合同签订</label>
-                        <div class="layui-input-block">
-                          <select id="contractState" name="contractState">
-                            <option value="">全部</option>
-                            <option value="未完成">未完成</option>
-                            <option value="已完成">已完成</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="layui-row layui-col-space10 layui-form-item">
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">累计金额</label>
-                        <div class="layui-input-block">
-                          <input id="budgetAmount" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                        </div>
-                      </div>
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">累计比利</label>
+                        <label class="layui-form-label">资金保障</label>
                         <div class="layui-input-block">
                           <input id="budgetPercent" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
-                    </div>
-                    <div class="layui-row layui-col-space10 layui-form-item">
                       <div class="layui-col-lg6">
-                        <label class="layui-form-label">项目状态</label>
+                        <label class="layui-form-label">支付比例</label>
                         <div class="layui-input-block">
-                          <select id="projStepcode" name="projStepcode" disabled>
-                            <option value="">全部</option>
-                            <option value="1">需求阶段</option>
-                            <option value="2">方案阶段</option>
-                            <option value="3">合同阶段</option>
-                            <option value="4">实施阶段</option>
-                            <option value="5">初验阶段</option>
-                            <option value="6">试运行阶段</option>
-                            <option value="7">终验阶段</option>
-                            <option value="8">维护阶段</option>
-                          </select>
+                          <input id="payPercent" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
-                      </div>
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label"></label>
-                        <div class="layui-input-block"></div>
                       </div>
                     </div>
                     <div class="layui-row layui-col-space10 layui-form-item">
                       <div class="layui-form-item">
-                        <label class="layui-form-label">收入情况</label>
+                        <label class="layui-form-label">备注</label>
                         <div class="layui-input-block">
                           <textarea id="budgetComplete" placeholder="" class="layui-textarea"></textarea>
                         </div>
                       </div>
                     </div>
-                    <blockquote class="layui-elem-quote">二、后项支出情况</blockquote>
-                    <div class="layui-row layui-col-space12">
-                      <script type="text/html" id="test-table-toolbar-conseq">
-                        <div class="layui-btn-container">
-                          <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
+
+                  </form>
+
+                  <form class="layui-form" action="" lay-filter="component-form-element">
+                    <blockquote class="layui-elem-quote">二、项目干系人</blockquote>
+                    <div class="layui-row layui-col-space10 layui-form-item">
+                      <div class="layui-col-lg12">
+                        <label class="layui-form-label">合同甲方</label>
+                        <div class="layui-input-block">
+                          <input id="" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
-                      </script>
-                      <script type="text/html" id="test-table-toolbar-barDemo">
-                        <a name="det" class="layui-btn layui-btn-xs" lay-event="det">详细</a>
-                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                      </script>
-                      <div class="layui-card-body">
-                        <table id="test-table-toolbar" lay-filter="test-table-toolbar"></table>
-                        <script type="text/html" id="imgTpl">
-                          <img style="display: inline-block; width: 50%; height: 100%;" src= {{ d.avatar }}>
-                        </script>
                       </div>
-                      <div class="layui-col-md1">
+                    </div>
+                    <div class="layui-row layui-col-space10 layui-form-item">
+                      <div class="layui-col-lg6">
+                        <label class="layui-form-label">甲方负责人</label>
+                        <div class="layui-input-block">
+                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                      </div>
+                      <div class="layui-col-lg6">
+                        <label class="layui-form-label">负责人电话</label>
+                        <div class="layui-input-block">
+                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="layui-row layui-col-space10 layui-form-item">
+                      <div class="layui-col-lg12">
+                        <label class="layui-form-label">合同乙方</label>
+                        <div class="layui-input-block">
+                          <input id="" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="layui-row layui-col-space10 layui-form-item">
+                      <div class="layui-col-lg6">
+                        <label class="layui-form-label">乙方负责人</label>
+                        <div class="layui-input-block">
+                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                      </div>
+                      <div class="layui-col-lg6">
+                        <label class="layui-form-label">负责人电话</label>
+                        <div class="layui-input-block">
+                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
                       </div>
                     </div>
 
                   </form>
+
                 </div>
               </div>
             </div>
@@ -206,7 +228,7 @@
             ,form = layui.form;
 
     element.render('conseqReload');
-    //前项项目信息表
+    //项目概况
     var projId=window.location.search.substring(1,window.location.search.length);
     if(projId=="add"){
       $('#action').val("add");
@@ -225,78 +247,18 @@
         if(detObj.msg=="success"){
           var detJson=detObj.data[0];
           $('#projId').val(detJson.projId);
+          $('#projTag').val(detJson.projTag);
           $('#projType').val(detJson.projType);
           $('#projBusin').val(detJson.projBusin);
           $('#projName').val(detJson.projName);
           $('#projManager').val(detJson.projManager);
-          $('#bidState').val(detJson.bidState);
-          $('#contractState').val(detJson.contractState);
           $('#budgetAmount').val(detJson.budgetAmount);
           $('#budgetPercent').val(detJson.budgetPercent);
+          $('#payPercent').val(detJson.payPercent);
           $('#budgetComplete').val(detJson.budgetComplete);
           $('#projStepcode').val(detJson.projStepcode);
           layui.form.render();
         }
-      }
-    });
-    //后项项目信息表
-    table.render({
-      elem: '#test-table-toolbar'
-      ,id: 'conseqReload'
-      ,method: 'post'
-      ,url:'/proj/conseqlist?' +projId
-      ,response:{
-        statusName:'code',
-        statusCode:'200',
-        msgName:'msg',
-        dataName:'data'
-      }
-      ,toolbar: '#test-table-toolbar-conseq'
-      ,title: '后项项目信息表'
-      , cols: [[
-        {type: 'checkbox', fixed: 'left', width: '5%'}
-        , {field: 'conseqId', title: '序号', width: '6%'}
-        , {field: 'conseqName', title: '支出项目名称', width: '49%'}
-        , {field: 'purchaseState', title: '采购流程', width: '10%'}
-        , {field: 'bidState', title: '投标情况', width: '10%'}
-        , {field: 'contractState', title: '合同情况', width: '10%'}
-        , {fixed: 'right', title: '操作', toolbar: '#test-table-toolbar-barDemo', width: '12%'}
-      ]]
-      ,page: true
-      ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
-        return {
-          "code": res.code, //解析接口状态
-          "msg": res.msg, //解析提示文本
-          "count": res.data.total, //解析数据长度
-          "data": res.data.list //解析数据列表
-        };
-      }
-    });
-
-    //头工具栏事件
-    table.on('toolbar(test-table-toolbar)', function(obj){
-      var params = {};
-      params.action="add";
-      params.projId=projId;
-      postdata(params,"/proj/conseqsave",function () {layer.msg("已新增！");});
-    });
-
-    //监听行工具事件
-    table.on('tool(test-table-toolbar)', function(obj){
-      var data = obj.data;
-      if(obj.event === 'del'){
-        var params = {};
-        params.action="del";
-        params.conseqId=data.conseqId;
-        postdata(params,"/proj/conseqsave",function () {layer.msg("已删除！");});
-      } else {
-        layer.open({
-          type: 2
-          ,title: '详细'
-          ,content: 'conseqdet.html?' + data.conseqId
-          ,maxmin: true
-          ,area: ['1200px', '600px']
-        });
       }
     });
 
@@ -310,14 +272,14 @@
     var params={};
     params.action=$('#action').val();
     params.projId=$('#projId').val();
+    params.projTag=$('#projTag').val();
     params.projType=$('#projType').val();
     params.projBusin=$('#projBusin').val();
     params.projName=$('#projName').val();
     params.projManager=$('#projManager').val();
-    params.bidState=$('#bidState').val();
-    params.contractState=$('#contractState').val();
     params.budgetAmount=$('#budgetAmount').val();
     params.budgetPercent=$('#budgetPercent').val();
+    params.payPercent=$('#payPercent').val();
     params.budgetComplete=$('#budgetComplete').val();
     params.projStepcode=$('#projStepcode').val();
     postdata(params,"/proj/projsave",function () {layer.msg("保存成功！");});
