@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>单位管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+<div class="layui-card layadmin-header">
+  <div class="layui-breadcrumb" lay-filter="breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>组件</cite></a>
+    <a><cite>树形组件</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space15">
+    <div class="layui-col-md2">
+
+      <div class="layui-card">
+        <div class="layui-card-header">组织目录</div>
+        <div class="layui-card-body">
+          <div id="test-tree-demo4"></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="layui-col-md10">
+
+      <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">浙政钉组织</label>
+              <div class="layui-input-block">
+                <input type="text" id="" placeholder="同步状态" autocomplete="off" class="layui-input" readonly>
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-sm" lay-event="add">手动同步</button>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">本级部门</label>
+              <div class="layui-input-block">
+                <input type="text" id="deptName" placeholder="请选择" autocomplete="off" class="layui-input" readonly>
+                <input type="text" id="deptId" placeholder="" autocomplete="off" class="layui-input" readonly style="display: none">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-sm" lay-event="add">删除本级及下级</button>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">修改本级</label>
+              <div class="layui-input-block">
+                <input type="text" id="userName" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-sm" lay-event="add">修改本级</button>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">新增下级</label>
+              <div class="layui-input-block">
+                <input type="text" id="userName" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layui-btn-sm" lay-event="add">新增下级</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/script/login.js"></script>
+<script src="../js/demo.js"></script>
+<script src="../layuiadmin/layui/layui.js"></script>
+<script>
+  layui.config({
+    base: '../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'tree' , 'form' , 'util' ,'table', 'laydate'], function(){
+    var admin = layui.admin
+            ,table = layui.table
+            ,$ = layui.$
+            ,element = layui.element
+            ,laydate = layui.laydate
+            ,tree = layui.tree
+            ,util = layui.util
+            ,form = layui.form
+
+            //模拟数据
+            ,data = [{
+              title: '浙政钉吴兴区政府'
+              ,id: 5
+              ,field: 'qual0'
+              ,spread: true
+              ,children: [{
+                title: '数据局'
+                ,id: 6
+                ,field: 'qual6'
+              },{
+                title: '公安分局'
+                ,id: 6
+                ,field: 'qual6'
+              },{
+                title: '执法局'
+                ,id: 7
+                ,field: 'qual7'
+              },{
+                title: '应急管理局'
+                ,id: 7
+                ,field: 'qual7'
+              }]
+            },{
+              title: '维护单位'
+              ,id: 5
+              ,field: 'qual0'
+              ,spread: true
+              ,children: [{
+                title: '神威公司'
+                ,id: 6
+                ,field: 'qual6'
+              },{
+                title: '远方公司'
+                ,id: 6
+                ,field: 'qual6'
+              },{
+                title: '因迈公司'
+                ,id: 7
+                ,field: 'qual7'
+              },{
+                title: '英旭公司'
+                ,id: 7
+                ,field: 'qual7'
+              }]
+            }]
+
+    table.render({
+      elem: '#test-table-toolbar'
+      ,id: 'docReload'
+      ,method: 'post'
+      ,url: '/doc/doclist/' //数据接口
+      ,response:{
+        statusName:'code',
+        statusCode:'200'
+      }
+      ,toolbar: '#test-table-toolbar-toolbarDemo'
+      ,title: '文件基本信息表'
+      ,cols: [[
+        {type: 'checkbox', fixed: 'left', width:'5%'}
+        ,{type: 'rowNum', title: '序号', width:'5%'}
+        ,{field: 'typeName', title: '文件类别',sort: true, width:'12%'}
+        ,{field: 'docName', title: '文件名称',sort: true, width:'17%'}
+        ,{field: 'docPuber', title: '发布人',sort: true, width:'12%'}
+        ,{field: 'docTime', title: '更新时间',sort: true, width:'12%'}
+        ,{field: 'docAnnex', title: '附件数量',sort: true, width:'12%'}
+        ,{field: 'docState', title: '文件状态',sort: true, width:'12%'}
+        ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:'13%'}
+      ]]
+      ,page: true
+      ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+        return {
+          "code": res.code, //解析接口状态
+          "msg": res.msg, //解析提示文本
+          "count": res.data.total, //解析数据长度
+          "data": res.data.list //解析数据列表
+        };
+      }
+    });
+
+    //执行重载
+    var $ = layui.$, active = {
+      reload: function(){
+        var deptId = $('#deptId');
+        var deptName = $('#deptName');
+        table.reload('docReload', {
+          page: {
+            curr: 1 //重新从第 1 页开始
+          }
+          ,where: {
+            deptId: deptId.val(),
+            deptName: deptName.val()
+          }
+        }, 'data');
+      }
+    };
+
+    //头工具栏事件
+    table.on('toolbar(test-table-toolbar)', function(obj){
+      var checkStatus = table.checkStatus(obj.config.id);
+      switch(obj.event){
+        case 'add':
+          layer.open({
+            type: 2
+            ,title: '文件新增'
+            ,content: 'docdet.html?add'
+            ,maxmin: true
+            ,area: ['1200px', '600px']
+          });
+          break;
+        case 'del':
+          layer.confirm('是否删除？', {
+            btn: ['是','否'] //按钮
+          }, function(){
+            layer.msg("已删除");
+          });
+          break;
+      };
+    });
+
+    //监听行工具事件
+    table.on('tool(test-table-toolbar)', function(obj){
+      var data = obj.data;
+      if(obj.event === 'det'){
+        layer.open({
+          type: 2
+          ,title: '文件详细'
+          ,content: 'docdet.html?' + data.docId
+          ,maxmin: true
+          ,area: ['1200px', '600px']
+        });
+      }else if(obj.event === 'rec'){
+        layer.open({
+          type: 2
+          ,title: '操作记录'
+          ,content: 'docdet.html?' + data.docId
+          ,maxmin: true
+          ,area: ['1200px', '600px']
+        });
+      }else if(obj.event === 'scan' && obj.event === 'scan'){
+        layer.open({
+          type: 2
+          ,title: '文件预览'
+          ,content: 'docscan.html?' + data.docId
+          ,maxmin: true
+          ,area: ['1200px', '600px']
+        });
+      }else {
+        layer.msg("无法预览");
+      }
+    });
+
+    //仅节点左侧图标控制收缩
+    tree.render({
+      elem: '#test-tree-demo4'
+      ,data: data
+      ,onlyIconControl: true  //是否仅允许节点左侧图标控制展开收缩
+      ,click: function(obj){
+        $('#deptId').val(obj.data.field);
+        $('#deptName').val(obj.data.title);
+        table.reload('docReload', {
+          page: {
+            curr: 1 //重新从第 1 页开始
+          }
+          ,where: {
+            deptId: obj.data.field
+          }
+        }, 'data');
+      }
+    });
+
+    $('.layui-fluid .layui-btn').on('click', function(){
+      var type = $(this).data('type');
+      active[type] ? active[type].call(this) : '';
+    });
+  })
+</script>
+</body>
+</html>
