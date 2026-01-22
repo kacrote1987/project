@@ -39,22 +39,6 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">资产大类</label>
-                <div class="layui-input-block">
-                    <select id="assType1" name="assType1" lay-filter="assType1">
-                        <option value="">全部</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">资产小类</label>
-                <div class="layui-input-block">
-                    <select id="assType2" name="assType2" lay-filter="assType2">
-                        <option value="">全部</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-inline">
                 <label class="layui-form-label">资产名称</label>
                 <div class="layui-input-block">
                     <input type="text" id="assName" name="assName" placeholder="请输入" autocomplete="off"
@@ -87,6 +71,21 @@
                 <label class="layui-form-label">维护单位</label>
                 <div class="layui-input-block">
                     <input type="text" id="" placeholder="请输入" autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">扩展条件</label>
+                <div class="layui-input-block">
+                    <select id="assState" name="assState">
+                        <option value="">全部</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">扩展值</label>
+                <div class="layui-input-block">
+                    <input type="text" id="assName" name="assName" placeholder="请输入" autocomplete="off"
                            class="layui-input">
                 </div>
             </div>
@@ -153,14 +152,16 @@
             , cols: [[
                 {type: 'checkbox', fixed: 'left', width: '5%'}
                 , {type: 'numbers', title: '序号', width: '5%'}
-                , {field: 'projName', title: '所属项目', sort: true, width: '10%'}
+                , {field: 'assDept', title: '业务部门', sort: true, width: '7%'}
+                , {field: 'projName', title: '所属项目', sort: true, width: '8%'}
                 , {field: 'assType', title: '资产类别', sort: true, width: '7%'}
-                , {field: 'assNo', title: '资产编号', sort: true, width: '9%'}
-                , {field: 'assName', title: '资产名称', sort: true, width: '9%'}
-                , {field: 'assName', title: '规格型号', sort: true, width: '9%'}
-                , {field: 'assName', title: '出厂编号', sort: true, width: '9%'}
-                , {field: 'assDept', title: '业务部门', sort: true, width: '9%'}
-                , {field: 'assDept', title: '维护单位', sort: true, width: '9%'}
+                , {field: 'assNo', title: '资产编号', sort: true, width: '7%'}
+                , {field: 'assName', title: '资产名称', sort: true, width: '7%'}
+                , {field: 'assName', title: '规格型号', sort: true, width: '7%'}
+                , {field: 'assName', title: '出厂编号', sort: true, width: '7%'}
+                , {field: 'assName', title: '网络环境', sort: true, width: '7%'}
+                , {field: 'assName', title: 'IP地址', sort: true, width: '7%'}
+                , {field: 'assDept', title: '维护单位', sort: true, width: '7%'}
                 , {field: 'assState', title: '资产状态', sort: true, width: '7%'}
                 , {field: 'assState', title: '运维状态', sort: true, width: '7%'}
                 , {fixed: 'right', title: '操作', toolbar: '#test-table-toolbar-barDemo', width: '5%'}
