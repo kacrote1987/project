@@ -74,9 +74,12 @@
                             <cite>运维中心</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a lay-href="projlist.html">项目管理</a></dd>
-                            <dd><a lay-href="asslist.html">资产管理</a></dd>
-                            <dd><a lay-href="projlist.html">工单管理</a></dd>
+                            <dd><a lay-href="workbench.html">工作台</a></dd>
+                            <dd><a lay-href="proj/projlist.html">项目管理</a></dd>
+                            <dd><a lay-href="ass/asslist.html">资产管理</a></dd>
+                            <dd><a lay-href="task/tasklist.html">工单管理</a></dd>
+                            <dd><a lay-href="check/checklist.html">维护计划</a></dd>
+                            <dd><a lay-href="api/apilist.html">三方平台</a></dd>
                         </dl>
                     </li>
                     <li id="xitong" data-name="home" class="layui-nav-item layui-nav-itemed" style="display: none">
@@ -85,10 +88,12 @@
                             <cite>系统设置</cite>
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a lay-href="userlist.html">单位管理</a></dd>
-                            <dd><a lay-href="userlist.html">用户管理</a></dd>
-                            <dd><a lay-href="rolelist.html">角色管理</a></dd>
-<!--                            <dd><a lay-href="grantlist.html">权限管理</a></dd>-->
+                            <dd><a lay-href="unit/unitlist.html">单位管理</a></dd>
+                            <dd><a lay-href="user/userlist.html">用户管理</a></dd>
+                            <dd><a lay-href="role/rolelist.html">角色管理</a></dd>
+                            <dd><a lay-href="grant/grantlist.html">权限管理</a></dd>
+                            <dd><a lay-href="target/targetlist.html">指标管理</a></dd>
+                            <dd><a lay-href="bill/billlist.html">结算管理</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -114,7 +119,7 @@
             </div>
             <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
                 <ul class="layui-tab-title" id="LAY_app_tabsheader">
-                    <li lay-id="projlist.html" lay-attr="projlist.html" class="layui-this">
+                    <li lay-id="workbench.html" lay-attr="workbench.html" class="layui-this">
                         <i class="layui-icon layui-icon-home"></i></li>
                 </ul>
             </div>
@@ -124,7 +129,7 @@
         <!-- 主体内容 -->
         <div class="layui-body" id="LAY_app_body">
             <div class="layadmin-tabsbody-item layui-show">
-                <iframe src="projlist.html" frameborder="0" class="layadmin-iframe"></iframe>
+                <iframe src="workbench.html" frameborder="0" class="layadmin-iframe"></iframe>
             </div>
         </div>
 
