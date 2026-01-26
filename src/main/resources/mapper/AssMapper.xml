@@ -6,7 +6,7 @@
         ,a.factory_no,a.ass_supplier,a.ass_cost,a.purchase_date,a.ass_remark,a.ass_tag,a.dept_id,d.dept_name,a.ass_addr,a.ass_net,a.ass_ipv4
         ,a.ass_state,e.dept_name as maint_unit,a.maint_state from t_ass_basic a left join (select * from t_sys_dict where dict_unit='ass'
         and dict_field='type_code') b on left(a.type_code,1)=b.dict_code left join t_proj_main c on a.proj_id=c.proj_id left join
-        (select * from t_sys_dept where dept_source='zzd') d on a.dept_id=d.dept_id left join (select * from t_sys_dept where dept_source is null) e
+        (select * from t_sys_dept where dept_type='zzd') d on a.dept_id=d.dept_id left join (select * from t_sys_dept where dept_type='wbdw') e
         on a.dept_id=e.dept_id where 1=1
         <if test="params.deptName!=null and params.deptName!=''">
             and a.dept_id in (select dept_id from t_sys_dept where dept_name like '%' #{params.deptName} '%')
@@ -33,7 +33,7 @@
     </select>
     <select id="selDet" resultType="com.project.entity.AssDet">
         select t.ass_id,t.ass_no,t.ass_name,t.proj_id,a.proj_name,t.type_code,t.ass_brand,t.ass_model,t.serial_no,t.factory_no,t.ass_supplier,t.ass_cost
-        ,t.purchase_date,t.ass_remark,t.ass_tag,t.dept_id,t.ass_addr,t.ass_net,t.ass_ipv4,t.ass_state,t.maint_id,t.maint_state
+        ,t.purchase_date,t.ass_remark,t.ass_tag,t.dept_id,t.ass_addr,t.ass_net,t.ass_ipv4,t.access_key,t.secret_key,t.ass_state,t.maint_id,t.maint_state
         from t_ass_basic t left join t_proj_main a on t.proj_id=a.proj_id where t.ass_id = #{assId}
     </select>
     <insert id="insertAss">

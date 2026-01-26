@@ -16,15 +16,33 @@
     <div class="layui-form layui-card-header layuiadmin-card-header-auto">
       <div class="layui-form-item">
         <div class="layui-inline">
+          <label class="layui-form-label">业务部门</label>
+          <div class="layui-input-block">
+            <input type="text" id="" placeholder="请输入" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">项目名称</label>
+          <div class="layui-input-block">
+            <input type="text" id="" placeholder="请输入" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-inline">
           <label class="layui-form-label">工单名称</label>
           <div class="layui-input-block">
-            <input type="text" id="meetTopic" name="meetTopic" placeholder="请输入" autocomplete="off" class="layui-input">
+            <input type="text" id="" placeholder="请输入" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">维护单位</label>
+          <div class="layui-input-block">
+            <input type="text" id="" placeholder="请输入" autocomplete="off" class="layui-input">
           </div>
         </div>
         <div class="layui-inline">
           <label class="layui-form-label">工单状态</label>
           <div class="layui-input-block">
-            <select id="assType" name="assType" lay-filter="assType">
+            <select id="">
               <option value="">全部</option>
               <option value="派单">派单</option>
               <option value="处置">处置</option>
@@ -79,12 +97,11 @@
             ,laydate = layui.laydate
             ,form = layui.form;
 
-    var projId=window.location.search.substring(1,window.location.search.length);
     table.render({
       elem: '#test-table-toolbar'
       ,id: 'meetReload'
       ,method: 'post'
-      ,url: '/proj/meetlist?projId=' + projId //数据接口
+      ,url: '/task/taskList/' //数据接口
       ,response:{
         statusName:'code',
         statusCode:'200',
@@ -95,12 +112,15 @@
       ,title: '会议记录'
       ,cols: [[
         {type: 'checkbox', fixed: 'left', width:'5%'}
-        ,{field: 'meetId', title: '序号', width:'5%'}
-        ,{field: 'meetTopic', title: '会议主题',sort: true, width:'16%'}
-        ,{field: 'meetTime', title: '会议时间',sort: true, width:'16%'}
-        ,{field: 'meetAddr', title: '会议地点',sort: true, width:'16%'}
-        ,{field: 'meetHost', title: '主持人',sort: true, width:'16%'}
-        ,{field: 'meetMember', title: '参会人员',sort: true, width:'16%'}
+        ,{field: 'taskId', title: '序号', width:'5%'}
+        ,{field: 'typeName', title: '工单类别',sort: true, width:'10%'}
+        ,{field: 'taskNo', title: '工单编号',sort: true, width:'10%'}
+        ,{field: 'taskTitle', title: '工单标题',sort: true, width:'10%'}
+        ,{field: 'deptName', title: '业务部门',sort: true, width:'10%'}
+        ,{field: 'projName', title: '项目名称',sort: true, width:'10%'}
+        ,{field: 'taskTime', title: '派单时间',sort: true, width:'10%'}
+        ,{field: 'maintName', title: '维护单位',sort: true, width:'10%'}
+        ,{field: 'stepName', title: '工单状态',sort: true, width:'10%'}
         ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:'10%'}
       ]]
       ,page: true

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybaselectByUsernametiselectUsers.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mapper.TaskMapper">
+    <select id="taskList" resultType="com.project.entity.TaskListForm" >
+        select a.task_id,a.type_id,b.dict_value as type_name,a.task_no,a.task_title,a.task_content,a.proj_id,c.proj_name,a.dept_id
+        ,d.dept_name as dept_name,a.maint_id,e.dept_name as maint_name,a.task_time,a.step_code,f.dict_value as step_name from t_task_main a
+        left join (select * from t_sys_dict where dict_unit='task'and dict_type='type') b on a.type_id=b.dict_code left join t_proj_main c
+        on a.proj_id=c.proj_id left join (select * from t_sys_dept where dept_type='zzd') d on a.dept_id=d.dept_id left join (select * from
+        t_sys_dept where dept_type='wbdw') e on a.maint_id=e.dept_id left join (select * from t_sys_dict where dict_unit='task'and dict_type='step') f
+        on a.step_code=f.dict_code where 1=1
+<!--        <if test="params.deptName!=null and params.deptName!=''">-->
+<!--            and a.dept_id in (select dept_id from t_sys_dept where dept_name like '%' #{params.deptName} '%')-->
+<!--        </if>-->
+<!--        <if test="params.projName!=null and params.projName!=''">-->
+<!--            and a.proj_id in (select proj_id from t_proj_main where proj_name like '%' #{params.projName} '%')-->
+<!--        </if>-->
+<!--        <if test="params.typeCode!=null and params.typeCode!=''">-->
+<!--            and a.type_code = #{params.typeCode}-->
+<!--        </if>-->
+<!--        <if test="params.assName!=null and params.assName!=''">-->
+<!--            and a.ass_name like '%' #{params.assName} '%'-->
+<!--        </if>-->
+<!--        <if test="params.assState!=null and params.assState!=''">-->
+<!--            and a.ass_state = #{params.assState}-->
+<!--        </if>-->
+<!--        <if test="params.maintUnit!=null and params.maintUnit!=''">-->
+<!--            and a.maint_id in (select dept_id from t_sys_dept where dept_name like '%' #{params.maintUnit} '%')-->
+<!--        </if>-->
+<!--        <if test="params.maintState!=null and params.maintState!=''">-->
+<!--            and a.maint_state = #{params.maintState}-->
+<!--        </if>-->
+        order by a.task_no
+    </select>
+    <select id="taskDet" resultType="com.project.entity.TaskDetForm">
+        select t.ass_id,t.ass_no,t.ass_name,t.proj_id,a.proj_name,t.type_code,t.ass_brand,t.ass_model,t.serial_no,t.factory_no,t.ass_supplier,t.ass_cost
+        ,t.purchase_date,t.ass_remark,t.ass_tag,t.dept_id,t.ass_addr,t.ass_net,t.ass_ipv4,t.ass_state,t.maint_id,t.maint_state
+        from t_ass_basic t left join t_proj_main a on t.proj_id=a.proj_id where t.ass_id = #{assId}
+    </select>
+    <insert id="insertAss">
+        insert into t_ass_basic(type_code,ass_no,ass_name,ass_tag,ass_model,factory_no,ass_manufacturer,ass_supplier
+        ,ass_cost,purchase_date,ass_dept,ass_addr,ass_state,ass_remark) values(#{params.assType3},#{params.assContr}
+        ,#{params.assNo},#{params.assName},#{params.assTag},#{params.assModel},#{params.assFactoryno},#{params.assManufacturer}
+        ,#{params.assSupplier},#{params.assCost},#{params.purchaseDate},#{params.assDept}
+        ,#{params.assAddr},#{params.assState},#{params.assRemark})
+    </insert>
+    <delete id="deleteAss">
+        delete from t_ass_basic where ass_id=#{assId}
+    </delete>
+    <update id="updateAss">
+        update t_ass_basic set type_code=#{params.assType3},ass_no=#{params.assNo},ass_name=#{params.assName}
+        ,ass_tag=#{params.assTag},ass_model=#{params.assModel},factory_no=#{params.factoryNo}
+        ,ass_manufacturer=#{params.assManufacturer},ass_supplier=#{params.assSupplier}
+        ,ass_cost=#{params.assCost},purchase_date=#{params.purchaseDate},ass_dept=#{params.assDept}
+        ,ass_addr=#{params.assAddr},ass_state=#{params.assState},ass_remark=#{params.assRemark} where ass_id=#{params.assId}
+    </update>
+</mapper>

@@ -21,8 +21,11 @@ public class AssDet {
     private String assAddr;
     private String assNet;
     private String assIpv4;
+    private String accessKey;
+    private String secretKey;
     private String assState;
     private Long maintId;
+    private String maintName;
     private String maintState;
 
     public String getAction() {
@@ -185,6 +188,22 @@ public class AssDet {
         this.assIpv4 = assIpv4;
     }
 
+    public String getAccessKey() {
+        return accessKey;
+    }
+
+    public void setAccessKey(String accessKey) {
+        this.accessKey = accessKey;
+    }
+
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
+
     public String getAssState() {
         return assState;
     }
@@ -199,6 +218,14 @@ public class AssDet {
 
     public void setMaintId(Long maintId) {
         this.maintId = maintId;
+    }
+
+    public String getMaintName() {
+        return maintName;
+    }
+
+    public void setMaintName(String maintName) {
+        this.maintName = maintName;
     }
 
     public String getMaintState() {
