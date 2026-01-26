@@ -146,6 +146,19 @@ public class ProjServiceImpl implements ProjService {
 
     }
 
+    @Override
+    public PageInfo<DocListVo> docList(Long projId,DocListForm params) {
+        PageHelper.startPage(params.getPage(), 10);
+        List<DocListVo> docList=projMapper.docList(projId,params);
+        return PageInfo.of(docList);
+    }
+
+    @Override
+    public List<DocDetForm> docDet(Long docId) {
+        List<DocDetForm> docDet=projMapper.docDet(docId);
+        return docDet;
+    }
+
     public static String method (String str){
         String pos="";
         if(str!=null && str!=""){

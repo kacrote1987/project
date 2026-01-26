@@ -30,4 +30,6 @@ public interface ProjMapper {
     boolean deleteGantt(Long ganttId);
     boolean updateGantt(Long ganttId,String field,String value);
     List<GanttDispForm> selGanttDisp(Long projId);
+    List<DocListVo> docList(Long projId,@Param("params") DocListForm params);
+    List<DocDetForm> docDet(Long docId);
 }

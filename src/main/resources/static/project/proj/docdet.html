@@ -30,16 +30,10 @@
                         <div class="layui-input-block">
                           <select id="typeId" name="typeId">
                             <option value="">全部</option>
-                            <option value="2">新闻中心</option>
-                            <option value="3">通知公告</option>
-                            <option value="4">公文管理</option>
-                            <option value="6">合同范本</option>
-                            <option value="7">程序文件</option>
-                            <option value="8">指导手册</option>
-                            <option value="9">标准库</option>
-                            <option value="11">安全管理制度</option>
-                            <option value="12">技术管理制度</option>
-                            <option value="13">综合管理制度</option>
+                            <option value="1">商务文件</option>
+                            <option value="2">设计文件</option>
+                            <option value="3">实施文件</option>
+                            <option value="4">管理文件</option>
                           </select>
                         </div>
                       </div>
@@ -75,12 +69,6 @@
                         <label class="layui-form-label">附件</label>
                         <div class="layui-input-block">
                           <input id="docAnnex" type="text" name="docAnnex" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" readonly>
-                        </div>
-                      </div>
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">范围</label>
-                        <div class="layui-input-block">
-                          <input id="docRange" type="text" name="docAnnex" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" readonly>
                         </div>
                       </div>
                     </div>
@@ -143,12 +131,12 @@
     }
     $.ajax({
       type:"post",
-      url:"/doc/docdet",
+      url:"/proj/docDet",
       contentType:"application/json;charset=utf-8",
       dataType:"json",
-      data:progId,
+      data:docId,
       success:function(detObj){
-        if(detObj.msg=="sucess"){
+        if(detObj.msg=="success"){
           var detJson=detObj.data[0];
           $('#docId').val(detJson.docId);
           $('#typeId').val(detJson.typeId);

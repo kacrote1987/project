@@ -129,4 +129,25 @@ public class ProjController {
         projService.ganttLog(projId);
         return Result.success();
     }
+
+//    @ApiOperation("文件类型")
+//    @PostMapping("/docType")
+//    public Result docType(@RequestBody Long projId){
+//        projService.docType(projId);
+//        return Result.success();
+//    }
+
+    @ApiOperation("文件列表")
+    @PostMapping("/docList")
+    public Result docList(@RequestParam Long projId,DocListForm params){
+        PageInfo<DocListVo> docList= projService.docList(projId,params);
+        return Result.success(docList);
+    }
+
+    @ApiOperation("文件详细")
+    @PostMapping("/docDet")
+    public Result docDet(@RequestBody Long docId){
+        List<DocDetForm> docDet=projService.docDet(docId);
+        return Result.success(docDet);
+    }
 }

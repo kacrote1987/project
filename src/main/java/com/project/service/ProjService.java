@@ -86,4 +86,14 @@ public interface ProjService {
      * @return
      */
     void ganttLog(Long projId);
+    /**
+     * 文件信息列表
+     * @return
+     */
+    PageInfo<DocListVo> docList(Long projId,DocListForm params);
+    /**
+     * 文件信息详细
+     * @return
+     */
+    List<DocDetForm> docDet(Long docId);
 }

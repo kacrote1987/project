@@ -4,7 +4,6 @@ public class DocListVo {
     private Long rowNum;
     private Long docId;
     private String typeName;
-    private String typeType;
     private String docName;
     private String docName1;
     private String docName2;
@@ -35,14 +34,6 @@ public class DocListVo {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
-    }
-
-    public String getTypeType() {
-        return typeType;
-    }
-
-    public void setTypeType(String typeType) {
-        this.typeType = typeType;
     }
 
     public String getDocName() {

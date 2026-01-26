@@ -115,4 +115,22 @@
         ,a.total as 'total',a.sum as 'sum'
         FROM t_proj_gantt a where a.proj_id=#{projId}
     </select>
+    <select id="docList" resultType="com.project.entity.DocListVo" >
+        select a.doc_id,b.dict_value as type_name,a.doc_name,a.doc_puber,date(a.doc_time) as doc_time,a.doc_annex,a.doc_state
+        from t_proj_doc_main a inner join (select * from t_sys_dict where dict_unit='doc') b on a.type_id=b.dict_code where 1=1
+        <if test="params.typeId!=null and params.typeId!=''">
+            and a.type_id=#{params.typeId}
+        </if>
+        <if test="params.docName!=null and params.docName!=''">
+            and a.doc_name like '%' #{params.docName} '%'
+        </if>
+        <if test="params.docState!=null and params.docState!=''">
+            and a.doc_state=#{params.docState}
+        </if>
+        order by a.type_id,a.doc_state desc,a.doc_time desc
+    </select>
+    <select id="docDet" resultType="com.project.entity.DocListForm">
+        select t.doc_id,t.type_id,a.dict_value as type_name,t.doc_name,t.doc_content,t.doc_puber,t.doc_time,t.doc_annex,t.doc_state from t_proj_doc_main t
+        left join (select * from t_sys_dict where dict_unit='doc') a on t.type_id=a.dict_code where t.doc_id=#{docId}
+    </select>
 </mapper>

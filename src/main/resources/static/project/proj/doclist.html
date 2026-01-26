@@ -24,7 +24,7 @@
     <div class="layui-col-md2">
 
       <div class="layui-card">
-        <div class="layui-card-header">文件目录</div>
+        <div class="layui-card-header">文件类型</div>
         <div class="layui-card-body">
           <div id="test-tree-demo4"></div>
         </div>
@@ -38,7 +38,7 @@
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
           <div class="layui-form-item">
             <div class="layui-inline">
-              <label class="layui-form-label">文件类别</label>
+              <label class="layui-form-label">文件类型</label>
               <div class="layui-input-block">
                 <input type="text" id="typeName" placeholder="只读" autocomplete="off" class="layui-input" readonly>
                 <input type="text" id="typeId" placeholder="" autocomplete="off" class="layui-input" readonly style="display: none">
@@ -77,8 +77,7 @@
 
         <script type="text/html" id="test-table-toolbar-barDemo">
           <a id="det" class="layui-btn layui-btn-xs" lay-event="det">详细</a>
-          <a id="scan" class="layui-btn layui-btn-xs" lay-event="scan">预览</a>
-          <a id="rec" class="layui-btn layui-btn-xs" lay-event="rec">记录</a>
+          <a id="scan" class="layui-btn layui-btn-xs" lay-event="download">下载</a>
         </script>
 
         <div class="layui-card-body">
@@ -116,49 +115,49 @@
             //模拟数据
             ,data = [{
               title: '项目材料'
-              ,id: 1
-              ,field: 'doc1'
+              ,id: 0
+              ,field: ''
               ,spread: true
               ,children: [{
                 title: '商务文件'
-                ,id: 2
-                ,field: 'doc2'
+                ,id: 1
+                ,field: '1'
               },{
                 title: '设计文件'
-                ,id: 3
-                ,field: 'doc3'
+                ,id: 2
+                ,field: '2'
               },{
                 title: '实施文件'
-                ,id: 4
-                ,field: 'doc4'
+                ,id: 3
+                ,field: '3'
               },{
                 title: '管理文件'
-                ,id: 5
-                ,field: 'doc5'
+                ,id: 4
+                ,field: '4'
               }]
             }]
 
+    var projId=window.location.search.substring(1,window.location.search.length);
     table.render({
       elem: '#test-table-toolbar'
       ,id: 'docReload'
       ,method: 'post'
-      ,url: '/doc/doclist/' //数据接口
+      ,url: '/proj/docList?projId=' + projId  //数据接口
       ,response:{
         statusName:'code',
         statusCode:'200'
       }
       ,toolbar: '#test-table-toolbar-toolbarDemo'
-      ,title: '文件基本信息表'
+      ,title: '文件列表'
       ,cols: [[
         {type: 'checkbox', fixed: 'left', width:'5%'}
-        ,{type: 'rowNum', title: '序号', width:'5%'}
-        ,{field: 'typeName', title: '文件类别',sort: true, width:'12%'}
-        ,{field: 'docName', title: '文件名称',sort: true, width:'17%'}
-        ,{field: 'docPuber', title: '发布人',sort: true, width:'12%'}
-        ,{field: 'docTime', title: '更新时间',sort: true, width:'12%'}
-        ,{field: 'docAnnex', title: '附件数量',sort: true, width:'12%'}
-        ,{field: 'docState', title: '文件状态',sort: true, width:'12%'}
-        ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:'13%'}
+        ,{field: 'docId', title: '序号', width:'5%'}
+        ,{field: 'typeName', title: '文件类别',sort: true, width:'16%'}
+        ,{field: 'docName', title: '文件名称',sort: true, width:'16%'}
+        ,{field: 'docPuber', title: '发布人',sort: true, width:'16%'}
+        ,{field: 'docTime', title: '更新时间',sort: true, width:'16%'}
+        ,{field: 'docState', title: '文件状态',sort: true, width:'16%'}
+        ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:'10%'}
       ]]
       ,page: true
       ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
@@ -224,24 +223,8 @@
           ,maxmin: true
           ,area: ['1200px', '600px']
         });
-      }else if(obj.event === 'rec'){
-        layer.open({
-          type: 2
-          ,title: '操作记录'
-          ,content: 'docdet.html?' + data.docId
-          ,maxmin: true
-          ,area: ['1200px', '600px']
-        });
-      }else if(obj.event === 'scan' && obj.event === 'scan'){
-        layer.open({
-          type: 2
-          ,title: '文件预览'
-          ,content: 'docscan.html?' + data.docId
-          ,maxmin: true
-          ,area: ['1200px', '600px']
-        });
       }else {
-        layer.msg("无法预览");
+        layer.msg("暂无附件");
       }
     });
 
