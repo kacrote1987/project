@@ -18,19 +18,19 @@
             <div class="layui-inline">
                 <label class="layui-form-label">业务部门</label>
                 <div class="layui-input-block">
-                    <input type="text" id="projDept" name="assNo" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" id="deptName" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">所属项目</label>
                 <div class="layui-input-block">
-                    <input type="text" id="projName" name="assNo" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" id="projName" placeholder="请输入" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">资产类别</label>
                 <div class="layui-input-block">
-                    <select id="assType" name="assType" lay-filter="assType">
+                    <select id="assType">
                         <option value="">全部</option>
                         <option value="硬件设备">硬件设备</option>
                         <option value="软件系统">软件系统</option>
@@ -41,14 +41,14 @@
             <div class="layui-inline">
                 <label class="layui-form-label">资产名称</label>
                 <div class="layui-input-block">
-                    <input type="text" id="assName" name="assName" placeholder="请输入" autocomplete="off"
+                    <input type="text" id="assName" placeholder="请输入" autocomplete="off"
                            class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">资产状态</label>
                 <div class="layui-input-block">
-                    <select id="assState" name="assState">
+                    <select id="assState">
                         <option value="">全部</option>
                         <option value="正常">正常</option>
                         <option value="告警">告警</option>
@@ -58,37 +58,37 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">运维状态</label>
+                <label class="layui-form-label">维护单位</label>
                 <div class="layui-input-block">
-                    <select id="assState" name="assState">
+                    <input type="text" id="maintUnit" placeholder="请输入" autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">维护状态</label>
+                <div class="layui-input-block">
+                    <select id="maintState">
                         <option value="">全部</option>
                         <option value="在保">在保</option>
                         <option value="过保">过保</option>
                     </select>
                 </div>
             </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">维护单位</label>
-                <div class="layui-input-block">
-                    <input type="text" id="" placeholder="请输入" autocomplete="off"
-                           class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">扩展条件</label>
-                <div class="layui-input-block">
-                    <select id="assState" name="assState">
-                        <option value="">全部</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">扩展值</label>
-                <div class="layui-input-block">
-                    <input type="text" id="assName" name="assName" placeholder="请输入" autocomplete="off"
-                           class="layui-input">
-                </div>
-            </div>
+<!--            <div class="layui-inline">-->
+<!--                <label class="layui-form-label">扩展条件</label>-->
+<!--                <div class="layui-input-block">-->
+<!--                    <select id="assState" name="assState">-->
+<!--                        <option value="">全部</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="layui-inline">-->
+<!--                <label class="layui-form-label">扩展值</label>-->
+<!--                <div class="layui-input-block">-->
+<!--                    <input type="text" id="assName" name="assName" placeholder="请输入" autocomplete="off"-->
+<!--                           class="layui-input">-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="layui-inline">
                 <button class="layui-btn layuiadmin-btn-useradmin" data-type="reload">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
@@ -142,7 +142,7 @@
             elem: '#test-table-toolbar'
             , id: 'assReload'
             , method: 'post'
-            , url: '/ass/asslist/' //数据接口
+            , url: '/ass/assList/' //数据接口
             , response: {
                 statusName: 'code',
                 statusCode: '200'
@@ -152,18 +152,19 @@
             , cols: [[
                 {type: 'checkbox', fixed: 'left', width: '5%'}
                 , {type: 'numbers', title: '序号', width: '5%'}
-                , {field: 'assDept', title: '业务部门', sort: true, width: '7%'}
-                , {field: 'projName', title: '所属项目', sort: true, width: '8%'}
-                , {field: 'assType', title: '资产类别', sort: true, width: '7%'}
-                , {field: 'assNo', title: '资产编号', sort: true, width: '7%'}
-                , {field: 'assName', title: '资产名称', sort: true, width: '7%'}
-                , {field: 'assName', title: '规格型号', sort: true, width: '7%'}
-                , {field: 'assName', title: '出厂编号', sort: true, width: '7%'}
-                , {field: 'assName', title: '网络环境', sort: true, width: '7%'}
-                , {field: 'assName', title: 'IP地址', sort: true, width: '7%'}
-                , {field: 'assDept', title: '维护单位', sort: true, width: '7%'}
-                , {field: 'assState', title: '资产状态', sort: true, width: '7%'}
-                , {field: 'assState', title: '运维状态', sort: true, width: '7%'}
+                , {field: 'assDept', title: '业务部门', sort: true, width: '6.5%'}
+                , {field: 'projName', title: '所属项目', sort: true, width: '7%'}
+                , {field: 'assType', title: '资产类别', sort: true, width: '6.5%'}
+                , {field: 'assNo', title: '资产编号', sort: true, width: '6.5%'}
+                , {field: 'assName', title: '资产名称', sort: true, width: '6.5%'}
+                , {field: 'assBrand', title: '资产品牌', sort: true, width: '6.5%'}
+                , {field: 'assModel', title: '规格型号', sort: true, width: '6.5%'}
+                , {field: 'factoryNo', title: '出厂编号', sort: true, width: '6.5%'}
+                , {field: 'assNet', title: '网络环境', sort: true, width: '6.5%'}
+                , {field: 'assIpv4', title: 'IPV4地址', sort: true, width: '6.5%'}
+                , {field: 'assState', title: '资产状态', sort: true, width: '6.5%'}
+                , {field: 'maintUnit', title: '维护单位', sort: true, width: '6.5%'}
+                , {field: 'maintState', title: '维护状态', sort: true, width: '6.5%'}
                 , {fixed: 'right', title: '操作', toolbar: '#test-table-toolbar-barDemo', width: '5%'}
             ]]
             , page: true
@@ -180,27 +181,25 @@
         //执行重载
         var $ = layui.$, active = {
             reload: function () {
+                var deptName = $('#deptName');
+                var projName = $('#projName');
                 var assType = $('#assType');
-                var assType1 = $('#assType1');
-                var assType2 = $('#assType2');
-                var assType3 = $('#assType3');
-                var assNo = $('#assNo');
                 var assName = $('#assName');
-                var assOwner = $('#assOwner');
                 var assState = $('#assState');
+                var maintUnit = $('#maintUnit');
+                var maintState = $('#maintState');
                 table.reload('assReload', {
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
                     , where: {
+                        deptName: deptName.val(),
+                        projName: projName.val(),
                         assType: assType.val(),
-                        assType1: assType1.val(),
-                        assType2: assType2.val(),
-                        assType3: assType3.val(),
-                        assNo: assNo.val(),
                         assName: assName.val(),
-                        assOwner: assOwner.val(),
-                        assState: assState.val()
+                        assState: assState.val(),
+                        maintUnit: maintUnit.val(),
+                        maintState: maintState.val()
                     }
                 }, 'data');
             }

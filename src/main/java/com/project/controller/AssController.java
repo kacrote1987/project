@@ -21,14 +21,14 @@ public class AssController {
     AssService assService;
 
     @ApiOperation("资产列表")
-    @PostMapping("/asslist")
+    @PostMapping("/assList")
     public Result assList(AssList params){
         PageInfo<AssList> assList= assService.assList(params);
         return Result.success(assList);
     }
 
     @ApiOperation("资产详细")
-    @PostMapping("/assdet")
+    @PostMapping("/assDet")
     public Result assDet(@RequestBody String assId){
         List<AssDet> assDet=assService.assDet(assId);
         return Result.success(assDet);

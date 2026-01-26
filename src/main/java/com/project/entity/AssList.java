@@ -3,17 +3,29 @@ package com.project.entity;
 public class AssList {
     private Long rowNum;
     private Long assId;
-    private String assType;
-    private String assType1;
-    private String assType2;
-    private String assType3;
     private String assNo;
+    private String typeCode;
+    private String assType;
     private String assName;
-    private String assOwner;
-    private String assState;
-    private String assNum;
-    private String assDept;
+    private Long projId;
+    private String projName;
+    private String assBrand;
+    private String assModel;
+    private String serialNo;
+    private String factoryNo;
+    private String assSupplier;
+    private String assCost;
     private String purchaseDate;
+    private String assRemark;
+    private String assTag;
+    private Long deptId;
+    private String deptName;
+    private String assAddr;
+    private String assNet;
+    private String assIpv4;
+    private String assState;
+    private String maintUnit;
+    private String maintState;
     private Integer page;
     private Integer limit;
 
@@ -33,44 +45,28 @@ public class AssList {
         this.assId = assId;
     }
 
-    public String getAssType() {
-        return assType;
-    }
-
-    public void setAssType(String assType) {
-        this.assType = assType;
-    }
-
-    public String getAssType1() {
-        return assType1;
-    }
-
-    public void setAssType1(String assType1) {
-        this.assType1 = assType1;
-    }
-
-    public String getAssType2() {
-        return assType2;
-    }
-
-    public void setAssType2(String assType2) {
-        this.assType2 = assType2;
-    }
-
-    public String getAssType3() {
-        return assType3;
-    }
-
-    public void setAssType3(String assType3) {
-        this.assType3 = assType3;
-    }
-
     public String getAssNo() {
         return assNo;
     }
 
     public void setAssNo(String assNo) {
         this.assNo = assNo;
+    }
+
+    public String getTypeCode() {
+        return typeCode;
+    }
+
+    public void setTypeCode(String typeCode) {
+        this.typeCode = typeCode;
+    }
+
+    public String getAssType() {
+        return assType;
+    }
+
+    public void setAssType(String assType) {
+        this.assType = assType;
     }
 
     public String getAssName() {
@@ -81,12 +77,132 @@ public class AssList {
         this.assName = assName;
     }
 
-    public String getAssOwner() {
-        return assOwner;
+    public Long getProjId() {
+        return projId;
     }
 
-    public void setAssOwner(String assOwner) {
-        this.assOwner = assOwner;
+    public void setProjId(Long projId) {
+        this.projId = projId;
+    }
+
+    public String getProjName() {
+        return projName;
+    }
+
+    public void setProjName(String projName) {
+        this.projName = projName;
+    }
+
+    public String getAssBrand() {
+        return assBrand;
+    }
+
+    public void setAssBrand(String assBrand) {
+        this.assBrand = assBrand;
+    }
+
+    public String getAssModel() {
+        return assModel;
+    }
+
+    public void setAssModel(String assModel) {
+        this.assModel = assModel;
+    }
+
+    public String getSerialNo() {
+        return serialNo;
+    }
+
+    public void setSerialNo(String serialNo) {
+        this.serialNo = serialNo;
+    }
+
+    public String getFactoryNo() {
+        return factoryNo;
+    }
+
+    public void setFactoryNo(String factoryNo) {
+        this.factoryNo = factoryNo;
+    }
+
+    public String getAssSupplier() {
+        return assSupplier;
+    }
+
+    public void setAssSupplier(String assSupplier) {
+        this.assSupplier = assSupplier;
+    }
+
+    public String getAssCost() {
+        return assCost;
+    }
+
+    public void setAssCost(String assCost) {
+        this.assCost = assCost;
+    }
+
+    public String getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(String purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public String getAssRemark() {
+        return assRemark;
+    }
+
+    public void setAssRemark(String assRemark) {
+        this.assRemark = assRemark;
+    }
+
+    public String getAssTag() {
+        return assTag;
+    }
+
+    public void setAssTag(String assTag) {
+        this.assTag = assTag;
+    }
+
+    public Long getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(Long deptId) {
+        this.deptId = deptId;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public String getAssAddr() {
+        return assAddr;
+    }
+
+    public void setAssAddr(String assAddr) {
+        this.assAddr = assAddr;
+    }
+
+    public String getAssNet() {
+        return assNet;
+    }
+
+    public void setAssNet(String assNet) {
+        this.assNet = assNet;
+    }
+
+    public String getAssIpv4() {
+        return assIpv4;
+    }
+
+    public void setAssIpv4(String assIpv4) {
+        this.assIpv4 = assIpv4;
     }
 
     public String getAssState() {
@@ -97,28 +213,20 @@ public class AssList {
         this.assState = assState;
     }
 
-    public String getAssNum() {
-        return assNum;
+    public String getMaintUnit() {
+        return maintUnit;
     }
 
-    public void setAssNum(String assNum) {
-        this.assNum = assNum;
+    public void setMaintUnit(String maintUnit) {
+        this.maintUnit = maintUnit;
     }
 
-    public String getAssDept() {
-        return assDept;
+    public String getMaintState() {
+        return maintState;
     }
 
-    public void setAssDept(String assDept) {
-        this.assDept = assDept;
-    }
-
-    public String getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public void setPurchaseDate(String purchaseDate) {
-        this.purchaseDate = purchaseDate;
+    public void setMaintState(String maintState) {
+        this.maintState = maintState;
     }
 
     public Integer getPage() {
