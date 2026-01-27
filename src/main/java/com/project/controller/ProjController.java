@@ -19,29 +19,29 @@ public class ProjController {
     ProjService projService;
 
     @ApiOperation("项目列表")
-    @PostMapping("/projlist")
-    public Result projList(ProjListForm params){
-        PageInfo<ProjListForm> projList= projService.projList(params);
+    @PostMapping("/projList")
+    public Result projList(ProjList params){
+        PageInfo<ProjList> projList= projService.projList(params);
         return Result.success(projList);
     }
 
     @ApiOperation("项目详细")
-    @PostMapping("/projdet")
+    @PostMapping("/projDet")
     public Result projDet(@RequestBody String projId){
-        List<ProjDetForm> projDet= projService.projDet(projId);
+        List<ProjDet> projDet= projService.projDet(projId);
         return Result.success(projDet);
     }
 
     @ApiOperation("项目保存")
     @PostMapping("/projsave")
-    public Result projSave(@RequestBody ProjDetForm params){
+    public Result projSave(@RequestBody ProjDet params){
         projService.projSave(params);
         return Result.success();
     }
 
     @ApiOperation("项目流转")
     @PostMapping("/projstep")
-    public Result projStep(@RequestBody ProjListForm params){
+    public Result projStep(@RequestBody ProjList params){
         projService.projStep(params);
         return Result.success();
     }
@@ -139,7 +139,7 @@ public class ProjController {
 
     @ApiOperation("文件列表")
     @PostMapping("/docList")
-    public Result docList(@RequestParam Long projId,DocListForm params){
+    public Result docList(@RequestParam Long projId, DocList params){
         PageInfo<DocListVo> docList= projService.docList(projId,params);
         return Result.success(docList);
     }
@@ -147,7 +147,7 @@ public class ProjController {
     @ApiOperation("文件详细")
     @PostMapping("/docDet")
     public Result docDet(@RequestBody Long docId){
-        List<DocDetForm> docDet=projService.docDet(docId);
+        List<DocDet> docDet=projService.docDet(docId);
         return Result.success(docDet);
     }
 }

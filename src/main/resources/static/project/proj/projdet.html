@@ -166,6 +166,20 @@
                       </div>
                     </div>
                     <div class="layui-row layui-col-space10 layui-form-item">
+                      <div class="layui-col-lg6">
+                        <label class="layui-form-label">甲方联系人</label>
+                        <div class="layui-input-block">
+                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                      </div>
+                      <div class="layui-col-lg6">
+                        <label class="layui-form-label">联系人电话</label>
+                        <div class="layui-input-block">
+                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="layui-row layui-col-space10 layui-form-item">
                       <div class="layui-col-lg12">
                         <label class="layui-form-label">合同乙方</label>
                         <div class="layui-input-block">
@@ -187,9 +201,21 @@
                         </div>
                       </div>
                     </div>
-
+                    <div class="layui-row layui-col-space10 layui-form-item">
+                      <div class="layui-col-lg6">
+                        <label class="layui-form-label">乙方联系人</label>
+                        <div class="layui-input-block">
+                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                      </div>
+                      <div class="layui-col-lg6">
+                        <label class="layui-form-label">联系人电话</label>
+                        <div class="layui-input-block">
+                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                      </div>
+                    </div>
                   </form>
-
                 </div>
               </div>
             </div>
@@ -239,7 +265,7 @@
     }
     $.ajax({
       type:"post",
-      url:"/proj/projdet",
+      url:"/proj/projDet",
       contentType:"application/json;charset=utf-8",
       dataType:"json",
       data:projId,

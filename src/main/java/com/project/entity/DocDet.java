@@ -1,6 +1,6 @@
 package com.project.entity;
 
-public class DocDetForm {
+public class DocDet {
     private Long rowNum;
     private Long docId;
     private String typeName;

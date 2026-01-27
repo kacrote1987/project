@@ -3,8 +3,8 @@ package com.project.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.project.entity.GanttDetForm;
-import com.project.entity.ProjDetForm;
-import com.project.entity.ProjListForm;
+import com.project.entity.ProjDet;
+import com.project.entity.ProjList;
 import com.project.entity.*;
 import com.project.mapper.ProjMapper;
 import com.project.service.ProjService;
@@ -19,20 +19,20 @@ public class ProjServiceImpl implements ProjService {
     ProjMapper projMapper;
 
     @Override
-    public PageInfo<ProjListForm> projList(ProjListForm params) {
+    public PageInfo<ProjList> projList(ProjList params) {
         PageHelper.startPage(params.getPage(), 10);
-        List<ProjListForm> projList=projMapper.selProjList(params);
+        List<ProjList> projList=projMapper.selProjList(params);
         return PageInfo.of(projList);
     }
 
     @Override
-    public List<ProjDetForm> projDet(String projId) {
-        List<ProjDetForm> projDet=projMapper.selProjDet(projId);
+    public List<ProjDet> projDet(String projId) {
+        List<ProjDet> projDet=projMapper.selProjDet(projId);
         return projDet;
     }
 
     @Override
-    public void projSave(ProjDetForm params) {
+    public void projSave(ProjDet params) {
         if(params.getAction().equals("add")){
             projMapper.insertProj(params);
         }else if(params.getAction().equals("del")){
@@ -43,7 +43,7 @@ public class ProjServiceImpl implements ProjService {
     }
 
     @Override
-    public void projStep(ProjListForm params) {
+    public void projStep(ProjList params) {
         projMapper.projStep(params.getProjId(),params.getStepVal());
     }
 
@@ -147,15 +147,15 @@ public class ProjServiceImpl implements ProjService {
     }
 
     @Override
-    public PageInfo<DocListVo> docList(Long projId,DocListForm params) {
+    public PageInfo<DocListVo> docList(Long projId, DocList params) {
         PageHelper.startPage(params.getPage(), 10);
         List<DocListVo> docList=projMapper.docList(projId,params);
         return PageInfo.of(docList);
     }
 
     @Override
-    public List<DocDetForm> docDet(Long docId) {
-        List<DocDetForm> docDet=projMapper.docDet(docId);
+    public List<DocDet> docDet(Long docId) {
+        List<DocDet> docDet=projMapper.docDet(docId);
         return docDet;
     }
 

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybaselectByUsernametiselectUsers.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.mapper.TaskMapper">
-    <select id="taskList" resultType="com.project.entity.TaskListForm" >
-        select a.task_id,a.type_id,b.dict_value as type_name,a.task_no,a.task_title,a.task_content,a.proj_id,c.proj_name,a.dept_id
-        ,d.dept_name as dept_name,a.maint_id,e.dept_name as maint_name,a.task_time,a.step_code,f.dict_value as step_name from t_task_main a
-        left join (select * from t_sys_dict where dict_unit='task'and dict_type='type') b on a.type_id=b.dict_code left join t_proj_main c
-        on a.proj_id=c.proj_id left join (select * from t_sys_dept where dept_type='zzd') d on a.dept_id=d.dept_id left join (select * from
-        t_sys_dept where dept_type='wbdw') e on a.maint_id=e.dept_id left join (select * from t_sys_dict where dict_unit='task'and dict_type='step') f
-        on a.step_code=f.dict_code where 1=1
+    <select id="taskList" resultType="com.project.entity.TaskList" >
+        select a.task_id,a.type_id,b.dict_value as type_name,a.task_no,a.task_title,a.task_content,a.proj_id,c.proj_name,d.unit_name
+        ,e.unit_name as maint_name,a.task_time,a.step_code,f.dict_value as step_name from t_task_main a left join (select * from t_sys_dict
+        where dict_unit='task'and dict_type='type') b on a.type_id=b.dict_code left join t_proj_main c on a.proj_id=c.proj_id left join
+        (select * from t_sys_unit where unit_type='zzd') d on a.unit_id=d.unit_id left join (select * from t_sys_unit where unit_type='wbdw') e
+        on a.maint_id=e.unit_id left join (select * from t_sys_dict where dict_unit='task'and dict_type='step') f on a.step_code=f.dict_code where 1=1
 <!--        <if test="params.deptName!=null and params.deptName!=''">-->
-<!--            and a.dept_id in (select dept_id from t_sys_dept where dept_name like '%' #{params.deptName} '%')-->
+<!--            and a.unit_id in (select unit_id from t_sys_unit where unit_name like '%' #{params.deptName} '%')-->
 <!--        </if>-->
 <!--        <if test="params.projName!=null and params.projName!=''">-->
 <!--            and a.proj_id in (select proj_id from t_proj_main where proj_name like '%' #{params.projName} '%')-->
@@ -24,16 +23,16 @@
 <!--            and a.ass_state = #{params.assState}-->
 <!--        </if>-->
 <!--        <if test="params.maintUnit!=null and params.maintUnit!=''">-->
-<!--            and a.maint_id in (select dept_id from t_sys_dept where dept_name like '%' #{params.maintUnit} '%')-->
+<!--            and a.maint_id in (select unit_id from t_sys_dept where unit_name like '%' #{params.maintUnit} '%')-->
 <!--        </if>-->
 <!--        <if test="params.maintState!=null and params.maintState!=''">-->
 <!--            and a.maint_state = #{params.maintState}-->
 <!--        </if>-->
         order by a.task_no
     </select>
-    <select id="taskDet" resultType="com.project.entity.TaskDetForm">
+    <select id="taskDet" resultType="com.project.entity.TaskDet">
         select t.ass_id,t.ass_no,t.ass_name,t.proj_id,a.proj_name,t.type_code,t.ass_brand,t.ass_model,t.serial_no,t.factory_no,t.ass_supplier,t.ass_cost
-        ,t.purchase_date,t.ass_remark,t.ass_tag,t.dept_id,t.ass_addr,t.ass_net,t.ass_ipv4,t.ass_state,t.maint_id,t.maint_state
+        ,t.purchase_date,t.ass_remark,t.ass_tag,t.unit_id,t.ass_addr,t.ass_net,t.ass_ipv4,t.ass_state,t.maint_id,t.maint_state
         from t_ass_basic t left join t_proj_main a on t.proj_id=a.proj_id where t.ass_id = #{assId}
     </select>
     <insert id="insertAss">

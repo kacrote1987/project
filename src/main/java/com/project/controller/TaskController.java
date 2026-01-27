@@ -2,8 +2,8 @@ package com.project.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.project.config.Result;
-import com.project.entity.TaskDetForm;
-import com.project.entity.TaskListForm;
+import com.project.entity.TaskDet;
+import com.project.entity.TaskList;
 import com.project.service.TaskService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,15 +23,15 @@ public class TaskController {
 
     @ApiOperation("工单列表")
     @PostMapping("/taskList")
-    public Result taskList(TaskListForm params){
-        PageInfo<TaskListForm> taskList= taskService.taskList(params);
+    public Result taskList(TaskList params){
+        PageInfo<TaskList> taskList= taskService.taskList(params);
         return Result.success(taskList);
     }
 
     @ApiOperation("工单详细")
     @PostMapping("/taskDet")
     public Result taskDet(Long taskId){
-        List<TaskDetForm> taskList= taskService.taskDet(taskId);
+        List<TaskDet> taskList= taskService.taskDet(taskId);
         return Result.success(taskList);
     }
 }

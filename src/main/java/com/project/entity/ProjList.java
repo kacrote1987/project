@@ -1,25 +1,31 @@
 package com.project.entity;
 
-public class ProjDetForm {
-    private String action;
+public class ProjList {
+    private Long rowNum;
     private Long projId;
     private String projTag;
     private String projType;
     private String projBusin;
     private String projName;
-    private String projManager;
+    private String unitaName;
+    private String unitaManager;
+    private String unitbName;
+    private String unitbManager;
     private String budgetAmount;
     private String budgetPercent;
     private String payPercent;
     private String budgetComplete;
     private String projStepcode;
+    private Integer page;
+    private Integer limit;
+    private Integer stepVal;
 
-    public String getAction() {
-        return action;
+    public Long getRowNum() {
+        return rowNum;
     }
 
-    public void setAction(String action) {
-        this.action = action;
+    public void setRowNum(Long rowNum) {
+        this.rowNum = rowNum;
     }
 
     public Long getProjId() {
@@ -62,12 +68,36 @@ public class ProjDetForm {
         this.projName = projName;
     }
 
-    public String getProjManager() {
-        return projManager;
+    public String getUnitaName() {
+        return unitaName;
     }
 
-    public void setProjManager(String projManager) {
-        this.projManager = projManager;
+    public void setUnitaName(String unitaName) {
+        this.unitaName = unitaName;
+    }
+
+    public String getUnitaManager() {
+        return unitaManager;
+    }
+
+    public void setUnitaManager(String unitaManager) {
+        this.unitaManager = unitaManager;
+    }
+
+    public String getUnitbName() {
+        return unitbName;
+    }
+
+    public void setUnitbName(String unitbName) {
+        this.unitbName = unitbName;
+    }
+
+    public String getUnitbManager() {
+        return unitbManager;
+    }
+
+    public void setUnitbManager(String unitbManager) {
+        this.unitbManager = unitbManager;
     }
 
     public String getBudgetAmount() {
@@ -108,5 +138,29 @@ public class ProjDetForm {
 
     public void setProjStepcode(String projStepcode) {
         this.projStepcode = projStepcode;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    public Integer getStepVal() {
+        return stepVal;
+    }
+
+    public void setStepVal(Integer stepVal) {
+        this.stepVal = stepVal;
     }
 }

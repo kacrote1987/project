@@ -1,8 +1,8 @@
 package com.project.service;
 
 import com.github.pagehelper.PageInfo;
-import com.project.entity.TaskDetForm;
-import com.project.entity.TaskListForm;
+import com.project.entity.TaskDet;
+import com.project.entity.TaskList;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ public interface TaskService {
      * 工单列表
      * @return
      */
-    PageInfo<TaskListForm> taskList(TaskListForm params);
+    PageInfo<TaskList> taskList(TaskList params);
     /**
      * 工单详细
      * @return
      */
-    List<TaskDetForm> taskDet(Long taskId);
+    List<TaskDet> taskDet(Long taskId);
 }

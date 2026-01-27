@@ -1,6 +1,6 @@
 package com.project.entity;
 
-public class TaskListForm {
+public class TaskList {
     private Long taskId;
     private Long typeId;
     private String typeName;
@@ -9,9 +9,7 @@ public class TaskListForm {
     private String taskContent;
     private Long projId;
     private String projName;
-    private Long deptId;
-    private String deptName;
-    private Long maintId;
+    private String unitName;
     private String maintName;
     private String taskTime;
     private Long stepCode;
@@ -83,28 +81,12 @@ public class TaskListForm {
         this.projName = projName;
     }
 
-    public Long getDeptId() {
-        return deptId;
+    public String getUnitName() {
+        return unitName;
     }
 
-    public void setDeptId(Long deptId) {
-        this.deptId = deptId;
-    }
-
-    public String getDeptName() {
-        return deptName;
-    }
-
-    public void setDeptName(String deptName) {
-        this.deptName = deptName;
-    }
-
-    public Long getMaintId() {
-        return maintId;
-    }
-
-    public void setMaintId(Long maintId) {
-        this.maintId = maintId;
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
     }
 
     public String getMaintName() {

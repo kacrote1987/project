@@ -1,28 +1,32 @@
 package com.project.entity;
 
-public class ProjListForm {
-    private Long rowNum;
+public class ProjDet {
+    private String action;
     private Long projId;
     private String projTag;
     private String projType;
     private String projBusin;
     private String projName;
-    private String projManager;
+    private Long unitaId;
+    private String unitaName;
+    private String unitaManager;
+    private String unitaTel;
+    private Long unitbId;
+    private String unitbName;
+    private String unitbManager;
+    private String unitbTel;
     private String budgetAmount;
     private String budgetPercent;
     private String payPercent;
     private String budgetComplete;
     private String projStepcode;
-    private Integer page;
-    private Integer limit;
-    private Integer stepVal;
 
-    public Long getRowNum() {
-        return rowNum;
+    public String getAction() {
+        return action;
     }
 
-    public void setRowNum(Long rowNum) {
-        this.rowNum = rowNum;
+    public void setAction(String action) {
+        this.action = action;
     }
 
     public Long getProjId() {
@@ -65,12 +69,68 @@ public class ProjListForm {
         this.projName = projName;
     }
 
-    public String getProjManager() {
-        return projManager;
+    public Long getUnitaId() {
+        return unitaId;
     }
 
-    public void setProjManager(String projManager) {
-        this.projManager = projManager;
+    public void setUnitaId(Long unitaId) {
+        this.unitaId = unitaId;
+    }
+
+    public String getUnitaName() {
+        return unitaName;
+    }
+
+    public void setUnitaName(String unitaName) {
+        this.unitaName = unitaName;
+    }
+
+    public String getUnitaManager() {
+        return unitaManager;
+    }
+
+    public void setUnitaManager(String unitaManager) {
+        this.unitaManager = unitaManager;
+    }
+
+    public String getUnitaTel() {
+        return unitaTel;
+    }
+
+    public void setUnitaTel(String unitaTel) {
+        this.unitaTel = unitaTel;
+    }
+
+    public Long getUnitbId() {
+        return unitbId;
+    }
+
+    public void setUnitbId(Long unitbId) {
+        this.unitbId = unitbId;
+    }
+
+    public String getUnitbName() {
+        return unitbName;
+    }
+
+    public void setUnitbName(String unitbName) {
+        this.unitbName = unitbName;
+    }
+
+    public String getUnitbManager() {
+        return unitbManager;
+    }
+
+    public void setUnitbManager(String unitbManager) {
+        this.unitbManager = unitbManager;
+    }
+
+    public String getUnitbTel() {
+        return unitbTel;
+    }
+
+    public void setUnitbTel(String unitbTel) {
+        this.unitbTel = unitbTel;
     }
 
     public String getBudgetAmount() {
@@ -111,29 +171,5 @@ public class ProjListForm {
 
     public void setProjStepcode(String projStepcode) {
         this.projStepcode = projStepcode;
-    }
-
-    public Integer getPage() {
-        return page;
-    }
-
-    public void setPage(Integer page) {
-        this.page = page;
-    }
-
-    public Integer getLimit() {
-        return limit;
-    }
-
-    public void setLimit(Integer limit) {
-        this.limit = limit;
-    }
-
-    public Integer getStepVal() {
-        return stepVal;
-    }
-
-    public void setStepVal(Integer stepVal) {
-        this.stepVal = stepVal;
     }
 }

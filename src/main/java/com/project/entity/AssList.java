@@ -18,13 +18,12 @@ public class AssList {
     private String purchaseDate;
     private String assRemark;
     private String assTag;
-    private Long deptId;
-    private String deptName;
+    private String unitName;
     private String assAddr;
     private String assNet;
     private String assIpv4;
     private String assState;
-    private String maintUnit;
+    private String maintName;
     private String maintState;
     private Integer page;
     private Integer limit;
@@ -165,20 +164,12 @@ public class AssList {
         this.assTag = assTag;
     }
 
-    public Long getDeptId() {
-        return deptId;
+    public String getUnitName() {
+        return unitName;
     }
 
-    public void setDeptId(Long deptId) {
-        this.deptId = deptId;
-    }
-
-    public String getDeptName() {
-        return deptName;
-    }
-
-    public void setDeptName(String deptName) {
-        this.deptName = deptName;
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
     }
 
     public String getAssAddr() {
@@ -213,12 +204,12 @@ public class AssList {
         this.assState = assState;
     }
 
-    public String getMaintUnit() {
-        return maintUnit;
+    public String getMaintName() {
+        return maintName;
     }
 
-    public void setMaintUnit(String maintUnit) {
-        this.maintUnit = maintUnit;
+    public void setMaintName(String maintName) {
+        this.maintName = maintName;
     }
 
     public String getMaintState() {

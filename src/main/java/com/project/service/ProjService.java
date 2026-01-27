@@ -10,22 +10,22 @@ public interface ProjService {
      * 项目列表
      * @return
      */
-    PageInfo<ProjListForm> projList(ProjListForm params);
+    PageInfo<ProjList> projList(ProjList params);
     /**
      * 项目详细
      * @return
      */
-    List<ProjDetForm> projDet(String projId);
+    List<ProjDet> projDet(String projId);
     /**
      * 项目保存
      * @return
      */
-    void projSave(ProjDetForm params);
+    void projSave(ProjDet params);
     /**
      * 项目流转
      * @return
      */
-    void projStep(ProjListForm params);
+    void projStep(ProjList params);
     /**
      * 后项项目列表
      * @return
@@ -90,10 +90,10 @@ public interface ProjService {
      * 文件信息列表
      * @return
      */
-    PageInfo<DocListVo> docList(Long projId,DocListForm params);
+    PageInfo<DocListVo> docList(Long projId, DocList params);
     /**
      * 文件信息详细
      * @return
      */
-    List<DocDetForm> docDet(Long docId);
+    List<DocDet> docDet(Long docId);
 }

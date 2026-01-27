@@ -1,6 +1,6 @@
 package com.project.entity;
 
-public class TaskDetForm {
+public class TaskDet {
     private Long rowNum;
     private Long docId;
     private String typeName;

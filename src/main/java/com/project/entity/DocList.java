@@ -1,6 +1,6 @@
 package com.project.entity;
 
-public class DocListForm {
+public class DocList {
     private Long docId;
     private Long typeId;
     private String docName;

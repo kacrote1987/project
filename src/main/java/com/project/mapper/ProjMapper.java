@@ -8,11 +8,11 @@ import java.util.List;
 
 @Mapper
 public interface ProjMapper {
-    List<ProjListForm> selProjList(@Param("params") ProjListForm params);
-    List<ProjDetForm> selProjDet(String projId);
-    boolean insertProj(@Param("params") ProjDetForm params);
+    List<ProjList> selProjList(@Param("params") ProjList params);
+    List<ProjDet> selProjDet(String projId);
+    boolean insertProj(@Param("params") ProjDet params);
     boolean deleteProj(Long projId);
-    boolean updateProj(@Param("params") ProjDetForm params);
+    boolean updateProj(@Param("params") ProjDet params);
     boolean projStep(Long projId,Integer stepVal);
     boolean updateProjunit(Long projId,String type,Long unitId);
     List<ConseqList> conseqList(String projId);
@@ -30,6 +30,6 @@ public interface ProjMapper {
     boolean deleteGantt(Long ganttId);
     boolean updateGantt(Long ganttId,String field,String value);
     List<GanttDispForm> selGanttDisp(Long projId);
-    List<DocListVo> docList(Long projId,@Param("params") DocListForm params);
-    List<DocDetForm> docDet(Long docId);
+    List<DocListVo> docList(Long projId,@Param("params") DocList params);
+    List<DocDet> docDet(Long docId);
 }
