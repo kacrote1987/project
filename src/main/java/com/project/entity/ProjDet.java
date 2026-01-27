@@ -18,7 +18,7 @@ public class ProjDet {
     private String budgetAmount;
     private String budgetPercent;
     private String payPercent;
-    private String budgetComplete;
+    private String remark;
     private String projStepcode;
 
     public String getAction() {
@@ -157,12 +157,12 @@ public class ProjDet {
         this.payPercent = payPercent;
     }
 
-    public String getBudgetComplete() {
-        return budgetComplete;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setBudgetComplete(String budgetComplete) {
-        this.budgetComplete = budgetComplete;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public String getProjStepcode() {

@@ -3,7 +3,7 @@
 <mapper namespace="com.project.mapper.ProjMapper">
     <select id="selProjList" resultType="com.project.entity.ProjList" >
         select a.proj_id,a.proj_tag,a.proj_type,a.proj_busin,a.proj_name,c.unit_name as unita_name,a.unita_manager,a.unita_tel
-        ,d.unit_name as unitb_name,a.unitb_manager,a.unitb_tel,a.budget_amount,a.budget_percent,a.pay_percent,budget_complete
+        ,d.unit_name as unitb_name,a.unitb_manager,a.unitb_tel,a.budget_amount,a.budget_percent,a.pay_percent
         ,b.dict_value as proj_stepcode FROM t_proj_main a left join (select dict_code,dict_value from t_sys_dict
         where dict_field='proj_stepcode') b on a.proj_stepcode=b.dict_code left join t_sys_unit c on a.unita_id=c.unit_id
         left join t_sys_unit d on a.unitb_id=d.unit_id where 1=1
@@ -29,8 +29,8 @@
     </select>
     <select id="selProjDet" resultType="com.project.entity.ProjDet">
         select t.proj_id,t.proj_tag,t.proj_type,t.proj_busin,t.proj_name,t.unita_id,a.unit_name as unita_name,t.unita_manager,t.unita_tel
-        ,t.unitb_id,b.unit_name as unitb_name,t.unitb_manager,t.unitb_tel,t.budget_amount,t.budget_percent,t.pay_percent,t.budget_complete
-        ,t.proj_stepcode FROM t_proj_main t left join t_sys_unit a on t.unita_id=a.unit_id left join t_sys_unit b on t.unitb_id=b.unit_id
+        ,t.unitb_id,b.unit_name as unitb_name,t.unitb_manager,t.unitb_tel,t.budget_amount,t.budget_percent,t.pay_percent,t.remark,t.proj_stepcode
+        FROM t_proj_main t left join t_sys_unit a on t.unita_id=a.unit_id left join t_sys_unit b on t.unitb_id=b.unit_id
         where t.proj_id=#{projId}
     </select>
     <insert id="insertProj">

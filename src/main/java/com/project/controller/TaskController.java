@@ -7,9 +7,7 @@ import com.project.entity.TaskList;
 import com.project.service.TaskService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -30,8 +28,8 @@ public class TaskController {
 
     @ApiOperation("工单详细")
     @PostMapping("/taskDet")
-    public Result taskDet(Long taskId){
-        List<TaskDet> taskList= taskService.taskDet(taskId);
-        return Result.success(taskList);
+    public Result taskDet(@RequestBody Long taskId){
+        List<TaskDet> taskDet= taskService.taskDet(taskId);
+        return Result.success(taskDet);
     }
 }

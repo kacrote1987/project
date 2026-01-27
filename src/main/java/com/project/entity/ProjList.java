@@ -14,7 +14,6 @@ public class ProjList {
     private String budgetAmount;
     private String budgetPercent;
     private String payPercent;
-    private String budgetComplete;
     private String projStepcode;
     private Integer page;
     private Integer limit;
@@ -122,14 +121,6 @@ public class ProjList {
 
     public void setPayPercent(String payPercent) {
         this.payPercent = payPercent;
-    }
-
-    public String getBudgetComplete() {
-        return budgetComplete;
-    }
-
-    public void setBudgetComplete(String budgetComplete) {
-        this.budgetComplete = budgetComplete;
     }
 
     public String getProjStepcode() {

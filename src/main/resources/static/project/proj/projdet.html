@@ -134,7 +134,7 @@
                       <div class="layui-form-item">
                         <label class="layui-form-label">备注</label>
                         <div class="layui-input-block">
-                          <textarea id="budgetComplete" placeholder="" class="layui-textarea"></textarea>
+                          <textarea id="remark" placeholder="" class="layui-textarea"></textarea>
                         </div>
                       </div>
                     </div>
@@ -147,7 +147,8 @@
                       <div class="layui-col-lg12">
                         <label class="layui-form-label">合同甲方</label>
                         <div class="layui-input-block">
-                          <input id="" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                          <input id="unitaId" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" style="display: none">
+                          <input id="unitaName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                     </div>
@@ -155,13 +156,13 @@
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">甲方负责人</label>
                         <div class="layui-input-block">
-                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                          <input id="unitaManager" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">负责人电话</label>
                         <div class="layui-input-block">
-                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                          <input id="unitaTel" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                     </div>
@@ -169,13 +170,13 @@
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">甲方联系人</label>
                         <div class="layui-input-block">
-                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                          <input id="" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">联系人电话</label>
                         <div class="layui-input-block">
-                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                          <input id="" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                     </div>
@@ -183,7 +184,8 @@
                       <div class="layui-col-lg12">
                         <label class="layui-form-label">合同乙方</label>
                         <div class="layui-input-block">
-                          <input id="" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                          <input id="unitbId" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" style="display: none">
+                          <input id="unitbName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                     </div>
@@ -191,13 +193,13 @@
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">乙方负责人</label>
                         <div class="layui-input-block">
-                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                          <input id="unitbManager" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">负责人电话</label>
                         <div class="layui-input-block">
-                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                          <input id="unitbTel" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                     </div>
@@ -205,13 +207,13 @@
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">乙方联系人</label>
                         <div class="layui-input-block">
-                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                          <input id="" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">联系人电话</label>
                         <div class="layui-input-block">
-                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                          <input id="" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                     </div>
@@ -277,11 +279,20 @@
           $('#projType').val(detJson.projType);
           $('#projBusin').val(detJson.projBusin);
           $('#projName').val(detJson.projName);
-          $('#projManager').val(detJson.projManager);
+
+          $('#unitaId').val(detJson.unitaId);
+          $('#unitaName').val(detJson.unitaName);
+          $('#unitaManager').val(detJson.unitaManager);
+          $('#unitaTel').val(detJson.unitaTel);
+          $('#unitbId').val(detJson.unitbId);
+          $('#unitbName').val(detJson.unitbName);
+          $('#unitbManager').val(detJson.unitbManager);
+          $('#unitbTel').val(detJson.unitbTel);
+
           $('#budgetAmount').val(detJson.budgetAmount);
           $('#budgetPercent').val(detJson.budgetPercent);
           $('#payPercent').val(detJson.payPercent);
-          $('#budgetComplete').val(detJson.budgetComplete);
+          $('#remark').val(detJson.remark);
           $('#projStepcode').val(detJson.projStepcode);
           layui.form.render();
         }
@@ -306,7 +317,7 @@
     params.budgetAmount=$('#budgetAmount').val();
     params.budgetPercent=$('#budgetPercent').val();
     params.payPercent=$('#payPercent').val();
-    params.budgetComplete=$('#budgetComplete').val();
+    params.remark=$('#remark').val();
     params.projStepcode=$('#projStepcode').val();
     postdata(params,"/proj/projsave",function () {layer.msg("保存成功！");});
   }

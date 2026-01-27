@@ -1,103 +1,94 @@
 package com.project.entity;
 
 public class TaskDet {
-    private Long rowNum;
-    private Long docId;
-    private String typeName;
-    private String typeType;
-    private String docName;
-    private String docName1;
-    private String docName2;
-    private String docPuber;
-    private String docTime;
-    private String docAnnex;
-    private String docState;
+    private Long taskId;
+    private Long typeId;
+    private String taskNo;
+    private String taskTitle;
+    private String taskContent;
+    private Long projId;
+    private Long unitId;
+    private Long maintId;
+    private String taskTime;
+    private String stepCode;
 
-    public Long getRowNum() {
-        return rowNum;
+    public Long getTaskId() {
+        return taskId;
     }
 
-    public void setRowNum(Long rowNum) {
-        this.rowNum = rowNum;
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
     }
 
-    public Long getDocId() {
-        return docId;
+    public Long getTypeId() {
+        return typeId;
     }
 
-    public void setDocId(Long docId) {
-        this.docId = docId;
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
     }
 
-    public String getTypeName() {
-        return typeName;
+    public String getTaskNo() {
+        return taskNo;
     }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
+    public void setTaskNo(String taskNo) {
+        this.taskNo = taskNo;
     }
 
-    public String getTypeType() {
-        return typeType;
+    public String getTaskTitle() {
+        return taskTitle;
     }
 
-    public void setTypeType(String typeType) {
-        this.typeType = typeType;
+    public void setTaskTitle(String taskTitle) {
+        this.taskTitle = taskTitle;
     }
 
-    public String getDocName() {
-        return docName;
+    public String getTaskContent() {
+        return taskContent;
     }
 
-    public void setDocName(String docName) {
-        this.docName = docName;
+    public void setTaskContent(String taskContent) {
+        this.taskContent = taskContent;
     }
 
-    public String getDocName1() {
-        return docName1;
+    public Long getProjId() {
+        return projId;
     }
 
-    public void setDocName1(String docName1) {
-        this.docName1 = docName1;
+    public void setProjId(Long projId) {
+        this.projId = projId;
     }
 
-    public String getDocName2() {
-        return docName2;
+    public Long getUnitId() {
+        return unitId;
     }
 
-    public void setDocName2(String docName2) {
-        this.docName2 = docName2;
+    public void setUnitId(Long unitId) {
+        this.unitId = unitId;
     }
 
-    public String getDocPuber() {
-        return docPuber;
+    public Long getMaintId() {
+        return maintId;
     }
 
-    public void setDocPuber(String docPuber) {
-        this.docPuber = docPuber;
+    public void setMaintId(Long maintId) {
+        this.maintId = maintId;
     }
 
-    public String getDocTime() {
-        return docTime;
+    public String getTaskTime() {
+        return taskTime;
     }
 
-    public void setDocTime(String docTime) {
-        this.docTime = docTime;
+    public void setTaskTime(String taskTime) {
+        this.taskTime = taskTime;
     }
 
-    public String getDocAnnex() {
-        return docAnnex;
+    public String getStepCode() {
+        return stepCode;
     }
 
-    public void setDocAnnex(String docAnnex) {
-        this.docAnnex = docAnnex;
-    }
-
-    public String getDocState() {
-        return docState;
-    }
-
-    public void setDocState(String docState) {
-        this.docState = docState;
+    public void setStepCode(String stepCode) {
+        this.stepCode = stepCode;
     }
 }

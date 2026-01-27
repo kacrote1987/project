@@ -5,35 +5,27 @@
         select a.task_id,a.type_id,b.dict_value as type_name,a.task_no,a.task_title,a.task_content,a.proj_id,c.proj_name,d.unit_name
         ,e.unit_name as maint_name,a.task_time,a.step_code,f.dict_value as step_name from t_task_main a left join (select * from t_sys_dict
         where dict_unit='task'and dict_type='type') b on a.type_id=b.dict_code left join t_proj_main c on a.proj_id=c.proj_id left join
-        (select * from t_sys_unit where unit_type='zzd') d on a.unit_id=d.unit_id left join (select * from t_sys_unit where unit_type='wbdw') e
+        (select * from t_sys_unit where unit_source='zzd') d on a.unit_id=d.unit_id left join (select * from t_sys_unit where unit_source='wbdw') e
         on a.maint_id=e.unit_id left join (select * from t_sys_dict where dict_unit='task'and dict_type='step') f on a.step_code=f.dict_code where 1=1
-<!--        <if test="params.deptName!=null and params.deptName!=''">-->
-<!--            and a.unit_id in (select unit_id from t_sys_unit where unit_name like '%' #{params.deptName} '%')-->
-<!--        </if>-->
-<!--        <if test="params.projName!=null and params.projName!=''">-->
-<!--            and a.proj_id in (select proj_id from t_proj_main where proj_name like '%' #{params.projName} '%')-->
-<!--        </if>-->
-<!--        <if test="params.typeCode!=null and params.typeCode!=''">-->
-<!--            and a.type_code = #{params.typeCode}-->
-<!--        </if>-->
-<!--        <if test="params.assName!=null and params.assName!=''">-->
-<!--            and a.ass_name like '%' #{params.assName} '%'-->
-<!--        </if>-->
-<!--        <if test="params.assState!=null and params.assState!=''">-->
-<!--            and a.ass_state = #{params.assState}-->
-<!--        </if>-->
-<!--        <if test="params.maintUnit!=null and params.maintUnit!=''">-->
-<!--            and a.maint_id in (select unit_id from t_sys_dept where unit_name like '%' #{params.maintUnit} '%')-->
-<!--        </if>-->
-<!--        <if test="params.maintState!=null and params.maintState!=''">-->
-<!--            and a.maint_state = #{params.maintState}-->
-<!--        </if>-->
-        order by a.task_no
+        <if test="params.unitName!=null and params.unitName!=''">
+            and a.unit_id in (select unit_id from t_sys_unit where unit_name like '%' #{params.unitName} '%')
+        </if>
+        <if test="params.projName!=null and params.projName!=''">
+            and a.proj_id in (select proj_id from t_proj_main where proj_name like '%' #{params.projName} '%')
+        </if>
+        <if test="params.taskTitle!=null and params.taskTitle!=''">
+            and a.task_title like '%' #{params.taskTitle} '%'
+        </if>
+        <if test="params.maintName!=null and params.maintName!=''">
+            and a.maint_id in (select unit_id from t_sys_unit where unit_source='wbdw' and unit_name like '%' #{params.maintName} '%')
+        </if>
+        <if test="params.stepCode!=null and params.stepCode!=''">
+            and a.step_code = #{params.stepCode}
+        </if>
+        order by a.task_time desc
     </select>
     <select id="taskDet" resultType="com.project.entity.TaskDet">
-        select t.ass_id,t.ass_no,t.ass_name,t.proj_id,a.proj_name,t.type_code,t.ass_brand,t.ass_model,t.serial_no,t.factory_no,t.ass_supplier,t.ass_cost
-        ,t.purchase_date,t.ass_remark,t.ass_tag,t.unit_id,t.ass_addr,t.ass_net,t.ass_ipv4,t.ass_state,t.maint_id,t.maint_state
-        from t_ass_basic t left join t_proj_main a on t.proj_id=a.proj_id where t.ass_id = #{assId}
+        select t.task_id,t.type_id,t.task_no,t.task_title,t.task_content,t.proj_id,t.unit_id,t.maint_id,t.task_time,t.step_code from t_task_main t where t.task_id = #{taskId}
     </select>
     <insert id="insertAss">
         insert into t_ass_basic(type_code,ass_no,ass_name,ass_tag,ass_model,factory_no,ass_manufacturer,ass_supplier

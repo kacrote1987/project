@@ -6,7 +6,7 @@
         ,a.factory_no,a.ass_supplier,a.ass_cost,a.purchase_date,a.ass_remark,a.ass_tag,d.unit_name,a.ass_addr,a.ass_net,a.ass_ipv4
         ,a.ass_state,e.unit_name as maint_name,a.maint_state from t_ass_basic a left join (select * from t_sys_dict where dict_unit='ass'
         and dict_field='type_code') b on left(a.type_code,1)=b.dict_code left join t_proj_main c on a.proj_id=c.proj_id left join
-        (select * from t_sys_unit where unit_type='zzd') d on a.unit_id=d.unit_id left join (select * from t_sys_unit where unit_type='wbdw') e
+        (select * from t_sys_unit where unit_source='zzd') d on a.unit_id=d.unit_id left join (select * from t_sys_unit where unit_source='wbdw') e
         on a.maint_id=e.unit_id where 1=1
         <if test="params.unitName!=null and params.unitName!=''">
             and a.unit_id in (select unit_id from t_sys_unit where unit_name like '%' #{params.unitName} '%')

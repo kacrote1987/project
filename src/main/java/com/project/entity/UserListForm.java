@@ -1,22 +1,14 @@
 package com.project.entity;
 
 public class UserListForm {
-    private Long number;
     private Long userId;
     private String userName;
     private String userSex;
     private String userCode;
-    private String userDept;
+    private String unitName;
     private String userState;
+    private Integer limit;
     private Integer page;
-
-    public Long getNumber() {
-        return number;
-    }
-
-    public void setNumber(Long number) {
-        this.number = number;
-    }
 
     public Long getUserId() {
         return userId;
@@ -50,12 +42,12 @@ public class UserListForm {
         this.userCode = userCode;
     }
 
-    public String getUserDept() {
-        return userDept;
+    public String getUnitName() {
+        return unitName;
     }
 
-    public void setUserDept(String userDept) {
-        this.userDept = userDept;
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
     }
 
     public String getUserState() {
@@ -64,6 +56,14 @@ public class UserListForm {
 
     public void setUserState(String userState) {
         this.userState = userState;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 
     public Integer getPage() {

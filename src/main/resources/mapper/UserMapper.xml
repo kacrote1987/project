@@ -5,15 +5,14 @@
         select * from t_sys_user where user_code=#{userCode} and user_pwd=#{userPwd} and user_state='在岗'
     </select>
     <select id="userList" resultType="com.project.entity.UserListForm" >
-        select @rownum:=@rownum+1 as number,t.* from (select @rownum:=0) r,
-        (select user_id,user_code,user_pwd,user_name,user_sex,user_dept,user_state from t_sys_user where 1=1
-        <if test="params.userDept!=null and params.userDept!=''">
-            and user_dept=#{params.userDept}
-        </if>
-        <if test="params.userName!=null and params.userName!=''">
-            and user_name like '%' #{params.userName} '%'
-        </if>
-        order by user_id) t
+        select t.user_id,t.user_code,t.user_pwd,t.user_name,t.user_sex,t.user_tel,t.unit_id,t.role_id,t.user_state from t_sys_user t where 1=1
+<!--        <if test="params.userDept!=null and params.userDept!=''">-->
+<!--            and t.user_dept=#{params.userDept}-->
+<!--        </if>-->
+<!--        <if test="params.userName!=null and params.userName!=''">-->
+<!--            and t.user_name like '%' #{params.userName} '%'-->
+<!--        </if>-->
+        order by t.user_id
     </select>
     <select id="userDet" resultType="com.project.entity.UserDetForm">
         select user_id,user_no,user_code,user_pwd,user_name,user_sex,user_dept,user_state from t_sys_user where user_id = #{userId}
