@@ -1,6 +1,6 @@
 package com.project.entity;
 
-public class UserListForm {
+public class UserList {
     private Long userId;
     private Long unitId;
     private String unitName;

@@ -1,6 +1,6 @@
 package com.project.entity;
 
-public class UserDetVo {
+public class UserDet {
     private Long userId;
     private String userNo;
     private String userName;

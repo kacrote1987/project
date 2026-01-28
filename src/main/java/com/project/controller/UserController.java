@@ -31,21 +31,21 @@ public class UserController {
 
     @ApiOperation("用户信息列表")
     @PostMapping("/userList")
-    public Result userList(UserListForm params){
-        PageInfo<UserListForm> userList= userService.userList(params);
+    public Result userList(UserList params){
+        PageInfo<UserList> userList= userService.userList(params);
         return Result.success(userList);
     }
 
     @ApiOperation("用户详细信息")
     @PostMapping("/userDet")
     public Result userDet(@RequestBody Long userId){
-        List<UserDetForm> userDet=userService.userDet(userId);
+        List<UserDet> userDet=userService.userDet(userId);
         return Result.success(userDet);
     }
 
     @ApiOperation("用户新增")
     @PostMapping("/userAdd")
-    public Result userAdd(@RequestBody UserDetForm params){
+    public Result userAdd(@RequestBody UserDet params){
         userService.userAdd(params);
         return Result.success();
     }
@@ -59,7 +59,7 @@ public class UserController {
 
     @ApiOperation("用户修改")
     @PostMapping("/userEdit")
-    public Result userEdit(@RequestBody UserDetForm params){
+    public Result userEdit(@RequestBody UserDet params){
         userService.userEdit(params);
         return Result.success();
     }

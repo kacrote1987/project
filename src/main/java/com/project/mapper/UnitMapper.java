@@ -1,9 +1,7 @@
 package com.project.mapper;
 
-import com.project.entity.UnitDetForm;
-import com.project.entity.UnitListForm;
-import com.project.entity.UnitDetVo;
-import com.project.entity.UnitListVo;
+import com.project.entity.UnitDet;
+import com.project.entity.UnitList;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,9 +9,9 @@ import java.util.List;
 
 @Mapper
 public interface UnitMapper {
-    List<UnitListVo> selUnitList(@Param("params") UnitListForm params,String unitType);
-    List<UnitDetVo> selUnitDet(String unitId);
-    boolean insertUnit(@Param("params") UnitDetForm params);
+    List<UnitList> unitList(@Param("params") UnitList params, String unitType);
+    List<UnitDet> unitDet(String unitId);
+    boolean insertUnit(@Param("params") UnitDet params);
     boolean deleteUnit(Long unitId);
-    boolean updateUnit(@Param("params") UnitDetForm params);
+    boolean updateUnit(@Param("params") UnitDet params);
 }

@@ -2,10 +2,8 @@ package com.project.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.project.entity.UnitDetForm;
-import com.project.entity.UnitListForm;
-import com.project.entity.UnitDetVo;
-import com.project.entity.UnitListVo;
+import com.project.entity.UnitDet;
+import com.project.entity.UnitList;
 import com.project.mapper.UnitMapper;
 import com.project.service.UnitService;
 import org.springframework.stereotype.Service;
@@ -19,7 +17,7 @@ public class UnitServiceImpl implements UnitService {
     UnitMapper unitMapper;
 
     @Override
-    public PageInfo<UnitListVo> unitList(UnitListForm params,String type) {
+    public PageInfo<UnitList> unitList(UnitList params, String type) {
         PageHelper.startPage(params.getPage(), 10);
         type=type.substring(0,type.indexOf("="));
         String unitType;
@@ -32,18 +30,18 @@ public class UnitServiceImpl implements UnitService {
         } else {
             unitType=params.getUnitType();
         }
-        List<UnitListVo> unitList=unitMapper.selUnitList(params,unitType);
+        List<UnitList> unitList=unitMapper.unitList(params,unitType);
         return PageInfo.of(unitList);
     }
 
     @Override
-    public List<UnitDetVo> unitDet(String unitId) {
-        List<UnitDetVo> unitDet=unitMapper.selUnitDet(unitId);
+    public List<UnitDet> unitDet(String unitId) {
+        List<UnitDet> unitDet=unitMapper.unitDet(unitId);
         return unitDet;
     }
 
     @Override
-    public void unitSave(UnitDetForm params) {
+    public void unitSave(UnitDet params) {
         if(params.getAction().equals("add")){
             unitMapper.insertUnit(params);
         }else if(params.getAction().equals("del")){
@@ -54,7 +52,7 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
-    public List<UnitListVo> toWord(String url) {
+    public List<UnitList> toWord(String url) {
         return null;
     }
 }

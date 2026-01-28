@@ -37,19 +37,19 @@ public class UserServiceImpl implements UserService {
         return userLoginVo;
     }
 
-    public PageInfo<UserListForm> userList(UserListForm params) {
+    public PageInfo<UserList> userList(UserList params) {
         Integer page = 0;
         if(params.getPage() != null){
             page = params.getPage();
         }
         PageHelper.startPage(page, 10);
-        List<UserListForm> userList=userMapper.userList(params);
+        List<UserList> userList=userMapper.userList(params);
         return PageInfo.of(userList);
     }
 
     @Override
-    public List<UserDetForm> userDet(Long userId) {
-        List<UserDetForm> userDet=null;
+    public List<UserDet> userDet(Long userId) {
+        List<UserDet> userDet=null;
         if(userId!=0){
             userDet=userMapper.userDet(userId);
         }
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void userAdd(UserDetForm params) {
+    public void userAdd(UserDet params) {
         userMapper.insertUser(params);
     }
 
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void userEdit(UserDetForm params) {
+    public void userEdit(UserDet params) {
         userMapper.userEdit(params);
     }
 

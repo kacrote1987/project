@@ -4,7 +4,7 @@
     <select id="login" resultType="com.project.entity.LoginVo" >
         select * from t_sys_user where user_code=#{userCode} and user_pwd=#{userPwd} and user_state='在用'
     </select>
-    <select id="userList" resultType="com.project.entity.UserListForm" >
+    <select id="userList" resultType="com.project.entity.UserList" >
         select t.user_id,t.user_code,t.user_pwd,t.user_name,t.user_sex,t.user_tel,t.unit_id,a.unit_name,t.role_id,t.user_state
         from t_sys_user t left join t_sys_unit a on t.unit_id=a.unit_id where 1=1
 <!--        <if test="params.userDept!=null and params.userDept!=''">-->
@@ -15,7 +15,7 @@
 <!--        </if>-->
         order by t.user_state desc,t.user_id
     </select>
-    <select id="userDet" resultType="com.project.entity.UserDetForm">
+    <select id="userDet" resultType="com.project.entity.UserDet">
         select user_id,user_code,user_pwd,user_name,user_sex,user_dept,user_state from t_sys_user where user_id = #{userId}
     </select>
     <insert id="insertUser">

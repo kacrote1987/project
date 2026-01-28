@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybaselectByUsernametiselectUsers.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.mapper.UnitMapper">
-    <select id="selUnitList" resultType="com.project.entity.UnitListVo" >
+    <select id="unitList" resultType="com.project.entity.UnitList" >
         select unit_id,unit_type,unit_name,unit_code,unit_addr,cont_man,cont_tel,credit_level FROM t_proj_unit where 1=1
         <if test="unitType!=null and unitType!=''">
             and unit_type like '%' #{unitType} '%'
@@ -17,7 +17,7 @@
         </if>
         order by unit_id
     </select>
-    <select id="selUnitDet" resultType="com.project.entity.UnitDetVo" >
+    <select id="unitDet" resultType="com.project.entity.UnitDet" >
         select a.unit_id,a.unit_type,a.unit_name,a.unit_code,a.unit_addr,a.cont_man,a.cont_tel,a.credit_level
         FROM t_proj_unit a where 1=1 and a.unit_id=#{unitId}
     </select>

@@ -1,10 +1,8 @@
 package com.project.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.project.entity.UnitDetForm;
-import com.project.entity.UnitListForm;
-import com.project.entity.UnitDetVo;
-import com.project.entity.UnitListVo;
+import com.project.entity.UnitDet;
+import com.project.entity.UnitList;
 import com.project.service.UnitService;
 import com.project.config.Result;
 import io.swagger.annotations.Api;
@@ -26,21 +24,21 @@ public class UnitController {
 
     @ApiOperation("单位列表")
     @PostMapping("/unitlist")
-    public Result unitList(UnitListForm params,@RequestBody String type){
-        PageInfo<UnitListVo> unitList= unitService.unitList(params,type);
+    public Result unitList(UnitList params,@RequestBody String type){
+        PageInfo<UnitList> unitList= unitService.unitList(params,type);
         return Result.success(unitList);
     }
 
     @ApiOperation("单位详细")
     @PostMapping("/unitdet")
     public Result unitDet(@RequestBody String unitId){
-        List<UnitDetVo> unitDet= unitService.unitDet(unitId);
+        List<UnitDet> unitDet= unitService.unitDet(unitId);
         return Result.success(unitDet);
     }
 
     @ApiOperation("单位保存")
     @PostMapping("/unitsave")
-    public Result unitSave(@RequestBody UnitDetForm params){
+    public Result unitSave(@RequestBody UnitDet params){
         unitService.unitSave(params);
         return Result.success();
     }

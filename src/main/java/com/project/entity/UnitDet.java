@@ -1,7 +1,7 @@
 package com.project.entity;
 
-public class UnitListVo {
-    private Long rowNum;
+public class UnitDet {
+    private String action;
     private Long unitId;
     private String unitType;
     private String unitName;
@@ -11,12 +11,12 @@ public class UnitListVo {
     private String contTel;
     private String creditLevel;
 
-    public Long getRowNum() {
-        return rowNum;
+    public String getAction() {
+        return action;
     }
 
-    public void setRowNum(Long rowNum) {
-        this.rowNum = rowNum;
+    public void setAction(String action) {
+        this.action = action;
     }
 
     public Long getUnitId() {

@@ -1,7 +1,7 @@
 package com.project.entity;
 
-public class UnitDetVo {
-    private String action;
+public class UnitList {
+    private Long rowNum;
     private Long unitId;
     private String unitType;
     private String unitName;
@@ -10,13 +10,15 @@ public class UnitDetVo {
     private String contMan;
     private String contTel;
     private String creditLevel;
+    private Integer page;
+    private Integer limit;
 
-    public String getAction() {
-        return action;
+    public Long getRowNum() {
+        return rowNum;
     }
 
-    public void setAction(String action) {
-        this.action = action;
+    public void setRowNum(Long rowNum) {
+        this.rowNum = rowNum;
     }
 
     public Long getUnitId() {
@@ -81,5 +83,21 @@ public class UnitDetVo {
 
     public void setCreditLevel(String creditLevel) {
         this.creditLevel = creditLevel;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 }
