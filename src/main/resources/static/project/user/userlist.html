@@ -193,10 +193,10 @@
         ,{field: 'unitName', title: '单位',sort: true, width:'9%'}
         ,{field: 'userName', title: '姓名',sort: true, width:'9%'}
         ,{field: 'userSex', title: '性别',sort: true, width:'9%'}
-        ,{field: 'userCode', title: '手机',sort: true, width:'9%'}
+        ,{field: 'userTel', title: '手机',sort: true, width:'9%'}
         ,{field: 'userCode', title: '账号',sort: true, width:'9%'}
-        ,{field: 'userCode', title: '密码',sort: true, width:'9%'}
-        ,{field: 'userRole', title: '角色',sort: true, width:'11%'}
+        ,{field: 'userPwd', title: '密码',sort: true, width:'9%'}
+        ,{field: 'roleId', title: '角色',sort: true, width:'11%'}
         ,{field: 'userState', title: '状态',sort: true, width:'9%'}
         ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:'16%'}
       ]]
@@ -284,10 +284,10 @@
       }else {
         layer.open({
           type: 2
-          ,title: '操作记录'
-          ,content: 'docdet.html?' + data.docId
+          ,title: '角色选择'
+          ,content: 'rolesel.html?' + data.userId
           ,maxmin: true
-          ,area: ['1200px', '600px']
+          ,area: ['600px', '600px']
         });
       }
     });

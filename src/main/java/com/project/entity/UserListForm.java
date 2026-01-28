@@ -2,10 +2,14 @@ package com.project.entity;
 
 public class UserListForm {
     private Long userId;
+    private Long unitId;
+    private String unitName;
     private String userName;
     private String userSex;
+    private String userTel;
     private String userCode;
-    private String unitName;
+    private String userPwd;
+    private Long roleId;
     private String userState;
     private Integer limit;
     private Integer page;
@@ -16,6 +20,22 @@ public class UserListForm {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getUnitId() {
+        return unitId;
+    }
+
+    public void setUnitId(Long unitId) {
+        this.unitId = unitId;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
     }
 
     public String getUserName() {
@@ -34,6 +54,14 @@ public class UserListForm {
         this.userSex = userSex;
     }
 
+    public String getUserTel() {
+        return userTel;
+    }
+
+    public void setUserTel(String userTel) {
+        this.userTel = userTel;
+    }
+
     public String getUserCode() {
         return userCode;
     }
@@ -42,12 +70,20 @@ public class UserListForm {
         this.userCode = userCode;
     }
 
-    public String getUnitName() {
-        return unitName;
+    public String getUserPwd() {
+        return userPwd;
     }
 
-    public void setUnitName(String unitName) {
-        this.unitName = unitName;
+    public void setUserPwd(String userPwd) {
+        this.userPwd = userPwd;
+    }
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     public String getUserState() {
