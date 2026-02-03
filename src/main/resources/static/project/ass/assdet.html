@@ -254,11 +254,6 @@
                             </div>
                         </div>
 
-                        <script type="text/html" id="test-table-toolbar-barDemo">
-                            <a id="det" class="layui-btn layui-btn-xs" lay-event="det">派单</a>
-                            <a id="det" class="layui-btn layui-btn-xs" lay-event="det">关闭</a>
-                        </script>
-
                         <div class="layui-card-body">
                             <table id="test-table-toolbar" lay-filter="test-table-toolbar"></table>
                             <script type="text/html" id="imgTpl">
@@ -360,9 +355,8 @@
                 {type: 'checkbox', fixed: 'left', width: '5%'}
                 , {type: 'numbers', title: '序号', width: '5%'}
                 , {field: '', title: '事件内容', sort: true, width: '50%'}
-                , {field: '', title: '发生时间', sort: true, width: '15%'}
-                , {field: '', title: '事件状态', sort: true, width: '15%'}
-                , {fixed: 'right', title: '操作', toolbar: '#test-table-toolbar-barDemo', width: '10%'}
+                , {field: '', title: '发生时间', sort: true, width: '20%'}
+                , {field: '', title: '事件状态', sort: true, width: '20%'}
             ]]
             , page: true
             , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
