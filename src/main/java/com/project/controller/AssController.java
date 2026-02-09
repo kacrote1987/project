@@ -1,10 +1,11 @@
 package com.project.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.project.config.Result;
 import com.project.entity.AssDet;
 import com.project.entity.AssList;
+import com.project.entity.EventList;
 import com.project.service.AssService;
-import com.project.config.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -53,5 +54,12 @@ public class AssController {
     public Result assImp(@RequestParam MultipartFile file) throws Exception {
         assService.assImp(file);
         return Result.success();
+    }
+
+    @ApiOperation("消息通知列表")
+    @PostMapping("/eventList")
+    public Result eventList(@RequestParam Long assId,EventList params){
+        PageInfo<EventList> eventList= assService.eventList(assId,params);
+        return Result.success(eventList);
     }
 }

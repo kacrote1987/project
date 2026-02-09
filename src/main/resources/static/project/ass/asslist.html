@@ -86,7 +86,6 @@
                 <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
                 <button class="layui-btn layui-btn-sm" lay-event="del">删除</button>
                 <button class="layui-btn layui-btn-sm" lay-event="imp">导入</button>
-                <button class="layui-btn layui-btn-sm" lay-event="mark">标记</button>
                 <button class="layui-btn layui-btn-sm" lay-event="filing">报备</button>
             </div>
         </script>
@@ -223,11 +222,6 @@
                         , maxmin: true
                         , area: ['500px', '250px']
                     });
-                    break;
-                case 'mark':
-                    var params = {};
-                    params.assId = checkStatus.data[0].assId;
-                    postdata(params, "/ass/mark", function () {table.reload('assReload');layer.msg("标记成功");});
                     break;
                 case 'filing':
                     layer.open({

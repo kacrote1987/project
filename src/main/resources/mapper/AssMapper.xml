@@ -31,7 +31,7 @@
         </if>
         order by a.ass_no
     </select>
-    <select id="selDet" resultType="com.project.entity.AssDet">
+    <select id="selectDet" resultType="com.project.entity.AssDet">
         select t.ass_id,t.ass_no,t.ass_name,t.proj_id,a.proj_name,t.type_code,t.ass_brand,t.ass_model,t.serial_no,t.factory_no,t.ass_supplier,t.ass_cost
         ,t.purchase_date,t.ass_remark,t.ass_tag,t.unit_id,t.ass_addr,t.ass_net,t.ass_ipv4,t.access_key,t.secret_key,t.ass_state,t.maint_id,t.maint_state
         from t_ass_basic t left join t_proj_main a on t.proj_id=a.proj_id where t.ass_id = #{assId}
@@ -63,4 +63,11 @@
 <!--        values (#{htbh},#{htbh},#{htbh},#{htbh},#{htbh},#{htbh},#{htbh},#{htbh},#{htbh},#{kssyrq},#{htbh},#{htbh}-->
 <!--        ,#{zt},#{bz})-->
 <!--    </insert>-->
+    <select id="eventList" resultType="com.project.entity.EventList" >
+        select event_id,ass_id,event_type,event_content,event_time,event_source,event_state from t_ass_event where ass_id=#{assId}
+        <if test="params.eventType!=null and params.eventType!=''">
+            and event_type = #{params.eventType}
+        </if>
+        order by event_id
+    </select>
 </mapper>

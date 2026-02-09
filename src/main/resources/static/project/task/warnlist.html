@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>资产管理</title>
+  <title>告警库</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport"
@@ -49,7 +49,6 @@
     <script type="text/html" id="test-table-toolbar-toolbarDemo">
       <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="add">加入工单</button>
-        <button class="layui-btn layui-btn-sm" lay-event="del">移除标记</button>
       </div>
     </script>
 
@@ -145,15 +144,6 @@
       switch (obj.event) {
         case 'add':
           window.location.href = "../task/taskdet.html";
-          break;
-        case 'del':
-          layer.confirm('是否删除？', {
-            btn: ['是', '否'] //按钮
-          }, function () {
-            var params = {};
-            params.assId = checkStatus.data[0].assId;
-            postdata(params, "/ass/asssave", function () {table.reload('assReload');layer.msg("已删除");});
-          });
           break;
       }
       ;

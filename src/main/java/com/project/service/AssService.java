@@ -3,6 +3,7 @@ package com.project.service;
 import com.github.pagehelper.PageInfo;
 import com.project.entity.AssDet;
 import com.project.entity.AssList;
+import com.project.entity.EventList;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -33,4 +34,9 @@ public interface AssService {
      * @return
      */
     void assImp(MultipartFile file) throws Exception;
+    /**
+     * 消息通知列表
+     * @return
+     */
+    PageInfo<EventList> eventList(Long assId,EventList params);
 }

@@ -17,7 +17,7 @@
                 <ul class="layui-tab-title">
                     <li class="layui-this">基础信息</li>
                     <li>接入信息</li>
-                    <li>数据信息</li>
+                    <li>事件信息</li>
                 </ul>
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">
@@ -35,9 +35,9 @@
                                                 <div class="layui-col-lg6">
                                                     <label class="layui-form-label">所属部门</label>
                                                     <div class="layui-input-block">
-                                                        <select id="deptId">
+                                                        <select id="unitId">
                                                             <option value="">全部</option>
-                                                            <option value="deptId">部门名称</option>
+                                                            <option value="">部门名称</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -200,15 +200,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="layui-col-lg6">
-                                                    <label class="layui-form-label">资产状态</label>
+                                                    <label class="layui-form-label">IP地址</label>
                                                     <div class="layui-input-block">
-                                                        <select id="assState">
-                                                            <option value=""></option>
-                                                            <option value="正常">正常</option>
-                                                            <option value="告警">告警</option>
-                                                            <option value="离线">离线</option>
-                                                            <option value="报备">报备</option>
-                                                        </select>
+                                                        <input id="assIpv4" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                                                     </div>
                                                 </div>
                                             </div>
@@ -226,6 +220,20 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="layui-row layui-col-space10 layui-form-item">
+                                                <div class="layui-col-lg6">
+                                                    <label class="layui-form-label">资产状态</label>
+                                                    <div class="layui-input-block">
+                                                        <select id="assState">
+                                                            <option value=""></option>
+                                                            <option value="正常">正常</option>
+                                                            <option value="告警">告警</option>
+                                                            <option value="离线">离线</option>
+                                                            <option value="报备">报备</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -235,7 +243,7 @@
                         </div>
                     </div>
                     <div class="layui-tab-item" style="display: none">
-                        <!--            数据信息-->
+                        <!--            事件信息-->
                         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
                             <div class="layui-inline">
                                 <label class="layui-form-label">事件类别</label>
@@ -293,7 +301,7 @@
         form.render(null, 'component-form-group');
 
         var assId=window.location.search.substring(1,window.location.search.length);
-        if(assId=="add"){
+        if(assId==="add"){
             $('#action').val("add");
         }else{
             $('#action').val("update");
@@ -310,53 +318,49 @@
             success:function(detObj){
                 if(detObj.msg=="success"){
                     var detJson=detObj.data[0];
-                    $('#assNo').val(detJson.assNo);
+                    $('#unitId').val(detJson.unitId);
                     $('#typeCode').val(detJson.typeCode);
-                    $('#assType').val(detJson.assType);
-                    $('#assName').val(detJson.assName);
                     $('#projId').val(detJson.projId);
-                    $('#projName').val(detJson.projName);
+                    $('#assName').val(detJson.assName);
+                    $('#assNo').val(detJson.assNo);
                     $('#assBrand').val(detJson.assBrand);
                     $('#assModel').val(detJson.assModel);
-                    $('#serialNo').val(detJson.serialNo);
                     $('#factoryNo').val(detJson.factoryNo);
                     $('#assSupplier').val(detJson.assSupplier);
                     $('#assCost').val(detJson.assCost);
                     $('#purchaseDate').val(detJson.purchaseDate);
+                    $('#maintId').val(detJson.maintId);
+                    $('#maintState').val(detJson.maintState);
                     $('#assRemark').val(detJson.assRemark);
-                    $('#assTag').val(detJson.assTag);
-                    $('#deptId').val(detJson.deptId);
-                    $('#deptName').val(detJson.deptName);
-                    $('#assAddr').val(detJson.assAddr);
                     $('#assNet').val(detJson.assNet);
                     $('#assIpv4').val(detJson.assIpv4);
                     $('#accessKey').val(detJson.accessKey);
                     $('#secretKey').val(detJson.secretKey);
                     $('#assState').val(detJson.assState);
-                    $('#maintUnit').val(detJson.maintUnit);
-                    $('#maintState').val(detJson.maintState);
                     layui.form.render();
                 }
             }
         });
 
+        //消息通知展示
         table.render({
             elem: '#test-table-toolbar'
-            , id: 'assReload'
+            , id: 'eventReload'
             , method: 'post'
-            , url: '/ass/assList/' //数据接口
+            , url: '/ass/eventList?assId=' + assId //数据接口
             , response: {
                 statusName: 'code',
                 statusCode: '200'
             }
-            , toolbar: '#test-table-toolbar-toolbarDemo'
-            , title: '资产基础信息表'
+            , title: '消息通知列表'
             , cols: [[
                 {type: 'checkbox', fixed: 'left', width: '5%'}
-                , {type: 'numbers', title: '序号', width: '5%'}
-                , {field: '', title: '事件内容', sort: true, width: '50%'}
-                , {field: '', title: '发生时间', sort: true, width: '20%'}
-                , {field: '', title: '事件状态', sort: true, width: '20%'}
+                , {field: 'eventId', title: '序号', width: '5%'}
+                , {field: 'eventType', title: '事件类别', sort: true, width: '15%'}
+                , {field: 'eventContent', title: '事件内容', sort: true, width: '35%'}
+                , {field: 'eventSource', title: '事件来源', sort: true, width: '15%'}
+                , {field: 'eventTime', title: '发生时间', sort: true, width: '15%'}
+                , {field: 'eventState', title: '事件状态', sort: true, width: '10%'}
             ]]
             , page: true
             , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
@@ -372,13 +376,13 @@
         //执行重载
         var $ = layui.$, active = {
             reload: function () {
-                var maintState = $('#maintState');
-                table.reload('assReload', {
+                var eventType = $('#eventType');
+                table.reload('eventReload', {
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
                     , where: {
-                        maintState: maintState.val()
+                        eventType: eventType.val()
                     }
                 }, 'data');
             }

@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.project.entity.AssDet;
 import com.project.entity.AssList;
+import com.project.entity.EventList;
 import com.project.mapper.AssMapper;
 import com.project.service.AssService;
 import com.project.util.ExcelUtils;
@@ -30,7 +31,7 @@ public class AssServiceImpl implements AssService {
     public List<AssDet> assDet(String assId) {
         List<AssDet> assDet = null;
         if (!assId.equals("add")) {
-            assDet = assMapper.selDet(Long.valueOf(assId));
+            assDet = assMapper.selectDet(Long.valueOf(assId));
         }
         return assDet;
     }
@@ -73,4 +74,13 @@ public class AssServiceImpl implements AssService {
 //            e.printStackTrace();
 //        }
     }
+
+    @Override
+    public PageInfo<EventList> eventList(Long assId,EventList params) {
+        PageHelper.startPage(params.getPage(), 10);
+        List<EventList> eventList = assMapper.eventList(assId,params);
+        return PageInfo.of(eventList);
+    }
+
+
 }

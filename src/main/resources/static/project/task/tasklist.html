@@ -63,7 +63,7 @@
       <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
         <button class="layui-btn layui-btn-sm" lay-event="del">删除</button>
-        <button class="layui-btn layui-btn-sm" lay-event="marklist">标记库</button>
+        <button class="layui-btn layui-btn-sm" lay-event="warnlist">告警中心</button>
       </div>
     </script>
 
@@ -183,11 +183,11 @@
               table.reload('taskReload');layer.msg("已删除");});
           });
           break;
-        case 'marklist':
+        case 'warnlist':
           layer.open({
             type: 2
-            ,title: '标记库'
-            ,content: 'marklist.html?add'
+            ,title: '告警中心'
+            ,content: 'warnlist.html?add'
             ,maxmin: true
             ,area: ['1200px', '600px']
           });

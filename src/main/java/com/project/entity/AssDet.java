@@ -17,7 +17,7 @@ public class AssDet {
     private String purchaseDate;
     private String assRemark;
     private String assTag;
-    private Long deptId;
+    private Long unitId;
     private String assAddr;
     private String assNet;
     private String assIpv4;
@@ -156,12 +156,12 @@ public class AssDet {
         this.assTag = assTag;
     }
 
-    public Long getDeptId() {
-        return deptId;
+    public Long getUnitId() {
+        return unitId;
     }
 
-    public void setDeptId(Long deptId) {
-        this.deptId = deptId;
+    public void setUnitId(Long unitId) {
+        this.unitId = unitId;
     }
 
     public String getAssAddr() {
