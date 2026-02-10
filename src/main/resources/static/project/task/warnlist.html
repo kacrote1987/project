@@ -84,9 +84,9 @@
 
     table.render({
       elem: '#test-table-toolbar'
-      , id: 'assReload'
+      , id: 'warnReload'
       , method: 'post'
-      , url: '/ass/assList/' //数据接口
+      , url: '/task/warnList/' //数据接口
       , response: {
         statusName: 'code',
         statusCode: '200'
@@ -95,20 +95,13 @@
       , title: '资产基础信息表'
       , cols: [[
         {type: 'checkbox', fixed: 'left', width: '5%'}
-        , {type: 'numbers', title: '序号', width: '5%'}
-        , {field: 'unitName', title: '业务部门', sort: true, width: '6.9%'}
-        , {field: 'projName', title: '所属项目', sort: true, width: '7.2%'}
-        , {field: 'assType', title: '资产类别', sort: true, width: '6.9%'}
-        , {field: 'assNo', title: '资产编号', sort: true, width: '6.9%'}
-        , {field: 'assName', title: '资产名称', sort: true, width: '6.9%'}
-        , {field: 'assBrand', title: '资产品牌', sort: true, width: '6.9%'}
-        , {field: 'assModel', title: '规格型号', sort: true, width: '6.9%'}
-        , {field: 'factoryNo', title: '出厂编号', sort: true, width: '6.9%'}
-        , {field: 'assNet', title: '网络环境', sort: true, width: '6.9%'}
-        , {field: 'assIpv4', title: 'IPV4地址', sort: true, width: '6.9%'}
-        , {field: 'maintName', title: '维护单位', sort: true, width: '6.9%'}
-        , {field: 'maintState', title: '维护状态', sort: true, width: '6.9%'}
-        , {field: 'assState', title: '资产状态', sort: true, width: '6.9%'}
+        , {field: 'eventId', title: '序号', width: '5%'}
+        , {field: 'assId', title: '资产ID', sort: true, width: '15%'}
+        , {field: 'eventType', title: '事件类型', sort: true, width: '15%'}
+        , {field: 'eventContent', title: '事件内容', sort: true, width: '15%'}
+        , {field: 'eventTime', title: '发生事件', sort: true, width: '15%'}
+        , {field: 'eventSource', title: '事件来源', sort: true, width: '15%'}
+        , {field: 'eventState', title: '事件状态', sort: true, width: '15%'}
       ]]
       , page: true
       , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
@@ -126,7 +119,7 @@
       reload: function () {
         var deptName = $('#deptName');
         var maintState = $('#maintState');
-        table.reload('assReload', {
+        table.reload('warnReload', {
           page: {
             curr: 1 //重新从第 1 页开始
           }

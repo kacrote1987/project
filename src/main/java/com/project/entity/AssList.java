@@ -25,6 +25,7 @@ public class AssList {
     private String assState;
     private String maintName;
     private String maintState;
+    private String eventType;
     private Integer page;
     private Integer limit;
 
@@ -218,6 +219,14 @@ public class AssList {
 
     public void setMaintState(String maintState) {
         this.maintState = maintState;
+    }
+
+    public String getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
     }
 
     public Integer getPage() {

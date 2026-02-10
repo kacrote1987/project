@@ -1,6 +1,7 @@
 package com.project.service;
 
 import com.github.pagehelper.PageInfo;
+import com.project.entity.EventList;
 import com.project.entity.TaskDet;
 import com.project.entity.TaskList;
 
@@ -17,4 +18,9 @@ public interface TaskService {
      * @return
      */
     List<TaskDet> taskDet(Long taskId);
+    /**
+     * 告警列表
+     * @return
+     */
+    PageInfo<EventList> warnList(EventList params);
 }

@@ -44,4 +44,9 @@
         ,ass_cost=#{params.assCost},purchase_date=#{params.purchaseDate},ass_dept=#{params.assDept}
         ,ass_addr=#{params.assAddr},ass_state=#{params.assState},ass_remark=#{params.assRemark} where ass_id=#{params.assId}
     </update>
+    <select id="warnList" resultType="com.project.entity.EventList" >
+        select c.event_id,c.ass_id,c.event_type,c.event_content,c.event_time,c.event_source,c.event_state from t_proj_main a inner join
+        t_ass_basic b on a.proj_id=b.proj_id inner join t_ass_event c on b.ass_id=c.ass_id where c.event_type='告警' and c.event_state='未处理'
+        order by c.event_time desc
+    </select>
 </mapper>

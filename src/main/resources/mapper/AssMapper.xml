@@ -29,6 +29,9 @@
         <if test="params.maintState!=null and params.maintState!=''">
             and a.maint_state = #{params.maintState}
         </if>
+        <if test="params.eventType!=null and params.eventType!=''">
+            and a.ass_id in (select ass_id from t_ass_event where event_type='告警' and event_state='未处理')
+        </if>
         order by a.ass_no
     </select>
     <select id="selectDet" resultType="com.project.entity.AssDet">

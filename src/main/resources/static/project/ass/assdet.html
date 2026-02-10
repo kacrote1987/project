@@ -248,10 +248,10 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">事件类别</label>
                                 <div class="layui-input-block">
-                                    <select id="">
+                                    <select id="eventType">
                                         <option value="">全部</option>
-                                        <option value="通知">通知</option>
                                         <option value="告警">告警</option>
+                                        <option value="通知">通知</option>
                                     </select>
                                 </div>
                             </div>
@@ -342,7 +342,7 @@
             }
         });
 
-        //消息通知展示
+        //事件信息展示
         table.render({
             elem: '#test-table-toolbar'
             , id: 'eventReload'
@@ -352,7 +352,7 @@
                 statusName: 'code',
                 statusCode: '200'
             }
-            , title: '消息通知列表'
+            , title: '资产基础信息表'
             , cols: [[
                 {type: 'checkbox', fixed: 'left', width: '5%'}
                 , {field: 'eventId', title: '序号', width: '5%'}
@@ -387,6 +387,13 @@
                 }, 'data');
             }
         };
+
+        $('.layui-fluid .layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+
     });
 
     // 基础信息保存

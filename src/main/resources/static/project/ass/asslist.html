@@ -75,6 +75,15 @@
                 </div>
             </div>
             <div class="layui-inline">
+                <label class="layui-form-label">是否告警</label>
+                <div class="layui-input-block">
+                    <select id="eventType">
+                        <option value="">全部</option>
+                        <option value="告警">告警</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
                 <button class="layui-btn layuiadmin-btn-useradmin" data-type="reload">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                 </button>
@@ -174,6 +183,7 @@
                 var assState = $('#assState');
                 var maintUnit = $('#maintUnit');
                 var maintState = $('#maintState');
+                var eventType = $('#eventType');
                 table.reload('assReload', {
                     page: {
                         curr: 1 //重新从第 1 页开始
@@ -185,7 +195,8 @@
                         assName: assName.val(),
                         assState: assState.val(),
                         maintUnit: maintUnit.val(),
-                        maintState: maintState.val()
+                        maintState: maintState.val(),
+                        eventType: eventType.val()
                     }
                 }, 'data');
             }

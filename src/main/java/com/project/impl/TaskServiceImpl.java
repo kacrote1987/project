@@ -2,6 +2,7 @@ package com.project.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.project.entity.EventList;
 import com.project.entity.TaskDet;
 import com.project.entity.TaskList;
 import com.project.mapper.TaskMapper;
@@ -30,5 +31,12 @@ public class TaskServiceImpl implements TaskService {
             taskDet = taskMapper.taskDet(taskId);
         }
         return taskDet;
+    }
+
+    @Override
+    public PageInfo<EventList> warnList(EventList params) {
+        PageHelper.startPage(params.getPage(), 10);
+        List<EventList> warnList = taskMapper.warnList(params);
+        return PageInfo.of(warnList);
     }
 }
