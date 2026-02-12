@@ -5,7 +5,6 @@ public class TaskList {
     private Long typeId;
     private String typeName;
     private String taskNo;
-    private String taskTitle;
     private String taskContent;
     private Long projId;
     private String projName;
@@ -47,14 +46,6 @@ public class TaskList {
 
     public void setTaskNo(String taskNo) {
         this.taskNo = taskNo;
-    }
-
-    public String getTaskTitle() {
-        return taskTitle;
-    }
-
-    public void setTaskTitle(String taskTitle) {
-        this.taskTitle = taskTitle;
     }
 
     public String getTaskContent() {

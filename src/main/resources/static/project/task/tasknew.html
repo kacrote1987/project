@@ -30,6 +30,7 @@
               <div class="layui-card">
                 <input id="action" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
                 <input id="taskId" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
+                <input id="assIds" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
                 <div class="layui-card-body">
                   <form class="layui-form" action="" lay-filter="component-form-element">
                     <div class="layui-row layui-col-space10 layui-form-item">
@@ -206,35 +207,19 @@
 
     form.render(null, 'component-form-group');
 
-    var taskId=window.location.search.substring(1,window.location.search.length);
-    if(taskId=="add"){
-      $('#action').val("add");
-    }else{
-      $('#action').val("update");
-      $('#taskId').val(taskId);
-    }
-
+    var assIds=window.location.search.substring(1,window.location.search.length);
     // 基础信息展示
     $.ajax({
       type:"post",
-      url:"/task/taskDet",
+      url:"/task/taskNew",
       contentType:"application/json;charset=utf-8",
       dataType:"json",
-      data:taskId,
+      data:assIds,
       success:function(detObj){
         if(detObj.msg=="success"){
-          var detJson=detObj.data[0];
-          alert(detJson.taskId);
-          $('#taskId').val(detJson.taskId);
-          $('#typeId').val(detJson.typeId);
-          $('#taskNo').val(detJson.taskNo);
-          $('#taskTitle').val(detJson.taskTitle);
-          $('#taskContent').val(detJson.taskContent);
-          $('#projId').val(detJson.projId);
-          $('#unitId').val(detJson.unitId);
-          $('#maintId').val(detJson.maintId);
-          $('#taskTime').val(detJson.taskTime);
-          $('#stepCode').val(detJson.stepCode);
+          var assList=detObj.data[0].assList;
+          var eventList=detObj.data[0].eventList;
+          // $('#assName').val(detJson.assName);
           layui.form.render();
         }
       }
@@ -277,32 +262,6 @@
           "data": res.data.list //解析数据列表
         };
       }
-    });
-
-    //头工具事件
-    table.on('toolbar(test-table-toolbar)', function (obj) {
-      var checkStatus = table.checkStatus(obj.config.id);
-      switch (obj.event) {
-        case 'add':
-          layer.open({
-            type: 2
-            , title: '添加设备'
-            , content: 'warnlist.html'
-            , maxmin: true
-            , area: ['1200px', '600px']
-          });
-          break;
-        case 'del':
-          layer.confirm('是否删除？', {
-            btn: ['是', '否'] //按钮
-          }, function () {
-            var params = {};
-            params.action = "del";
-            params.assId = checkStatus.data[0].assId;
-            postdata(params, "/ass/asssave", function () {table.reload('assReload');layer.msg("已删除");});
-          });
-          break;
-      };
     });
 
     table.render({

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybaselectByUsernametiselectUsers.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.mapper.TaskMapper">
     <select id="taskList" resultType="com.project.entity.TaskList" >
-        select a.task_id,a.type_id,b.dict_value as type_name,a.task_no,a.task_title,a.task_content,a.proj_id,c.proj_name,d.unit_name
+        select a.task_id,a.type_id,b.dict_value as type_name,a.task_no,a.task_content,a.proj_id,c.proj_name,d.unit_name
         ,e.unit_name as maint_name,a.task_time,a.step_code,f.dict_value as step_name from t_task_main a left join (select * from t_sys_dict
         where dict_unit='task'and dict_type='type') b on a.type_id=b.dict_code left join t_proj_main c on a.proj_id=c.proj_id left join
         (select * from t_sys_unit where unit_source='zzd') d on a.unit_id=d.unit_id left join (select * from t_sys_unit where unit_source='wbdw') e
@@ -13,9 +13,6 @@
         <if test="params.projName!=null and params.projName!=''">
             and a.proj_id in (select proj_id from t_proj_main where proj_name like '%' #{params.projName} '%')
         </if>
-        <if test="params.taskTitle!=null and params.taskTitle!=''">
-            and a.task_title like '%' #{params.taskTitle} '%'
-        </if>
         <if test="params.maintName!=null and params.maintName!=''">
             and a.maint_id in (select unit_id from t_sys_unit where unit_source='wbdw' and unit_name like '%' #{params.maintName} '%')
         </if>
@@ -25,7 +22,7 @@
         order by a.task_time desc
     </select>
     <select id="taskDet" resultType="com.project.entity.TaskDet">
-        select t.task_id,t.type_id,t.task_no,t.task_title,t.task_content,t.proj_id,t.unit_id,t.maint_id,t.task_time,t.step_code from t_task_main t where t.task_id = #{taskId}
+        select task_id,type_id,task_no,task_content,proj_id,unit_id,maint_id,task_time,step_code from t_task_main where task_id = #{taskId}
     </select>
     <insert id="insertAss">
         insert into t_ass_basic(type_code,ass_no,ass_name,ass_tag,ass_model,factory_no,ass_manufacturer,ass_supplier
@@ -44,9 +41,11 @@
         ,ass_cost=#{params.assCost},purchase_date=#{params.purchaseDate},ass_dept=#{params.assDept}
         ,ass_addr=#{params.assAddr},ass_state=#{params.assState},ass_remark=#{params.assRemark} where ass_id=#{params.assId}
     </update>
-    <select id="warnList" resultType="com.project.entity.EventList" >
-        select c.event_id,c.ass_id,c.event_type,c.event_content,c.event_time,c.event_source,c.event_state from t_proj_main a inner join
-        t_ass_basic b on a.proj_id=b.proj_id inner join t_ass_event c on b.ass_id=c.ass_id where c.event_type='告警' and c.event_state='未处理'
-        order by c.event_time desc
+    <select id="taskAssList" resultType="com.project.entity.AssList">
+        select ass_name from t_ass_basic where ass_id in (${assIds});
+    </select>
+    <select id="eventList" resultType="com.project.entity.EventList" >
+        select * from t_ass_event where ass_id in (select ass_id from t_ass_basic where maint_state='在保') and event_type='告警' and event_state='未处理'
+        and ass_id in (${assIds}) order by event_time desc
     </select>
 </mapper>

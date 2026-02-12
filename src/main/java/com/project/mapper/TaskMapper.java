@@ -1,5 +1,6 @@
 package com.project.mapper;
 
+import com.project.entity.AssList;
 import com.project.entity.EventList;
 import com.project.entity.TaskDet;
 import com.project.entity.TaskList;
@@ -12,5 +13,6 @@ import java.util.List;
 public interface TaskMapper {
     List<TaskList> taskList(@Param("params") TaskList params);
     List<TaskDet> taskDet(Long taskId);
-    List<EventList> warnList(@Param("params") EventList params);
+    List<AssList> taskAssList(String assIds);
+    List<EventList> eventList(String assIds);
 }

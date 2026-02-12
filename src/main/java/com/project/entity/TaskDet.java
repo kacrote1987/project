@@ -1,16 +1,19 @@
 package com.project.entity;
 
+import java.util.List;
+
 public class TaskDet {
     private Long taskId;
     private Long typeId;
     private String taskNo;
-    private String taskTitle;
     private String taskContent;
     private Long projId;
     private Long unitId;
     private Long maintId;
     private String taskTime;
     private String stepCode;
+    private List<AssList> assList;
+    private List<EventList> eventList;
 
     public Long getTaskId() {
         return taskId;
@@ -34,14 +37,6 @@ public class TaskDet {
 
     public void setTaskNo(String taskNo) {
         this.taskNo = taskNo;
-    }
-
-    public String getTaskTitle() {
-        return taskTitle;
-    }
-
-    public void setTaskTitle(String taskTitle) {
-        this.taskTitle = taskTitle;
     }
 
     public String getTaskContent() {
@@ -90,5 +85,21 @@ public class TaskDet {
 
     public void setStepCode(String stepCode) {
         this.stepCode = stepCode;
+    }
+
+    public List<AssList> getAssList() {
+        return assList;
+    }
+
+    public void setAssList(List<AssList> assList) {
+        this.assList = assList;
+    }
+
+    public List<EventList> getEventList() {
+        return eventList;
+    }
+
+    public void setEventList(List<EventList> eventList) {
+        this.eventList = eventList;
     }
 }

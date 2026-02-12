@@ -68,16 +68,9 @@
           </div>
         </div>
 
-        <script type="text/html" id="test-table-toolbar-toolbarDemo">
-          <div class="layui-btn-container">
-            <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
-            <button class="layui-btn layui-btn-sm" lay-event="del">删除</button>
-          </div>
-        </script>
-
         <script type="text/html" id="test-table-toolbar-barDemo">
-          <a id="det" class="layui-btn layui-btn-xs" lay-event="det">详细</a>
-          <a id="scan" class="layui-btn layui-btn-xs" lay-event="download">下载</a>
+          <a id="det" class="layui-btn layui-btn-xs" lay-event="upload">上传</a>
+          <a id="scan" class="layui-btn layui-btn-xs" lay-event="moban">模版</a>
         </script>
 
         <div class="layui-card-body">
@@ -147,7 +140,6 @@
         statusName:'code',
         statusCode:'200'
       }
-      ,toolbar: '#test-table-toolbar-toolbarDemo'
       ,title: '文件列表'
       ,cols: [[
         {type: 'checkbox', fixed: 'left', width:'5%'}
@@ -189,42 +181,19 @@
       }
     };
 
-    //头工具栏事件
-    table.on('toolbar(test-table-toolbar)', function(obj){
-      var checkStatus = table.checkStatus(obj.config.id);
-      switch(obj.event){
-        case 'add':
-          layer.open({
-            type: 2
-            ,title: '文件新增'
-            ,content: 'docdet.html?add'
-            ,maxmin: true
-            ,area: ['1200px', '600px']
-          });
-          break;
-        case 'del':
-          layer.confirm('是否删除？', {
-            btn: ['是','否'] //按钮
-          }, function(){
-            layer.msg("已删除");
-          });
-          break;
-      };
-    });
-
     //监听行工具事件
     table.on('tool(test-table-toolbar)', function(obj){
       var data = obj.data;
-      if(obj.event === 'det'){
+      if(obj.event === 'upload'){
         layer.open({
           type: 2
-          ,title: '文件详细'
-          ,content: 'docdet.html?' + data.docId
+          ,title: '材料上传'
+          ,content: 'docupload.html?' + data.docId
           ,maxmin: true
-          ,area: ['1200px', '600px']
+          , area: ['500px', '250px']
         });
       }else {
-        layer.msg("暂无附件");
+        layer.msg("暂无模版");
       }
     });
 

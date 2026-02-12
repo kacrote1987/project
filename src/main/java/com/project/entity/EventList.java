@@ -2,7 +2,9 @@ package com.project.entity;
 
 public class EventList {
     private Long eventId;
+    private String projName;
     private Long assId;
+    private String assName;
     private String eventType;
     private String eventContent;
     private String eventTime;
@@ -19,12 +21,28 @@ public class EventList {
         this.eventId = eventId;
     }
 
+    public String getProjName() {
+        return projName;
+    }
+
+    public void setProjName(String projName) {
+        this.projName = projName;
+    }
+
     public Long getAssId() {
         return assId;
     }
 
     public void setAssId(Long assId) {
         this.assId = assId;
+    }
+
+    public String getAssName() {
+        return assName;
+    }
+
+    public void setAssName(String assName) {
+        this.assName = assName;
     }
 
     public String getEventType() {

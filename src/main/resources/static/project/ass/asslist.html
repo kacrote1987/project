@@ -96,6 +96,7 @@
                 <button class="layui-btn layui-btn-sm" lay-event="del">删除</button>
                 <button class="layui-btn layui-btn-sm" lay-event="imp">导入</button>
                 <button class="layui-btn layui-btn-sm" lay-event="filing">报备</button>
+                <button class="layui-btn layui-btn-sm" lay-event="task">派单</button>
             </div>
         </script>
 
@@ -205,6 +206,11 @@
         //头工具栏事件
         table.on('toolbar(test-table-toolbar)', function (obj) {
             var checkStatus = table.checkStatus(obj.config.id);
+            var ids="";
+            for (let i = 0; i < checkStatus.data.length; i++) {
+                ids += checkStatus.data[i].assId + ",";
+            }
+            ids = ids.substring(0,ids.length-1);
             switch (obj.event) {
                 case 'add':
                     layer.open({
@@ -241,6 +247,15 @@
                         , content: 'filling.html'
                         , maxmin: true
                         , area: ['600px', '350px']
+                    });
+                    break;
+                case 'task':
+                    layer.open({
+                        type: 2
+                        , title: '派单'
+                        , content: '../task/tasknew.html?' + ids
+                        , maxmin: true
+                        , area: ['1200px', '600px']
                     });
                     break;
             }

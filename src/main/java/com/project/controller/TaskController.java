@@ -2,9 +2,9 @@ package com.project.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.project.config.Result;
-import com.project.entity.EventList;
 import com.project.entity.TaskDet;
 import com.project.entity.TaskList;
+import com.project.entity.TaskNew;
 import com.project.service.TaskService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,10 +37,10 @@ public class TaskController {
         return Result.success(taskDet);
     }
 
-    @ApiOperation("告警列表")
-    @PostMapping("/warnList")
-    public Result warnList(EventList params){
-        PageInfo<EventList> warnList= taskService.warnList(params);
-        return Result.success(warnList);
+    @ApiOperation("告警设备")
+    @PostMapping("/taskNew")
+    public Result taskNew(@RequestBody String assIds){
+        List<TaskNew> taskNew= taskService.taskNew(assIds);
+        return Result.success(taskNew);
     }
 }

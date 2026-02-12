@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>资产导入</title>
+  <title>材料上传</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -68,11 +68,11 @@
       processData: false,//不去处理发送的数据
       contentType: false,//不去设置Content-Type请求头
       error: function (res) {
-        layer.msg("导入失败");
+        layer.msg("上传失败");
         return;
       },
       success: function (res) {
-        layer.msg("导入成功");
+        layer.msg("上传成功");
         return;
       }
     })
