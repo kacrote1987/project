@@ -22,12 +22,6 @@
           </div>
         </div>
         <div class="layui-inline">
-          <label class="layui-form-label">项目名称</label>
-          <div class="layui-input-block">
-            <input type="text" id="projName" placeholder="请输入" autocomplete="off" class="layui-input">
-          </div>
-        </div>
-        <div class="layui-inline">
           <label class="layui-form-label">维护单位</label>
           <div class="layui-input-block">
             <input type="text" id="maintName" placeholder="请输入" autocomplete="off" class="layui-input">
@@ -99,16 +93,15 @@
       }
       ,title: '工单列表'
       ,cols: [[
-        {type: 'checkbox', fixed: 'left', width:'5%'}
-        ,{field: 'taskId', title: '序号', width:'5%'}
-        ,{field: 'typeName', title: '工单类别',sort: true, width:'10%'}
-        ,{field: 'taskNo', title: '工单编号',sort: true, width:'10%'}
-        ,{field: 'unitName', title: '业务部门',sort: true, width:'10%'}
-        ,{field: 'projName', title: '项目名称',sort: true, width:'20%'}
-        ,{field: 'taskTime', title: '派单时间',sort: true, width:'10%'}
-        ,{field: 'maintName', title: '维护单位',sort: true, width:'10%'}
-        ,{field: 'stepName', title: '工单状态',sort: true, width:'10%'}
-        ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:'10%'}
+        {type: 'checkbox', fixed: 'left', width:'8%'}
+        ,{field: 'taskId', title: '序号', width:'8%'}
+        ,{field: 'typeName', title: '工单类别',sort: true, width:'12%'}
+        ,{field: 'taskNo', title: '工单编号',sort: true, width:'12%'}
+        ,{field: 'unitName', title: '业务部门',sort: true, width:'12%'}
+        ,{field: 'taskTime', title: '派单时间',sort: true, width:'12%'}
+        ,{field: 'maintName', title: '维护单位',sort: true, width:'12%'}
+        ,{field: 'stepName', title: '工单状态',sort: true, width:'12%'}
+        ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:'12%'}
       ]]
       ,page: true
       ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据

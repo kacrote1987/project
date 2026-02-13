@@ -7,7 +7,7 @@ public class TaskDet {
     private Long typeId;
     private String taskNo;
     private String taskContent;
-    private Long projId;
+    private String assIds;
     private Long unitId;
     private Long maintId;
     private String taskTime;
@@ -47,12 +47,12 @@ public class TaskDet {
         this.taskContent = taskContent;
     }
 
-    public Long getProjId() {
-        return projId;
+    public String getAssIds() {
+        return assIds;
     }
 
-    public void setProjId(Long projId) {
-        this.projId = projId;
+    public void setAssIds(String assIds) {
+        this.assIds = assIds;
     }
 
     public Long getUnitId() {

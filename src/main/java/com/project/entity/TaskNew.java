@@ -5,6 +5,7 @@ import java.util.List;
 public class TaskNew {
     List<AssList> assList;
     List<EventList> eventList;
+    Integer checkState;
 
     public List<AssList> getAssList() {
         return assList;
@@ -20,5 +21,13 @@ public class TaskNew {
 
     public void setEventList(List<EventList> eventList) {
         this.eventList = eventList;
+    }
+
+    public Integer getCheckState() {
+        return checkState;
+    }
+
+    public void setCheckState(Integer checkState) {
+        this.checkState = checkState;
     }
 }

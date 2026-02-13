@@ -16,7 +16,7 @@
       <div class="layui-tab">
         <ul class="layui-tab-title">
           <li class="layui-this">工单信息</li>
-          <li>设备信息</li>
+          <li>资产信息</li>
           <li>告警信息</li>
           <li>处置意见</li>
         </ul>
@@ -126,14 +126,7 @@
           </div>
         </div>
           <div class="layui-tab-item" style="display: none">
-            <!--            设备信息-->
-            <script type="text/html" id="test-table-toolbar-toolbarDemo">
-              <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm" lay-event="add">添加设备</button>
-                <button class="layui-btn layui-btn-sm" lay-event="del">移除设备</button>
-              </div>
-            </script>
-
+            <!--            资产信息-->
             <div class="layui-card-body">
               <table id="test-table-toolbar" lay-filter="test-table-toolbar"></table>
               <script type="text/html" id="imgTpl">
@@ -183,8 +176,7 @@
 <div class="layui-form-item layui-layout-admin">
   <div class="layui-input-block">
     <div class="layui-footer" style="left: 0;">
-      <button class="layui-btn" lay-submit="submit" lay-filter="component-form-demo1" onclick="submit()">提交</button>
-      <button class="layui-btn" lay-submit="submit" lay-filter="component-form-demo1" onclick="back()">回退</button>
+      <button class="layui-btn" lay-submit="submit" lay-filter="component-form-demo1" onclick="submit()">派单</button>
     </div>
   </div>
 </div>
@@ -216,89 +208,79 @@
       dataType:"json",
       data:assIds,
       success:function(detObj){
-        if(detObj.msg=="success"){
+        if(detObj.msg==="success"){
           var assList=detObj.data[0].assList;
+          if(detObj.data[0].checkState===1){
+            layer.msg("有资产过保，无法派单");
+          }
+          table.render({
+            elem: '#test-table-toolbar'
+            , id: 'assReload'
+            , data: assList
+            , title: '资产基础信息表'
+            , cols: [[
+              {type: 'checkbox', fixed: 'left', width: '5%'}
+              , {type: 'numbers', title: '序号', width: '5%'}
+              , {field: 'assNo', title: '资产编号', sort: true, width: '10%'}
+              , {field: 'assName', title: '资产名称', sort: true, width: '10%'}
+              , {field: 'assBrand', title: '资产品牌', sort: true, width: '10%'}
+              , {field: 'assModel', title: '资产型号', sort: true, width: '10%'}
+              , {field: 'assNet', title: '网络环境', sort: true, width: '10%'}
+              , {field: 'assIpv4', title: 'IPV4地址', sort: true, width: '10%'}
+              , {field: 'maintName', title: '维护单位', sort: true, width: '10%'}
+              , {field: 'maintState', title: '维护状态', sort: true, width: '10%'}
+              , {field: 'assState', title: '资产状态', sort: true, width: '10%'}
+            ]]
+            , page: true
+            , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+              return {
+                "code": res.code, //解析接口状态
+                "msg": res.msg, //解析提示文本
+                "count": res.data.total, //解析数据长度
+                "data": res.data.list //解析数据列表
+              };
+            }
+          });
+
           var eventList=detObj.data[0].eventList;
-          // $('#assName').val(detJson.assName);
-          layui.form.render();
+          table.render({
+            elem: '#test-table-toolbar1'
+            , data: eventList
+            , title: '告警信息表'
+            , cols: [[
+              {type: 'checkbox', fixed: 'left', width: '5%'}
+              , {field: 'eventId', title: '事件ID', width: '5%'}
+              , {field: 'assName', title: '资产名称', width: '10%'}
+              , {field: 'eventType', title: '事件类型', width: '10%'}
+              , {field: 'eventContent', title: '事件内容', sort: true, width: '40%'}
+              , {field: 'eventTime', title: '事件时间', sort: true, width: '10%'}
+              , {field: 'eventSource', title: '事件来源', sort: true, width: '10%'}
+              , {field: 'eventState', title: '事件状态', sort: true, width: '10%'}
+            ]]
+            , page: true
+            , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+              return {
+                "code": res.code, //解析接口状态
+                "msg": res.msg, //解析提示文本
+                "count": res.data.total, //解析数据长度
+                "data": res.data.list //解析数据列表
+              };
+            }
+          });
+
         }
       }
     });
 
-    table.render({
-      elem: '#test-table-toolbar'
-      , id: 'assReload'
-      , method: 'post'
-      , url: '/ass/assList/' //数据接口
-      , response: {
-        statusName: 'code',
-        statusCode: '200'
-      }
-      , toolbar: '#test-table-toolbar-toolbarDemo'
-      , title: '资产基础信息表'
-      , cols: [[
-        {type: 'checkbox', fixed: 'left', width: '5%'}
-        , {type: 'numbers', title: '序号', width: '5%'}
-        , {field: 'unitName', title: '业务部门', sort: true, width: '6.9%'}
-        , {field: 'projName', title: '所属项目', sort: true, width: '7.2%'}
-        , {field: 'assType', title: '资产类别', sort: true, width: '6.9%'}
-        , {field: 'assNo', title: '资产编号', sort: true, width: '6.9%'}
-        , {field: 'assName', title: '资产名称', sort: true, width: '6.9%'}
-        , {field: 'assBrand', title: '资产品牌', sort: true, width: '6.9%'}
-        , {field: 'assModel', title: '规格型号', sort: true, width: '6.9%'}
-        , {field: 'factoryNo', title: '出厂编号', sort: true, width: '6.9%'}
-        , {field: 'assNet', title: '网络环境', sort: true, width: '6.9%'}
-        , {field: 'assIpv4', title: 'IPV4地址', sort: true, width: '6.9%'}
-        , {field: 'maintName', title: '维护单位', sort: true, width: '6.9%'}
-        , {field: 'maintState', title: '维护状态', sort: true, width: '6.9%'}
-        , {field: 'assState', title: '资产状态', sort: true, width: '6.9%'}
-      ]]
-      , page: true
-      , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
-        return {
-          "code": res.code, //解析接口状态
-          "msg": res.msg, //解析提示文本
-          "count": res.data.total, //解析数据长度
-          "data": res.data.list //解析数据列表
-        };
-      }
-    });
-
-    table.render({
-      elem: '#test-table-toolbar1'
-      , id: 'assReload'
-      , method: 'post'
-      , url: '/ass/assList/' //数据接口
-      , response: {
-        statusName: 'code',
-        statusCode: '200'
-      }
-      , title: '告警信息表'
-      , cols: [[
-        {type: 'checkbox', fixed: 'left', width: '5%'}
-        , {type: 'numbers', title: '序号', width: '5%'}
-        , {field: '', title: '告警内容', sort: true, width: '50%'}
-        , {field: '', title: '告警时间', sort: true, width: '20%'}
-        , {field: '', title: '告警状态', sort: true, width: '20%'}
-      ]]
-      , page: true
-      , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
-        return {
-          "code": res.code, //解析接口状态
-          "msg": res.msg, //解析提示文本
-          "count": res.data.total, //解析数据长度
-          "data": res.data.list //解析数据列表
-        };
-      }
-    });
   });
 
   // 基础信息保存
-  function save(){
-    var params={};
-    params.action=$('#action').val();
-    params.assId=$('#assId').val();
-    postdata(params,"/ass/asssave",function () {layer.msg("保存成功！");});
+  function submit(){
+    layer.msg("派单成功！");
+    // var params={};
+    // params.action=$('#action').val();
+    // params.assId=$('#assId').val();
+    // postdata(params,"/ass/asssave",function () {layer.msg("派单成功！");});
   }
 </script>
 </body>
