@@ -18,7 +18,7 @@ public interface AssService {
      * 资产明细
      * @return
      */
-    List<AssDet> assDet(String assId);
+    List<AssDet> assDet(Long assId);
     /**
      * 资产增删改
      * @return
@@ -38,5 +38,5 @@ public interface AssService {
      * 消息通知列表
      * @return
      */
-    PageInfo<EventList> eventList(Long assId,EventList params);
+    PageInfo<EventList> eventList(EventList params);
 }

@@ -30,7 +30,7 @@ public class AssController {
 
     @ApiOperation("资产详细")
     @PostMapping("/assDet")
-    public Result assDet(@RequestBody String assId){
+    public Result assDet(@RequestBody Long assId){
         List<AssDet> assDet=assService.assDet(assId);
         return Result.success(assDet);
     }
@@ -58,8 +58,8 @@ public class AssController {
 
     @ApiOperation("消息通知列表")
     @PostMapping("/eventList")
-    public Result eventList(@RequestParam Long assId,EventList params){
-        PageInfo<EventList> eventList= assService.eventList(assId,params);
+    public Result eventList(EventList params){
+        PageInfo<EventList> eventList= assService.eventList(params);
         return Result.success(eventList);
     }
 }

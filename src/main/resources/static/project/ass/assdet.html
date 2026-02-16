@@ -301,7 +301,7 @@
         form.render(null, 'component-form-group');
 
         var assId=window.location.search.substring(1,window.location.search.length);
-        if(assId==="add"){
+        if(assId === 0){
             $('#action').val("add");
         }else{
             $('#action').val("update");

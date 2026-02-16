@@ -96,7 +96,6 @@
                 <button class="layui-btn layui-btn-sm" lay-event="del">删除</button>
                 <button class="layui-btn layui-btn-sm" lay-event="imp">导入</button>
                 <button class="layui-btn layui-btn-sm" lay-event="filing">报备</button>
-                <button class="layui-btn layui-btn-sm" lay-event="task">派单</button>
             </div>
         </script>
 
@@ -216,7 +215,7 @@
                     layer.open({
                         type: 2
                         , title: '资产入库'
-                        , content: 'assdet.html?add'
+                        , content: 'assdet.html?0'
                         , maxmin: true
                         , area: ['1200px', '600px']
                     });
@@ -249,17 +248,7 @@
                         , area: ['600px', '350px']
                     });
                     break;
-                case 'task':
-                    layer.open({
-                        type: 2
-                        , title: '派单'
-                        , content: '../task/tasknew.html?' + ids
-                        , maxmin: true
-                        , area: ['1200px', '600px']
-                    });
-                    break;
-            }
-            ;
+            };
         });
 
         //监听行工具事件

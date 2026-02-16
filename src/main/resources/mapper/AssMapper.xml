@@ -67,7 +67,7 @@
 <!--        ,#{zt},#{bz})-->
 <!--    </insert>-->
     <select id="eventList" resultType="com.project.entity.EventList" >
-        select event_id,ass_id,event_type,event_content,event_time,event_source,event_state from t_ass_event where ass_id=#{assId}
+        select event_id,ass_id,event_type,event_content,event_time,event_source,event_state from t_ass_event where ass_id=#{params.assId}
         <if test="params.eventType!=null and params.eventType!=''">
             and event_type = #{params.eventType}
         </if>

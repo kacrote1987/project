@@ -28,10 +28,10 @@ public class AssServiceImpl implements AssService {
     }
 
     @Override
-    public List<AssDet> assDet(String assId) {
+    public List<AssDet> assDet(Long assId) {
         List<AssDet> assDet = null;
-        if (!assId.equals("add")) {
-            assDet = assMapper.selectDet(Long.valueOf(assId));
+        if (assId!=0) {
+            assDet = assMapper.selectDet(assId);
         }
         return assDet;
     }
@@ -76,11 +76,13 @@ public class AssServiceImpl implements AssService {
     }
 
     @Override
-    public PageInfo<EventList> eventList(Long assId,EventList params) {
-        PageHelper.startPage(params.getPage(), 10);
-        List<EventList> eventList = assMapper.eventList(assId,params);
+    public PageInfo<EventList> eventList(EventList params) {
+        List<EventList> eventList = null;
+        if (params.getAssId()!=0) {
+            PageHelper.startPage(params.getPage(), 10);
+            eventList = assMapper.eventList(params);
+        }
         return PageInfo.of(eventList);
     }
-
 
 }
