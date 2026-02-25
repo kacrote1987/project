@@ -18,64 +18,28 @@
             <div class="layui-inline">
                 <label class="layui-form-label">平台名称</label>
                 <div class="layui-input-block">
-                    <input type="text" id="assName" placeholder="请输入" autocomplete="off"
+                    <input type="text" id="apiName" placeholder="请输入" autocomplete="off"
                            class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">平台厂商</label>
                 <div class="layui-input-block">
-                    <input type="text" id="assName" placeholder="请输入" autocomplete="off"
+                    <input type="text" id="apiManufacture" placeholder="请输入" autocomplete="off"
                            class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">网络环境</label>
-                <div class="layui-input-block">
-                    <select id="assNet">
-                        <option value="">全部</option>
-                        <option value="政务外网">政务外网</option>
-                        <option value="感知专网">感知专网</option>
-                        <option value="公安专网">公安专网</option>
-                        <option value="卫生专网">卫生专网</option>
-                        <option value="教育专网">教育专网</option>
-                        <option value="互联网">互联网</option>
-                    </select>
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">IP地址</label>
                 <div class="layui-input-block">
-                    <input type="text" id="IP" placeholder="请输入" autocomplete="off"
+                    <input type="text" id="apiIpv4" placeholder="请输入" autocomplete="off"
                            class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">对接方式</label>
-                <div class="layui-input-block">
-                    <select id="assType">
-                        <option value="">全部</option>
-                        <option value="API">API</option>
-                        <option value="协议">协议</option>
-                        <option value="SDK">SDK</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">数据流向</label>
-                <div class="layui-input-block">
-                    <select id="assType">
-                        <option value="">全部</option>
-                        <option value="双向">双向</option>
-                        <option value="上行">上行</option>
-                        <option value="下行">下行</option>
-                    </select>
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">对接状态</label>
                 <div class="layui-input-block">
-                    <select id="assState">
+                    <select id="apiState">
                         <option value="">全部</option>
                         <option value="正常">正常</option>
                         <option value="异常">异常</option>
@@ -134,26 +98,24 @@
 
         table.render({
             elem: '#test-table-toolbar'
-            , id: 'assReload'
+            , id: 'apiReload'
             , method: 'post'
-            , url: '/ass/assList/' //数据接口
+            , url: '/api/apiList/' //数据接口
             , response: {
                 statusName: 'code',
                 statusCode: '200'
             }
             , toolbar: '#test-table-toolbar-toolbarDemo'
-            , title: '资产基础信息表'
+            , title: '三方平台信息表'
             , cols: [[
                 {type: 'checkbox', fixed: 'left', width: '5%'}
-                , {type: 'numbers', title: '序号', width: '5%'}
-                , {field: 'unitName', title: '平台名称', sort: true, width: '20%'}
-                , {field: 'projName', title: '平台厂商', sort: true, width: '15%'}
-                , {field: 'assType', title: '网络环境', sort: true, width: '10%'}
-                , {field: 'assType', title: 'IP地址', sort: true, width: '10%'}
-                , {field: 'assType', title: '对接方式', sort: true, width: '10%'}
-                , {field: 'assType', title: '数据流向', sort: true, width: '10%'}
-                , {field: 'assNo', title: '对接状态', sort: true, width: '10%'}
-                , {fixed: 'right', title: '操作', toolbar: '#test-table-toolbar-barDemo', width: '5%'}
+                , {field: 'apiId', title: '序号', width: '5%'}
+                , {field: 'apiName', title: '平台名称', sort: true, width: '16%'}
+                , {field: 'apiManufacture', title: '平台厂商', sort: true, width: '16%'}
+                , {field: 'apiNet', title: '网络环境', sort: true, width: '16%'}
+                , {field: 'apiIpv4', title: 'IP地址', sort: true, width: '16%'}
+                , {field: 'apiState', title: '对接状态', sort: true, width: '16%'}
+                , {fixed: 'right', title: '操作', toolbar: '#test-table-toolbar-barDemo', width: '10%'}
             ]]
             , page: true
             , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
@@ -169,21 +131,19 @@
         //执行重载
         var $ = layui.$, active = {
             reload: function () {
-                var deptName = $('#deptName');
-                var projName = $('#projName');
-                var assType = $('#assType');
-                var assState = $('#assState');
-                var maintState = $('#maintState');
-                table.reload('assReload', {
+                var apiName = $('#apiName');
+                var apiManufacture = $('#apiManufacture');
+                var apiIpv4 = $('#apiIpv4');
+                var apiState = $('#apiState');
+                table.reload('apiReload', {
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
                     , where: {
-                        deptName: deptName.val(),
-                        projName: projName.val(),
-                        assType: assType.val(),
-                        assState: assState.val(),
-                        maintState: maintState.val()
+                        apiName: apiName.val(),
+                        apiManufacture: apiManufacture.val(),
+                        apiIpv4: apiIpv4.val(),
+                        apiState: apiState.val()
                     }
                 }, 'data');
             }

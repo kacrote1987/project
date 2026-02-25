@@ -208,19 +208,15 @@
                                             </div>
                                             <div class="layui-row layui-col-space10 layui-form-item">
                                                 <div class="layui-col-lg6">
-                                                    <label class="layui-form-label">AccessKey</label>
+                                                    <label class="layui-form-label">接入方式</label>
                                                     <div class="layui-input-block">
-                                                        <input id="accessKey" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                                        <select id="accessMode">
+                                                            <option value=""></option>
+                                                            <option value="秘钥">秘钥</option>
+                                                            <option value="IP地址">IP地址</option>
+                                                        </select>
                                                     </div>
                                                 </div>
-                                                <div class="layui-col-lg6">
-                                                    <label class="layui-form-label">SecretKey</label>
-                                                    <div class="layui-input-block">
-                                                        <input id="secretKey" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="layui-row layui-col-space10 layui-form-item">
                                                 <div class="layui-col-lg6">
                                                     <label class="layui-form-label">资产状态</label>
                                                     <div class="layui-input-block">
@@ -231,6 +227,20 @@
                                                             <option value="离线">离线</option>
                                                             <option value="报备">报备</option>
                                                         </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="layui-row layui-col-space10 layui-form-item">
+                                                <div class="layui-col-lg6">
+                                                    <label class="layui-form-label">AccessKey</label>
+                                                    <div class="layui-input-block">
+                                                        <input id="accessKey" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                                    </div>
+                                                </div>
+                                                <div class="layui-col-lg6">
+                                                    <label class="layui-form-label">SecretKey</label>
+                                                    <div class="layui-input-block">
+                                                        <input id="secretKey" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                                                     </div>
                                                 </div>
                                             </div>

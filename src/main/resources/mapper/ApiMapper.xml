@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybaselectByUsernametiselectUsers.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mapper.ApiMapper">
+    <select id="apiList" resultType="com.project.entity.ApiList" >
+        select api_id,api_name,api_manufacture,api_net,api_ipv4,access_key,secret_key,api_remark,api_state from t_api_basic where 1=1
+        <if test="params.apiName!=null and params.apiName!=''">
+            and api_name like '%' #{params.apiName} '%'
+        </if>
+        <if test="params.apiManufacture!=null and params.apiManufacture!=''">
+            and api_manufacture like '%' #{params.apiManufacture} '%'
+        </if>
+        <if test="params.apiIpv4!=null and params.apiIpv4!=''">
+            and api_ipv4 like '%' #{params.apiIpv4} '%'
+        </if>
+        <if test="params.apiState!=null and params.apiState!=''">
+            and api_state = #{params.apiState}
+        </if>
+        order by api_id
+    </select>
+    <select id="apiDet" resultType="com.project.entity.ApiDet">
+        select api_id,api_name,api_manufacture,api_net,api_ipv4,access_key,secret_key,api_remark,api_state from t_api_basic where api_id = #{apiId}
+    </select>
+    <insert id="insertApi">
+        insert into t_ass_basic(type_code,ass_no,ass_name,ass_tag,ass_model,factory_no,ass_manufacturer,ass_supplier
+        ,ass_cost,purchase_date,ass_dept,ass_addr,ass_state,ass_remark) values(#{params.assType3},#{params.assContr}
+        ,#{params.assNo},#{params.assName},#{params.assTag},#{params.assModel},#{params.assFactoryno},#{params.assManufacturer}
+        ,#{params.assSupplier},#{params.assCost},#{params.purchaseDate},#{params.assDept}
+        ,#{params.assAddr},#{params.assState},#{params.assRemark})
+    </insert>
+    <delete id="deleteApi">
+        delete from t_api_basic where api_id=#{apiId}
+    </delete>
+    <update id="updateApi">
+        update t_ass_basic set type_code=#{params.assType3},ass_no=#{params.assNo},ass_name=#{params.assName}
+        ,ass_tag=#{params.assTag},ass_model=#{params.assModel},factory_no=#{params.factoryNo}
+        ,ass_manufacturer=#{params.assManufacturer},ass_supplier=#{params.assSupplier}
+        ,ass_cost=#{params.assCost},purchase_date=#{params.purchaseDate},ass_dept=#{params.assDept}
+        ,ass_addr=#{params.assAddr},ass_state=#{params.assState},ass_remark=#{params.assRemark} where ass_id=#{params.assId}
+    </update>
+</mapper>
