@@ -48,33 +48,6 @@ public class ProjServiceImpl implements ProjService {
     }
 
     @Override
-    public PageInfo<ConseqList> conseqList(String params) {
-        String projId=',' + params.substring(0,params.indexOf("=")) + ',';
-        List<ConseqList> conseqList=projMapper.conseqList(projId);
-        return PageInfo.of(conseqList);
-    }
-
-    @Override
-    public List<ConseqDet> conseqDet(String conseqId) {
-        List<ConseqDet> conseqDet=projMapper.selConseqDet(Long.valueOf(conseqId));
-        return conseqDet;
-    }
-
-    @Override
-    public void conseqSave(ConseqDet params) {
-        System.out.println("action="+params.getAction()+";id="+params.getConseqId());
-        if(params.getAction().equals("add")){
-            params.setProjId(","+params.getProjId()+",");
-            projMapper.insertConseq(params);
-        }else if(params.getAction().equals("del")){
-//            projMapper.deleteConseq(params.getConseqId());
-            projMapper.updateConseqState(params.getConseqId());
-        }else{
-            projMapper.updateConseq(params);
-        }
-    }
-
-    @Override
     public List<AssProj> assProj(String params) {
         Long projId=Long.valueOf(params.substring(0,params.indexOf("=")));
         String tbl=projMapper.getAssTbl(projId);

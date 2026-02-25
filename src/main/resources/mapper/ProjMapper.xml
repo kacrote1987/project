@@ -34,47 +34,26 @@
         where t.proj_id=#{projId}
     </select>
     <insert id="insertProj">
-        insert into t_proj_main(proj_tag,proj_type,proj_busin,proj_name,proj_manager,budget_amount,budget_percent,pay_percent
-        ,budget_complete,proj_stepcode) values(#{params.projTag},#{params.projType},#{params.projBusin},#{params.projName},#{params.projManager}
-        ,#{params.budgetAmount},#{params.budgetPercent},#{params.payPercent},#{params.budgetComplete},1)
+        insert into t_proj_main(proj_tag,proj_type,proj_busin,proj_name,dead_line,unita_name,unita_manager,unita_tel,unitb_name,unitb_manager,unitb_tel
+        ,budget_amount,budget_percent,pay_percent,remark,proj_stepcode) values(#{params.projTag},#{params.projType},#{params.projBusin},#{params.projName}
+        ,#{params.deadLine},#{params.unitaName},#{params.unitaManager},#{params.unitaTel},#{params.unitbName},#{params.unitbManager},#{params.unitbTel}
+        ,#{params.budgetAmount},#{params.budgetPercent},#{params.payPercent},#{params.remark},1)
     </insert>
     <delete id="deleteProj">
         delete from t_proj_main where proj_id=#{projId}
     </delete>
     <update id="updateProj">
-        update t_proj_main set proj_tag=#{params.projTag},proj_type=#{params.projType},proj_busin=#{params.projBusin},proj_name=#{params.projName},proj_manager=#{params.projManager}
-        ,budget_amount=#{params.budgetAmount},budget_percent=#{params.budgetPercent},pay_percent=#{params.payPercent}
-        ,budget_complete=#{params.budgetComplete},proj_stepcode=#{params.projStepcode} where proj_id=#{params.projId}
+        update t_proj_main set proj_tag=#{params.projTag},proj_type=#{params.projType},proj_busin=#{params.projBusin},proj_name=#{params.projName}
+        ,dead_line=#{params.deadLine},unita_name=#{params.unitaName},unita_manager=#{params.unitaManager},unita_tel=#{params.unitaTel}
+        ,unitb_name=#{params.unitbName},unitb_manager=#{params.unitbManager},unitb_tel=#{params.unitbTel},budget_amount=#{params.budgetAmount}
+        ,budget_percent=#{params.budgetPercent},pay_percent=#{params.payPercent},remark=#{params.remark},proj_stepcode=#{params.projStepcode}
+        where proj_id=#{params.projId}
     </update>
     <update id="projStep">
         update t_proj_main set proj_stepcode=proj_stepcode+#{stepVal} where proj_id=#{projId}
     </update>
     <update id="updateProjunit">
         update t_proj_main set ${type}=#{unitId} where proj_id=#{projId}
-    </update>
-    <select id="conseqList" resultType="com.project.entity.ConseqList" >
-        select conseq_id,conseq_name,purchase_state,bid_state,contract_state from t_proj_conseq where proj_id like '%' #{projId} '%'
-        and conseq_state='0'
-    </select>
-    <select id="selConseqDet" resultType="com.project.entity.ConseqDet" >
-        select conseq_id,proj_id,conseq_name,purchase_state,bid_state,contract_state,pay_amount,pay_percent,pay_complete,pay_plan,conseq_stepcode
-        from t_proj_conseq where conseq_id=#{conseqId}
-    </select>
-    <insert id="insertConseq">
-        insert into t_proj_conseq(proj_id,conseq_name,purchase_state,bid_state,contract_state,pay_amount,pay_percent,pay_complete
-        ,pay_plan,conseq_stepcode,conseq_state) values(#{params.projId},#{params.conseqName},#{params.purchaseState},#{params.bidState}
-        ,#{params.contractState},#{params.payAmount},#{params.payPercent},#{params.payComplete},#{params.payPlan},1,0)
-    </insert>
-    <delete id="deleteConseq">
-        delete from t_proj_conseq where conseq_id=#{conseqId}
-    </delete>
-    <update id="updateConseqState">
-        update t_proj_conseq set conseq_state='-1' where conseq_id=#{conseqId}
-    </update>
-    <update id="updateConseq">
-        update t_proj_conseq set conseq_name=#{params.conseqName},purchase_state=#{params.purchaseState},bid_state=#{params.bidState}
-        ,contract_state=#{params.contractState},pay_amount=#{params.payAmount},pay_percent=#{params.payPercent},pay_complete=#{params.payComplete}
-        ,pay_plan=#{params.payPlan},conseq_stepcode=#{params.conseqStepcode} where conseq_id=#{params.conseqId}
     </update>
     <select id="getAssTbl" resultType="string" >
         select CONCAT('t_ass_',ass_tbl) from t_proj_main where proj_id=#{projId}

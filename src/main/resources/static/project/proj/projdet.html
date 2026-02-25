@@ -167,20 +167,6 @@
                       </div>
                     </div>
                     <div class="layui-row layui-col-space10 layui-form-item">
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">甲方联系人</label>
-                        <div class="layui-input-block">
-                          <input id="" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                        </div>
-                      </div>
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">联系人电话</label>
-                        <div class="layui-input-block">
-                          <input id="" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="layui-row layui-col-space10 layui-form-item">
                       <div class="layui-col-lg12">
                         <label class="layui-form-label">合同乙方</label>
                         <div class="layui-input-block">
@@ -200,20 +186,6 @@
                         <label class="layui-form-label">负责人电话</label>
                         <div class="layui-input-block">
                           <input id="unitbTel" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="layui-row layui-col-space10 layui-form-item">
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">乙方联系人</label>
-                        <div class="layui-input-block">
-                          <input id="" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                        </div>
-                      </div>
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">联系人电话</label>
-                        <div class="layui-input-block">
-                          <input id="" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                     </div>
@@ -277,23 +249,20 @@
           $('#projId').val(detJson.projId);
           $('#projTag').val(detJson.projTag);
           $('#projType').val(detJson.projType);
-          $('#projBusin').val(detJson.projBusin);
           $('#projName').val(detJson.projName);
-
-          $('#unitaId').val(detJson.unitaId);
-          $('#unitaName').val(detJson.unitaName);
-          $('#unitaManager').val(detJson.unitaManager);
-          $('#unitaTel').val(detJson.unitaTel);
-          $('#unitbId').val(detJson.unitbId);
-          $('#unitbName').val(detJson.unitbName);
-          $('#unitbManager').val(detJson.unitbManager);
-          $('#unitbTel').val(detJson.unitbTel);
-
           $('#budgetAmount').val(detJson.budgetAmount);
+          $('#projStepcode').val(detJson.projStepcode);
+          $('#projBusin').val(detJson.projBusin);
+          $('#deadLine').val(detJson.deadLine);
           $('#budgetPercent').val(detJson.budgetPercent);
           $('#payPercent').val(detJson.payPercent);
           $('#remark').val(detJson.remark);
-          $('#projStepcode').val(detJson.projStepcode);
+          $('#unitaName').val(detJson.unitaName);
+          $('#unitaManager').val(detJson.unitaManager);
+          $('#unitaTel').val(detJson.unitaTel);
+          $('#unitbName').val(detJson.unitbName);
+          $('#unitbManager').val(detJson.unitbManager);
+          $('#unitbTel').val(detJson.unitbTel);
           layui.form.render();
         }
       }
@@ -311,15 +280,21 @@
     params.projId=$('#projId').val();
     params.projTag=$('#projTag').val();
     params.projType=$('#projType').val();
-    params.projBusin=$('#projBusin').val();
     params.projName=$('#projName').val();
-    params.projManager=$('#projManager').val();
     params.budgetAmount=$('#budgetAmount').val();
+    params.projStepcode=$('#projStepcode').val();
+    params.projBusin=$('#projBusin').val();
+    params.deadLine=$('#deadLine').val();
     params.budgetPercent=$('#budgetPercent').val();
     params.payPercent=$('#payPercent').val();
     params.remark=$('#remark').val();
-    params.projStepcode=$('#projStepcode').val();
-    postdata(params,"/proj/projsave",function () {layer.msg("保存成功！");});
+    params.unitaName=$('#unitaName').val();
+    params.unitaManager=$('#unitaManager').val();
+    params.unitaTel=$('#unitaTel').val();
+    params.unitbName=$('#unitbName').val();
+    params.unitbManager=$('#unitbManager').val();
+    params.unitbTel=$('#unitbTel').val();
+    postdata(params,"/proj/projSave",function () {layer.msg("保存成功！");});
   }
 </script>
 </body>

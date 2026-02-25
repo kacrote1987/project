@@ -27,21 +27,6 @@ public interface ProjService {
      */
     void projStep(ProjList params);
     /**
-     * 后项项目列表
-     * @return
-     */
-    PageInfo<ConseqList> conseqList(String params);
-    /**
-     * 后项项目详细
-     * @return
-     */
-    List<ConseqDet> conseqDet(String conseqId);
-    /**
-     * 后项项目保存
-     * @return
-     */
-    void conseqSave(ConseqDet params);
-    /**
      * 项目资产
      * @return
      */

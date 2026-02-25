@@ -15,12 +15,6 @@ public interface ProjMapper {
     boolean updateProj(@Param("params") ProjDet params);
     boolean projStep(Long projId,Integer stepVal);
     boolean updateProjunit(Long projId,String type,Long unitId);
-    List<ConseqList> conseqList(String projId);
-    List<ConseqDet> selConseqDet(Long conseqId);
-    boolean insertConseq(@Param("params") ConseqDet params);
-    boolean deleteConseq(Long conseqId);
-    boolean updateConseqState(Long conseqId);
-    boolean updateConseq(@Param("params") ConseqDet params);
     String getAssTbl(Long projId);
     List<AssProj> assProj(Long projId);
     List<ProjCostForm> projCost(Long projId);

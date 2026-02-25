@@ -33,37 +33,16 @@ public class ProjController {
     }
 
     @ApiOperation("项目保存")
-    @PostMapping("/projsave")
+    @PostMapping("/projSave")
     public Result projSave(@RequestBody ProjDet params){
         projService.projSave(params);
         return Result.success();
     }
 
     @ApiOperation("项目流转")
-    @PostMapping("/projstep")
+    @PostMapping("/projStep")
     public Result projStep(@RequestBody ProjList params){
         projService.projStep(params);
-        return Result.success();
-    }
-
-    @ApiOperation("后项项目列表")
-    @PostMapping("/conseqlist")
-    public Result conseqList(@RequestBody String params){
-        PageInfo<ConseqList> conseqList= projService.conseqList(params);
-        return Result.success(conseqList);
-    }
-
-    @ApiOperation("后项项目详细")
-    @PostMapping("/conseqdet")
-    public Result conseqDet(@RequestBody String conseqId){
-        List<ConseqDet> conseqList= projService.conseqDet(conseqId);
-        return Result.success(conseqList);
-    }
-
-    @ApiOperation("后项项目保存")
-    @PostMapping("/conseqsave")
-    public Result conseqSave(@RequestBody ConseqDet params){
-        projService.conseqSave(params);
         return Result.success();
     }
 

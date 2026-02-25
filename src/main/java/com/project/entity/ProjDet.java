@@ -5,21 +5,20 @@ public class ProjDet {
     private Long projId;
     private String projTag;
     private String projType;
-    private String projBusin;
     private String projName;
-    private Long unitaId;
-    private String unitaName;
-    private String unitaManager;
-    private String unitaTel;
-    private Long unitbId;
-    private String unitbName;
-    private String unitbManager;
-    private String unitbTel;
     private String budgetAmount;
+    private String projStepcode;
+    private String projBusin;
+    private String deadLine;
     private String budgetPercent;
     private String payPercent;
     private String remark;
-    private String projStepcode;
+    private String unitaName;
+    private String unitaManager;
+    private String unitaTel;
+    private String unitbName;
+    private String unitbManager;
+    private String unitbTel;
 
     public String getAction() {
         return action;
@@ -53,14 +52,6 @@ public class ProjDet {
         this.projType = projType;
     }
 
-    public String getProjBusin() {
-        return projBusin;
-    }
-
-    public void setProjBusin(String projBusin) {
-        this.projBusin = projBusin;
-    }
-
     public String getProjName() {
         return projName;
     }
@@ -69,76 +60,36 @@ public class ProjDet {
         this.projName = projName;
     }
 
-    public Long getUnitaId() {
-        return unitaId;
-    }
-
-    public void setUnitaId(Long unitaId) {
-        this.unitaId = unitaId;
-    }
-
-    public String getUnitaName() {
-        return unitaName;
-    }
-
-    public void setUnitaName(String unitaName) {
-        this.unitaName = unitaName;
-    }
-
-    public String getUnitaManager() {
-        return unitaManager;
-    }
-
-    public void setUnitaManager(String unitaManager) {
-        this.unitaManager = unitaManager;
-    }
-
-    public String getUnitaTel() {
-        return unitaTel;
-    }
-
-    public void setUnitaTel(String unitaTel) {
-        this.unitaTel = unitaTel;
-    }
-
-    public Long getUnitbId() {
-        return unitbId;
-    }
-
-    public void setUnitbId(Long unitbId) {
-        this.unitbId = unitbId;
-    }
-
-    public String getUnitbName() {
-        return unitbName;
-    }
-
-    public void setUnitbName(String unitbName) {
-        this.unitbName = unitbName;
-    }
-
-    public String getUnitbManager() {
-        return unitbManager;
-    }
-
-    public void setUnitbManager(String unitbManager) {
-        this.unitbManager = unitbManager;
-    }
-
-    public String getUnitbTel() {
-        return unitbTel;
-    }
-
-    public void setUnitbTel(String unitbTel) {
-        this.unitbTel = unitbTel;
-    }
-
     public String getBudgetAmount() {
         return budgetAmount;
     }
 
     public void setBudgetAmount(String budgetAmount) {
         this.budgetAmount = budgetAmount;
+    }
+
+    public String getProjStepcode() {
+        return projStepcode;
+    }
+
+    public void setProjStepcode(String projStepcode) {
+        this.projStepcode = projStepcode;
+    }
+
+    public String getProjBusin() {
+        return projBusin;
+    }
+
+    public void setProjBusin(String projBusin) {
+        this.projBusin = projBusin;
+    }
+
+    public String getDeadLine() {
+        return deadLine;
+    }
+
+    public void setDeadLine(String deadLine) {
+        this.deadLine = deadLine;
     }
 
     public String getBudgetPercent() {
@@ -165,11 +116,51 @@ public class ProjDet {
         this.remark = remark;
     }
 
-    public String getProjStepcode() {
-        return projStepcode;
+    public String getUnitaName() {
+        return unitaName;
     }
 
-    public void setProjStepcode(String projStepcode) {
-        this.projStepcode = projStepcode;
+    public void setUnitaName(String unitaName) {
+        this.unitaName = unitaName;
+    }
+
+    public String getUnitaManager() {
+        return unitaManager;
+    }
+
+    public void setUnitaManager(String unitaManager) {
+        this.unitaManager = unitaManager;
+    }
+
+    public String getUnitaTel() {
+        return unitaTel;
+    }
+
+    public void setUnitaTel(String unitaTel) {
+        this.unitaTel = unitaTel;
+    }
+
+    public String getUnitbName() {
+        return unitbName;
+    }
+
+    public void setUnitbName(String unitbName) {
+        this.unitbName = unitbName;
+    }
+
+    public String getUnitbManager() {
+        return unitbManager;
+    }
+
+    public void setUnitbManager(String unitbManager) {
+        this.unitbManager = unitbManager;
+    }
+
+    public String getUnitbTel() {
+        return unitbTel;
+    }
+
+    public void setUnitbTel(String unitbTel) {
+        this.unitbTel = unitbTel;
     }
 }

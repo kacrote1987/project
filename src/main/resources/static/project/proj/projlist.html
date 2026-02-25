@@ -93,7 +93,7 @@
 
       <script type="text/html" id="test-table-toolbar-toolbarDemo">
         <div class="layui-btn-container">
-          <button class="layui-btn layui-btn-sm" lay-event="flow">流程图示</button>
+          <button class="layui-btn layui-btn-sm" lay-event="inst">流程说明</button>
           <button class="layui-btn layui-btn-sm" lay-event="add">新增</button>
           <button class="layui-btn layui-btn-sm" lay-event="del">删除</button>
           <button class="layui-btn layui-btn-sm" lay-event="submit">提交</button>
@@ -211,11 +211,11 @@
     table.on('toolbar(test-table-toolbar)', function(obj){
       var checkStatus = table.checkStatus(obj.config.id);
       switch(obj.event){
-        case 'flow':
+        case 'inst':
           layer.open({
             type: 2
             ,title: '项目流程'
-            ,content: 'projflow.html'
+            ,content: 'projinst.html'
             ,maxmin: true
             ,area: ['1200px', '600px']
           });
