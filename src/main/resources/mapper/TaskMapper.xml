@@ -2,16 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybaselectByUsernametiselectUsers.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.mapper.TaskMapper">
     <select id="taskList" resultType="com.project.entity.TaskList" >
-        select a.task_id,a.type_id,b.dict_value as type_name,a.task_no,a.task_content,d.unit_name,e.unit_name as maint_name,a.task_time
-        ,a.step_code,f.dict_value as step_name from t_task_main a left join (select * from t_sys_dict where dict_unit='task'and dict_type='type') b
-        on a.type_id=b.dict_code left join (select * from t_sys_unit where unit_source='zzd') d on a.unit_id=d.unit_id left join
-        (select * from t_sys_unit where unit_source='wbdw') e on a.maint_id=e.unit_id left join (select * from t_sys_dict where dict_unit='task'and dict_type='step') f
-        on a.step_code=f.dict_code where 1=1
-        <if test="params.unitName!=null and params.unitName!=''">
-            and a.unit_id in (select unit_id from t_sys_unit where unit_name like '%' #{params.unitName} '%')
+        select a.task_id,a.type_id,b.dict_value as type_name,a.task_no,a.task_content,a.proj_id,a.proj_name,a.dept_name,a.maint_name
+        ,a.task_time,a.step_code,c.dict_value as step_name from t_task_main a left join (select * from t_sys_dict where dict_unit='task'
+        and dict_type='type') b on a.type_id=b.dict_code left join (select * from t_sys_dict where dict_unit='task' and dict_type='step') c
+        on a.step_code=c.dict_code where 1=1
+        <if test="params.deptName!=null and params.deptName!=''">
+            and a.dept_name like '%' #{params.deptName} '%'
         </if>
         <if test="params.maintName!=null and params.maintName!=''">
-            and a.maint_id in (select unit_id from t_sys_unit where unit_source='wbdw' and unit_name like '%' #{params.maintName} '%')
+            and a.maint_name like '%' #{params.maintName} '%'
         </if>
         <if test="params.stepCode!=null and params.stepCode!=''">
             and a.step_code = #{params.stepCode}
@@ -21,21 +20,9 @@
     <select id="taskDet" resultType="com.project.entity.TaskDet">
         select task_id,type_id,task_no,task_content,ass_ids,unit_id,maint_id,task_time,step_code from t_task_main where task_id = #{taskId}
     </select>
-    <insert id="insertAss">
-        insert into t_ass_basic(type_code,ass_no,ass_name,ass_tag,ass_model,factory_no,ass_manufacturer,ass_supplier
-        ,ass_cost,purchase_date,ass_dept,ass_addr,ass_state,ass_remark) values(#{params.assType3},#{params.assContr}
-        ,#{params.assNo},#{params.assName},#{params.assTag},#{params.assModel},#{params.assFactoryno},#{params.assManufacturer}
-        ,#{params.assSupplier},#{params.assCost},#{params.purchaseDate},#{params.assDept}
-        ,#{params.assAddr},#{params.assState},#{params.assRemark})
+    <insert id="insertTask2">
+        insert into t_task_main(type_id,task_no,task_content,proj_id,proj_name,dept_name,unitb_name,task_time,step_code)
+        values(#{params.typeId},#{params.taskNo},#{params.taskContent},#{params.projId},#{params.projName},#{params.deptName}
+        ,#{params.unitbName},#{params.taskTime},#{params.stepCode})
     </insert>
-    <delete id="deleteAss">
-        delete from t_ass_basic where ass_id=#{assId}
-    </delete>
-    <update id="updateAss">
-        update t_ass_basic set type_code=#{params.assType3},ass_no=#{params.assNo},ass_name=#{params.assName}
-        ,ass_tag=#{params.assTag},ass_model=#{params.assModel},factory_no=#{params.factoryNo}
-        ,ass_manufacturer=#{params.assManufacturer},ass_supplier=#{params.assSupplier}
-        ,ass_cost=#{params.assCost},purchase_date=#{params.purchaseDate},ass_dept=#{params.assDept}
-        ,ass_addr=#{params.assAddr},ass_state=#{params.assState},ass_remark=#{params.assRemark} where ass_id=#{params.assId}
-    </update>
 </mapper>

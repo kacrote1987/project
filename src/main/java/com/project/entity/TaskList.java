@@ -8,7 +8,7 @@ public class TaskList {
     private String taskContent;
     private Long projId;
     private String projName;
-    private String unitName;
+    private String deptName;
     private String maintName;
     private String taskTime;
     private Long stepCode;
@@ -72,12 +72,12 @@ public class TaskList {
         this.projName = projName;
     }
 
-    public String getUnitName() {
-        return unitName;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setUnitName(String unitName) {
-        this.unitName = unitName;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
     public String getMaintName() {

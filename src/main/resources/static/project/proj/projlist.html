@@ -37,21 +37,9 @@
             </div>
           </div>
           <div class="layui-inline">
-            <label class="layui-form-label">业务主线</label>
+            <label class="layui-form-label">业务部门</label>
             <div class="layui-input-block">
-              <select id="projBusin">
-                <option value="">全部</option>
-                <option value="五统一">五统一</option>
-                <option value="智联网">智联网</option>
-                <option value="智慧交通">智慧交通</option>
-                <option value="智慧园区">智慧园区</option>
-                <option value="智慧医院">智慧医院</option>
-                <option value="智安乡村">智安乡村</option>
-                <option value="智安校园">智安校园</option>
-                <option value="智安小区">智安小区</option>
-                <option value="未来社区">未来社区</option>
-                <option value="其他项目">其他项目</option>
-              </select>
+              <input type="text" id="deptName" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
           </div>
           <div class="layui-inline">
@@ -157,7 +145,7 @@
         ,{field: 'projTag', title: '项目标识',sort: true, width:'7.5%'}
         ,{field: 'projType', title: '项目类型',sort: true, width:'7.5%'}
         ,{field: 'projName', title: '项目名称',sort: true, width:'20%'}
-        ,{field: 'projBusin', title: '业务主线',sort: true, width:'7.5%'}
+        ,{field: 'deptName', title: '业务部门',sort: true, width:'7.5%'}
         ,{field: 'unitaName', title: '甲方单位',sort: true, width:'7.5%'}
         ,{field: 'unitaManager', title: '甲方经理',sort: true, width:'7.5%'}
         ,{field: 'unitbName', title: '乙方单位',sort: true, width:'7.5%'}
@@ -184,7 +172,7 @@
       reload: function(){
         var projTag = $('#projTag');
         var projType = $('#projType');
-        var projBusin = $('#projBusin');
+        var deptName = $('#deptName');
         var projName = $('#projName');
         var projManager = $('#projManager');
         var projStepcode = $("#projStepcode");
@@ -195,7 +183,7 @@
           ,where: {
             projTag: projTag.val(),
             projType: projType.val(),
-            projBusin: projBusin.val(),
+            deptName: deptName.val(),
             projName: projName.val(),
             projManager: projManager.val(),
             projStepcode: projStepcode.val()

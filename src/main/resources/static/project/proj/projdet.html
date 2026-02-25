@@ -92,21 +92,9 @@
                     </div>
                     <div class="layui-row layui-col-space10 layui-form-item">
                       <div class="layui-col-lg6">
-                        <label class="layui-form-label">业务主线</label>
+                        <label class="layui-form-label">业务部门</label>
                         <div class="layui-input-block">
-                          <select id="projBusin" name="projBusin">
-                            <option value="">全部</option>
-                            <option value="五统一">五统一</option>
-                            <option value="智联网">智联网</option>
-                            <option value="智慧交通">智慧交通</option>
-                            <option value="智慧园区">智慧园区</option>
-                            <option value="智慧医院">智慧医院</option>
-                            <option value="智安乡村">智安乡村</option>
-                            <option value="智安校园">智安校园</option>
-                            <option value="智安小区">智安小区</option>
-                            <option value="未来社区">未来社区</option>
-                            <option value="其他项目">其他项目</option>
-                          </select>
+                          <input id="deptName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                       <div class="layui-col-lg6">
@@ -252,7 +240,7 @@
           $('#projName').val(detJson.projName);
           $('#budgetAmount').val(detJson.budgetAmount);
           $('#projStepcode').val(detJson.projStepcode);
-          $('#projBusin').val(detJson.projBusin);
+          $('#deptName').val(detJson.deptName);
           $('#deadLine').val(detJson.deadLine);
           $('#budgetPercent').val(detJson.budgetPercent);
           $('#payPercent').val(detJson.payPercent);
@@ -283,7 +271,7 @@
     params.projName=$('#projName').val();
     params.budgetAmount=$('#budgetAmount').val();
     params.projStepcode=$('#projStepcode').val();
-    params.projBusin=$('#projBusin').val();
+    params.deptName=$('#deptName').val();
     params.deadLine=$('#deadLine').val();
     params.budgetPercent=$('#budgetPercent').val();
     params.payPercent=$('#payPercent').val();

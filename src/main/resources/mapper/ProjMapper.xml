@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybaselectByUsernametiselectUsers.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.mapper.ProjMapper">
     <select id="selProjList" resultType="com.project.entity.ProjList" >
-        select a.proj_id,a.proj_tag,a.proj_type,a.proj_busin,a.proj_name,c.unit_name as unita_name,a.unita_manager,a.unita_tel
+        select a.proj_id,a.proj_tag,a.proj_type,a.dept_name,a.proj_name,c.unit_name as unita_name,a.unita_manager,a.unita_tel
         ,d.unit_name as unitb_name,a.unitb_manager,a.unitb_tel,a.budget_amount,a.budget_percent,a.pay_percent
         ,b.dict_value as proj_stepcode FROM t_proj_main a left join (select dict_code,dict_value from t_sys_dict
         where dict_field='proj_stepcode') b on a.proj_stepcode=b.dict_code left join t_sys_unit c on a.unita_id=c.unit_id
@@ -13,8 +13,8 @@
         <if test="params.projType!=null and params.projType!=''">
             and a.proj_type=#{params.projType}
         </if>
-        <if test="params.projBusin!=null and params.projBusin!=''">
-            and a.proj_busin=#{params.projBusin}
+        <if test="params.deptName!=null and params.deptName!=''">
+            and a.dept_name like '%' #{params.deptName} '%'
         </if>
         <if test="params.projName!=null and params.projName!=''">
             and a.proj_name like '%' #{params.projName} '%'
@@ -28,14 +28,14 @@
         order by a.proj_id
     </select>
     <select id="selProjDet" resultType="com.project.entity.ProjDet">
-        select t.proj_id,t.proj_tag,t.proj_type,t.proj_busin,t.proj_name,t.unita_id,a.unit_name as unita_name,t.unita_manager,t.unita_tel
+        select t.proj_id,t.proj_tag,t.proj_type,t.dept_name,t.proj_name,t.unita_id,a.unit_name as unita_name,t.unita_manager,t.unita_tel
         ,t.unitb_id,b.unit_name as unitb_name,t.unitb_manager,t.unitb_tel,t.budget_amount,t.budget_percent,t.pay_percent,t.remark,t.proj_stepcode
         FROM t_proj_main t left join t_sys_unit a on t.unita_id=a.unit_id left join t_sys_unit b on t.unitb_id=b.unit_id
         where t.proj_id=#{projId}
     </select>
     <insert id="insertProj">
-        insert into t_proj_main(proj_tag,proj_type,proj_busin,proj_name,dead_line,unita_name,unita_manager,unita_tel,unitb_name,unitb_manager,unitb_tel
-        ,budget_amount,budget_percent,pay_percent,remark,proj_stepcode) values(#{params.projTag},#{params.projType},#{params.projBusin},#{params.projName}
+        insert into t_proj_main(proj_tag,proj_type,dept_name,proj_name,dead_line,unita_name,unita_manager,unita_tel,unitb_name,unitb_manager,unitb_tel
+        ,budget_amount,budget_percent,pay_percent,remark,proj_stepcode) values(#{params.projTag},#{params.projType},#{params.deptName},#{params.projName}
         ,#{params.deadLine},#{params.unitaName},#{params.unitaManager},#{params.unitaTel},#{params.unitbName},#{params.unitbManager},#{params.unitbTel}
         ,#{params.budgetAmount},#{params.budgetPercent},#{params.payPercent},#{params.remark},1)
     </insert>
@@ -43,7 +43,7 @@
         delete from t_proj_main where proj_id=#{projId}
     </delete>
     <update id="updateProj">
-        update t_proj_main set proj_tag=#{params.projTag},proj_type=#{params.projType},proj_busin=#{params.projBusin},proj_name=#{params.projName}
+        update t_proj_main set proj_tag=#{params.projTag},proj_type=#{params.projType},dept_name=#{params.deptName},proj_name=#{params.projName}
         ,dead_line=#{params.deadLine},unita_name=#{params.unitaName},unita_manager=#{params.unitaManager},unita_tel=#{params.unitaTel}
         ,unitb_name=#{params.unitbName},unitb_manager=#{params.unitbManager},unitb_tel=#{params.unitbTel},budget_amount=#{params.budgetAmount}
         ,budget_percent=#{params.budgetPercent},pay_percent=#{params.payPercent},remark=#{params.remark},proj_stepcode=#{params.projStepcode}

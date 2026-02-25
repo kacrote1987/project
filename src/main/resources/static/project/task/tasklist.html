@@ -18,7 +18,7 @@
         <div class="layui-inline">
           <label class="layui-form-label">业务部门</label>
           <div class="layui-input-block">
-            <input type="text" id="unitName" placeholder="请输入" autocomplete="off" class="layui-input">
+            <input type="text" id="deptName" placeholder="请输入" autocomplete="off" class="layui-input">
           </div>
         </div>
         <div class="layui-inline">
@@ -50,7 +50,6 @@
     <script type="text/html" id="test-table-toolbar-barDemo">
       <a id="det" class="layui-btn layui-btn-xs" lay-event="det">详细</a>
       <a id="del" class="layui-btn layui-btn-xs" lay-event="del">删除</a>
-      <a id="step" class="layui-btn layui-btn-xs" lay-event="step">流转</a>
     </script>
 
     <div class="layui-card-body">
@@ -97,7 +96,7 @@
         ,{field: 'taskId', title: '序号', width:'8%'}
         ,{field: 'typeName', title: '工单类别',sort: true, width:'12%'}
         ,{field: 'taskNo', title: '工单编号',sort: true, width:'12%'}
-        ,{field: 'unitName', title: '业务部门',sort: true, width:'12%'}
+        ,{field: 'deptName', title: '业务部门',sort: true, width:'12%'}
         ,{field: 'taskTime', title: '派单时间',sort: true, width:'12%'}
         ,{field: 'maintName', title: '维护单位',sort: true, width:'12%'}
         ,{field: 'stepName', title: '工单状态',sort: true, width:'12%'}
@@ -172,7 +171,7 @@
           postdata(params, "", function () {table.reload('taskReload');layer.msg("已删除");});
         });
       }else{
-        layer.msg("流转状态");
+        layer.msg("出错,请联系管理员!");
       }
     });
 

@@ -5,7 +5,7 @@ public class ProjList {
     private Long projId;
     private String projTag;
     private String projType;
-    private String projBusin;
+    private String deptName;
     private String projName;
     private String unitaName;
     private String unitaManager;
@@ -51,12 +51,12 @@ public class ProjList {
         this.projType = projType;
     }
 
-    public String getProjBusin() {
-        return projBusin;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setProjBusin(String projBusin) {
-        this.projBusin = projBusin;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
     public String getProjName() {

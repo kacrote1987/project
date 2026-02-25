@@ -4,6 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.project.config.Result;
 import com.project.entity.TaskDet;
 import com.project.entity.TaskList;
+import com.project.entity.TaskNew1;
+import com.project.entity.TaskNew2;
 import com.project.service.TaskService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,5 +36,19 @@ public class TaskController {
     public Result taskDet(@RequestBody Long taskId){
         List<TaskDet> taskDet= taskService.taskDet(taskId);
         return Result.success(taskDet);
+    }
+
+    @ApiOperation("工单新增1")
+    @PostMapping("/taskNew1")
+    public Result taskNew1(@RequestBody TaskNew1 params){
+        taskService.taskNew1(params);
+        return Result.success();
+    }
+
+    @ApiOperation("工单新增2")
+    @PostMapping("/taskNew2")
+    public Result taskNew2(@RequestBody TaskNew2 params){
+        taskService.taskNew2(params);
+        return Result.success();
     }
 }

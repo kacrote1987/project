@@ -18,7 +18,7 @@
           <li class="layui-this">工单信息</li>
           <li>资产信息</li>
           <li>告警信息</li>
-          <li>处置意见</li>
+          <li>流转日志</li>
         </ul>
         <div class="layui-tab-content">
           <div class="layui-tab-item layui-show">
@@ -37,11 +37,7 @@
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">工单类别</label>
                         <div class="layui-input-block">
-                          <select id="typeId">
-                            <option value="">全部</option>
-                            <option value="1">硬件类</option>
-                            <option value="2">软件类</option>
-                          </select>
+                          <input id="typeName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" readonly>
                         </div>
                       </div>
                       <div class="layui-col-lg6">
@@ -139,7 +135,7 @@
             </div>
           </div>
           <div class="layui-tab-item" style="display: none">
-            <!--            处置意见-->
+            <!--            流转日志-->
             <div class="layui-row layui-col-space12">
               <div class="layui-col-md2">
               </div>
@@ -151,7 +147,7 @@
                         <div class="layui-col-lg12">
                           <label class="layui-form-label">处置意见</label>
                           <div class="layui-input-block">
-                            <textarea id="taskContent" placeholder="" class="layui-textarea"  rows="10" cols="50"></textarea>
+                            <textarea id="dealContent" placeholder="" class="layui-textarea"  rows="10" cols="50"></textarea>
                           </div>
                         </div>
                       </div>
@@ -194,14 +190,14 @@
 
     form.render(null, 'component-form-group');
 
-    var assId=window.location.search.substring(1,window.location.search.length);
+    var taskId=window.location.search.substring(1,window.location.search.length);
     // 基础信息展示
     $.ajax({
       type:"post",
-      url:"/task/taskNew1",
+      url:"/task/taskDet",
       contentType:"application/json;charset=utf-8",
       dataType:"json",
-      data:assId,
+      data:taskId,
       success:function(detObj){
         if(detObj.msg==="success"){
           var assList=detObj.data[0].assList;

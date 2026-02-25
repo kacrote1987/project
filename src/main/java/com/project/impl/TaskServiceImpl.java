@@ -4,6 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.project.entity.TaskDet;
 import com.project.entity.TaskList;
+import com.project.entity.TaskNew1;
+import com.project.entity.TaskNew2;
 import com.project.mapper.TaskMapper;
 import com.project.service.TaskService;
 import org.springframework.stereotype.Service;
@@ -32,5 +34,15 @@ public class TaskServiceImpl implements TaskService {
 //        List<EventList> eventList = taskMapper.eventList(assIds);
 //        taskDetList.get(0).setEventList(eventList);
         return null;
+    }
+
+    @Override
+    public void taskNew1(TaskNew1 params) {
+
+    }
+
+    @Override
+    public void taskNew2(TaskNew2 params) {
+        taskMapper.insertTask2(params);
     }
 }

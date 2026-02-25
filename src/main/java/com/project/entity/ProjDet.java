@@ -8,7 +8,7 @@ public class ProjDet {
     private String projName;
     private String budgetAmount;
     private String projStepcode;
-    private String projBusin;
+    private String deptName;
     private String deadLine;
     private String budgetPercent;
     private String payPercent;
@@ -76,12 +76,12 @@ public class ProjDet {
         this.projStepcode = projStepcode;
     }
 
-    public String getProjBusin() {
-        return projBusin;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setProjBusin(String projBusin) {
-        this.projBusin = projBusin;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
     public String getDeadLine() {
