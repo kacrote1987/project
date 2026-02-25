@@ -1,7 +1,5 @@
 package com.project.mapper;
 
-import com.project.entity.AssList;
-import com.project.entity.EventList;
 import com.project.entity.TaskDet;
 import com.project.entity.TaskList;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,6 +11,4 @@ import java.util.List;
 public interface TaskMapper {
     List<TaskList> taskList(@Param("params") TaskList params);
     List<TaskDet> taskDet(Long taskId);
-    List<AssList> taskAssList(String assIds);
-    List<EventList> eventList(String assIds);
 }

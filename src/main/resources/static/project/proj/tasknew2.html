@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>工单详细</title>
+    <title>服务类工单详细</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -36,10 +36,7 @@
                                                     <label class="layui-form-label">工单类别</label>
                                                     <div class="layui-input-block">
                                                         <select id="typeId">
-                                                            <option value="">全部</option>
-                                                            <option value="1">硬件类</option>
-                                                            <option value="2">软件类</option>
-                                                            <option value="3">服务类</option>
+                                                            <option value="3" selected>服务类</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -47,11 +44,7 @@
                                                     <label class="layui-form-label">工单状态</label>
                                                     <div class="layui-input-block">
                                                         <select id="stepCode">
-                                                            <option value="">全部</option>
-                                                            <option value="1">派单</option>
-                                                            <option value="2">处置</option>
-                                                            <option value="3">复核</option>
-                                                            <option value="4">确认</option>
+                                                            <option value="1" selected>派单</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -178,9 +171,7 @@
             ,laydate = layui.laydate;
 
         form.render(null, 'component-form-group');
-
-        var assIds=window.location.search.substring(1,window.location.search.length);
-
+        var projId=window.location.search.substring(1,window.location.search.length);
 
     });
 

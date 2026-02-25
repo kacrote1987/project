@@ -98,6 +98,7 @@
           <button class="layui-btn layui-btn-sm" lay-event="del">删除</button>
           <button class="layui-btn layui-btn-sm" lay-event="submit">提交</button>
           <button class="layui-btn layui-btn-sm" lay-event="backoff">回退</button>
+          <button class="layui-btn layui-btn-sm" lay-event="task2">服务类派单</button>
         </div>
       </script>
 
@@ -274,6 +275,15 @@
                 params.stepVal="-1";
                 postdata(params,"/proj/projstep",function () {
                 table.reload('projReload');layer.msg("回退成功");});}}
+          });
+          break;
+        case 'task2':
+          layer.open({
+            type: 2
+            ,title: '服务类派单'
+            ,content: 'tasknew2.html?' + checkStatus.data[0].projId
+            ,maxmin: true
+            ,area: ['1200px', '600px']
           });
           break;
       };

@@ -19,4 +19,6 @@ public interface AssMapper {
     boolean importAss(String htbh,String gcmc,String gys,String zzs,String jsdw,String zcflbm,String zcbqh,String zcmc,String ggxh
     ,String dw,String sl,String je,String kssyrq,String zcdd,String bq,String zt,String bz);
     List<EventList> eventList(@Param("params") EventList params);
+    List<AssList> taskAssList(String assIds);
+    List<EventList> taskEventList(String assIds);
 }

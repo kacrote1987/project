@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>工单详细</title>
+  <title>资产类工单详细</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -30,6 +30,8 @@
               <div class="layui-card">
                 <input id="action" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
                 <input id="taskId" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
+                <input id="assIds" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
+                <input id="checkState" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
                 <div class="layui-card-body">
                   <form class="layui-form" action="" lay-filter="component-form-element">
                     <div class="layui-row layui-col-space10 layui-form-item">
@@ -40,7 +42,6 @@
                             <option value="">全部</option>
                             <option value="1">硬件类</option>
                             <option value="2">软件类</option>
-                            <option value="3">服务类</option>
                           </select>
                         </div>
                       </div>
@@ -48,11 +49,7 @@
                         <label class="layui-form-label">工单状态</label>
                         <div class="layui-input-block">
                           <select id="stepCode">
-                            <option value="">全部</option>
-                            <option value="1">派单</option>
-                            <option value="2">处置</option>
-                            <option value="3">复核</option>
-                            <option value="4">确认</option>
+                            <option value="1" selected>派单</option>
                           </select>
                         </div>
                       </div>
@@ -175,8 +172,7 @@
 <div class="layui-form-item layui-layout-admin">
   <div class="layui-input-block">
     <div class="layui-footer" style="left: 0;">
-      <button class="layui-btn" lay-submit="submit" lay-filter="component-form-demo1" onclick="submit()">提交</button>
-      <button class="layui-btn" lay-submit="submit" lay-filter="component-form-demo1" onclick="back()">回退</button>
+      <button class="layui-btn" lay-submit="submit" lay-filter="component-form-demo1" onclick="submit()">派单</button>
     </div>
   </div>
 </div>
@@ -199,29 +195,18 @@
 
     form.render(null, 'component-form-group');
 
-    var taskId=window.location.search.substring(1,window.location.search.length);
+    var assId=window.location.search.substring(1,window.location.search.length);
     // 基础信息展示
     $.ajax({
       type:"post",
-      url:"/task/taskDet",
+      url:"/ass/taskNew1",
       contentType:"application/json;charset=utf-8",
       dataType:"json",
-      data:taskId,
+      data:assId,
       success:function(detObj){
-        if(detObj.msg=="success"){
-          var detJson=detObj.data[0];
-          $('#taskId').val(detJson.taskId);
-          $('#typeId').val(detJson.typeId);
-          $('#taskNo').val(detJson.taskNo);
-          $('#taskTitle').val(detJson.taskTitle);
-          $('#taskContent').val(detJson.taskContent);
-          $('#projId').val(detJson.projId);
-          $('#unitId').val(detJson.unitId);
-          $('#maintId').val(detJson.maintId);
-          $('#taskTime').val(detJson.taskTime);
-          $('#stepCode').val(detJson.stepCode);
-
+        if(detObj.msg==="success"){
           var assList=detObj.data[0].assList;
+
           table.render({
             elem: '#test-table-toolbar'
             , id: 'assReload'
@@ -284,11 +269,16 @@
   });
 
   // 基础信息保存
-  function save(){
-    var params={};
-    params.action=$('#action').val();
-    params.assId=$('#assId').val();
-    postdata(params,"/ass/asssave",function () {layer.msg("保存成功！");});
+  function submit(){
+    if(detObj.data[0].checkState===1){
+      layer.msg("项目过保，无法派单");
+    }else{
+      layer.msg("派单成功！");
+      // var params={};
+      // params.action=$('#action').val();
+      // params.assId=$('#assId').val();
+      // postdata(params,"/ass/asssave",function () {layer.msg("派单成功！");});
+    }
   }
 </script>
 </body>

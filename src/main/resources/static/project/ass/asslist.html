@@ -96,6 +96,7 @@
                 <button class="layui-btn layui-btn-sm" lay-event="del">删除</button>
                 <button class="layui-btn layui-btn-sm" lay-event="imp">导入</button>
                 <button class="layui-btn layui-btn-sm" lay-event="filing">报备</button>
+                <button class="layui-btn layui-btn-sm" lay-event="task1">资产类派单</button>
             </div>
         </script>
 
@@ -246,6 +247,15 @@
                         , content: 'filling.html'
                         , maxmin: true
                         , area: ['600px', '350px']
+                    });
+                    break;
+                case 'task1':
+                    layer.open({
+                        type: 2
+                        , title: '资产类派单'
+                        , content: 'tasknew1.html?' + checkStatus.data[0].assId
+                        , maxmin: true
+                        , area: ['1200px', '600px']
                     });
                     break;
             };

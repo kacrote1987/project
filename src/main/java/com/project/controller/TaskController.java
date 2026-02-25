@@ -4,7 +4,6 @@ import com.github.pagehelper.PageInfo;
 import com.project.config.Result;
 import com.project.entity.TaskDet;
 import com.project.entity.TaskList;
-import com.project.entity.TaskNew;
 import com.project.service.TaskService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,12 +34,5 @@ public class TaskController {
     public Result taskDet(@RequestBody Long taskId){
         List<TaskDet> taskDet= taskService.taskDet(taskId);
         return Result.success(taskDet);
-    }
-
-    @ApiOperation("告警设备")
-    @PostMapping("/taskNew")
-    public Result taskNew(@RequestBody String assIds){
-        List<TaskNew> taskNew= taskService.taskNew(assIds);
-        return Result.success(taskNew);
     }
 }

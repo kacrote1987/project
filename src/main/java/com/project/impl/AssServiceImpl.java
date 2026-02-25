@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.project.entity.AssDet;
 import com.project.entity.AssList;
 import com.project.entity.EventList;
+import com.project.entity.TaskNew1;
 import com.project.mapper.AssMapper;
 import com.project.service.AssService;
 import com.project.util.ExcelUtils;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -85,4 +87,29 @@ public class AssServiceImpl implements AssService {
         return PageInfo.of(eventList);
     }
 
+    @Override
+    public List<TaskNew1> taskNew1(String assIds) {
+        List<TaskNew1> taskNewList = new ArrayList<>();
+        TaskNew1 taskNew = new TaskNew1();
+        Integer idSize = 1;
+        Integer dataSize = 0;
+        if(assIds!=null){
+            assIds = assIds.replace(",","','");
+            assIds = "'" + assIds + "'";
+            List<AssList> assList = assMapper.taskAssList(assIds);
+            taskNew.setAssList(assList);
+            dataSize = assList.size();
+            List<EventList> eventList = assMapper.taskEventList(assIds);
+            taskNew.setEventList(eventList);
+        }
+        taskNewList.add(taskNew);
+        while(assIds.indexOf(',')>0){
+            idSize ++;
+            assIds = assIds.substring(assIds.indexOf(',')+1);
+        }
+        if(idSize>dataSize){
+            taskNewList.get(0).setCheckState(1);
+        }
+        return taskNewList;
+    }
 }

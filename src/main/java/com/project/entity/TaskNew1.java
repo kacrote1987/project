@@ -2,7 +2,7 @@ package com.project.entity;
 
 import java.util.List;
 
-public class TaskNew {
+public class TaskNew1 {
     List<AssList> assList;
     List<EventList> eventList;
     Integer checkState;

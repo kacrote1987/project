@@ -38,12 +38,4 @@
         ,ass_cost=#{params.assCost},purchase_date=#{params.purchaseDate},ass_dept=#{params.assDept}
         ,ass_addr=#{params.assAddr},ass_state=#{params.assState},ass_remark=#{params.assRemark} where ass_id=#{params.assId}
     </update>
-    <select id="taskAssList" resultType="com.project.entity.AssList">
-        select t.ass_no,t.ass_name,t.ass_brand,t.ass_model,t.ass_net,t.ass_ipv4,a.unit_name as maint_name,t.maint_state,t.ass_state from t_ass_basic t left join
-        (select unit_id,unit_name from t_sys_unit where unit_source='wbdw' and unit_state='正常') a on t.maint_id=a.unit_id where t.maint_state='在保' and t.ass_id in (${assIds});
-    </select>
-    <select id="eventList" resultType="com.project.entity.EventList" >
-        select t.event_id,t.ass_id,a.ass_name,t.event_type,t.event_content,t.event_time,t.event_source,t.event_state from t_ass_event t inner join t_ass_basic a
-        on t.ass_id=a.ass_id where a.maint_state='在保' and t.event_type='告警' and t.event_state='未处理' and t.ass_id in (${assIds}) order by t.event_time desc
-    </select>
 </mapper>

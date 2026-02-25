@@ -5,6 +5,7 @@ import com.project.config.Result;
 import com.project.entity.AssDet;
 import com.project.entity.AssList;
 import com.project.entity.EventList;
+import com.project.entity.TaskNew1;
 import com.project.service.AssService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -61,5 +62,12 @@ public class AssController {
     public Result eventList(EventList params){
         PageInfo<EventList> eventList= assService.eventList(params);
         return Result.success(eventList);
+    }
+
+    @ApiOperation("告警设备")
+    @PostMapping("/taskNew1")
+    public Result taskNew(@RequestBody String assIds){
+        List<TaskNew1> taskNew1= assService.taskNew1(assIds);
+        return Result.success(taskNew1);
     }
 }

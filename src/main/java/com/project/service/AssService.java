@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.project.entity.AssDet;
 import com.project.entity.AssList;
 import com.project.entity.EventList;
+import com.project.entity.TaskNew1;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -39,4 +40,9 @@ public interface AssService {
      * @return
      */
     PageInfo<EventList> eventList(EventList params);
+    /**
+     * 资产类工单新增
+     * @return
+     */
+    List<TaskNew1> taskNew1(String assIds);
 }

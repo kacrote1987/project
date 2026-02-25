@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>工单详细</title>
+  <title>资产类工单详细</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -41,7 +41,6 @@
                             <option value="">全部</option>
                             <option value="1">硬件类</option>
                             <option value="2">软件类</option>
-                            <option value="3">服务类</option>
                           </select>
                         </div>
                       </div>
@@ -49,11 +48,7 @@
                         <label class="layui-form-label">工单状态</label>
                         <div class="layui-input-block">
                           <select id="stepCode">
-                            <option value="">全部</option>
-                            <option value="1">派单</option>
-                            <option value="2">处置</option>
-                            <option value="3">复核</option>
-                            <option value="4">确认</option>
+                            <option value="1" selected>派单</option>
                           </select>
                         </div>
                       </div>
@@ -199,19 +194,19 @@
 
     form.render(null, 'component-form-group');
 
-    var assIds=window.location.search.substring(1,window.location.search.length);
+    var assId=window.location.search.substring(1,window.location.search.length);
     // 基础信息展示
     $.ajax({
       type:"post",
-      url:"/task/taskNew",
+      url:"/task/taskNew1",
       contentType:"application/json;charset=utf-8",
       dataType:"json",
-      data:assIds,
+      data:assId,
       success:function(detObj){
         if(detObj.msg==="success"){
           var assList=detObj.data[0].assList;
           if(detObj.data[0].checkState===1){
-            layer.msg("有资产过保，无法派单");
+            layer.msg("项目过保，无法派单");
           }
           table.render({
             elem: '#test-table-toolbar'
