@@ -36,8 +36,8 @@
     </select>
     <select id="selectDet" resultType="com.project.entity.AssDet">
         select t.ass_id,t.ass_no,t.ass_name,t.proj_id,a.proj_name,t.type_code,t.ass_brand,t.ass_model,t.serial_no,t.factory_no,t.ass_supplier,t.ass_cost
-        ,t.purchase_date,t.ass_remark,t.ass_tag,t.unit_id,t.ass_addr,t.ass_net,t.ass_ipv4,t.access_key,t.secret_key,t.ass_state,t.maint_id,t.maint_state
-        from t_ass_basic t left join t_proj_main a on t.proj_id=a.proj_id where t.ass_id = #{assId}
+        ,t.purchase_date,t.ass_remark,t.ass_tag,t.unit_id,t.ass_addr,t.ass_net,t.ass_ipv4,t.access_key,t.secret_key,t.ass_state,t.maint_id,b.unit_name as maint_name,t.maint_state
+        from t_ass_basic t left join t_proj_main a on t.proj_id=a.proj_id left join t_sys_unit b on t.maint_id=b.unit_id where b.unit_source like '%wbdw%' and t.ass_id = #{assId}
     </select>
 <!--    <insert id="insertAss">-->
 <!--        insert into t_ass_basic(type_code,ass_no,ass_name,ass_tag,ass_model,factory_no,ass_manufacturer,ass_supplier-->
