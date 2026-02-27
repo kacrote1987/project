@@ -33,9 +33,16 @@ public class TaskController {
 
     @ApiOperation("工单详细")
     @PostMapping("/taskDet")
-    public Result taskDet(@RequestBody Long taskId){
-        List<TaskDet> taskDet= taskService.taskDet(taskId);
+    public Result taskDet(@RequestBody String params){
+        List<TaskDet> taskDet= taskService.taskDet(params);
         return Result.success(taskDet);
+    }
+
+    @ApiOperation("工单保存")
+    @PostMapping("/taskSave")
+    public Result taskSave(@RequestBody TaskDet params){
+        taskService.taskSave(params);
+        return Result.success();
     }
 
     @ApiOperation("工单新增1")

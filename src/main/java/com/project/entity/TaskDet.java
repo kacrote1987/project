@@ -3,17 +3,28 @@ package com.project.entity;
 import java.util.List;
 
 public class TaskDet {
+    private String action;
     private Long taskId;
     private Long typeId;
+    private String stepCode;
+    private String taskTitle;
     private String taskNo;
+    private String projName;
+    private String deptName;
     private String taskContent;
     private String assIds;
-    private Long unitId;
-    private Long maintId;
+    private String maintName;
     private String taskTime;
-    private String stepCode;
     private List<AssList> assList;
     private List<EventList> eventList;
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
 
     public Long getTaskId() {
         return taskId;
@@ -31,12 +42,44 @@ public class TaskDet {
         this.typeId = typeId;
     }
 
+    public String getStepCode() {
+        return stepCode;
+    }
+
+    public void setStepCode(String stepCode) {
+        this.stepCode = stepCode;
+    }
+
+    public String getTaskTitle() {
+        return taskTitle;
+    }
+
+    public void setTaskTitle(String taskTitle) {
+        this.taskTitle = taskTitle;
+    }
+
     public String getTaskNo() {
         return taskNo;
     }
 
     public void setTaskNo(String taskNo) {
         this.taskNo = taskNo;
+    }
+
+    public String getProjName() {
+        return projName;
+    }
+
+    public void setProjName(String projName) {
+        this.projName = projName;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
     public String getTaskContent() {
@@ -55,20 +98,12 @@ public class TaskDet {
         this.assIds = assIds;
     }
 
-    public Long getUnitId() {
-        return unitId;
+    public String getMaintName() {
+        return maintName;
     }
 
-    public void setUnitId(Long unitId) {
-        this.unitId = unitId;
-    }
-
-    public Long getMaintId() {
-        return maintId;
-    }
-
-    public void setMaintId(Long maintId) {
-        this.maintId = maintId;
+    public void setMaintName(String maintName) {
+        this.maintName = maintName;
     }
 
     public String getTaskTime() {
@@ -77,14 +112,6 @@ public class TaskDet {
 
     public void setTaskTime(String taskTime) {
         this.taskTime = taskTime;
-    }
-
-    public String getStepCode() {
-        return stepCode;
-    }
-
-    public void setStepCode(String stepCode) {
-        this.stepCode = stepCode;
     }
 
     public List<AssList> getAssList() {

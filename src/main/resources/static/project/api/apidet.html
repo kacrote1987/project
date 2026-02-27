@@ -38,19 +38,6 @@
                                         </div>
                                     </div>
                                     <div class="layui-col-lg6">
-                                        <label class="layui-form-label">数据流向</label>
-                                        <div class="layui-input-block">
-                                            <select id="assType">
-                                                <option value="">全部</option>
-                                                <option value="双向">双向</option>
-                                                <option value="上行">上行</option>
-                                                <option value="下行">下行</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-row layui-col-space10 layui-form-item">
-                                    <div class="layui-col-lg6">
                                         <label class="layui-form-label">对接方式</label>
                                         <div class="layui-input-block">
                                             <select id="apiType">
@@ -58,6 +45,37 @@
                                                 <option value="API">API</option>
                                                 <option value="协议">协议</option>
                                                 <option value="SDK">SDK</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-row layui-col-space10 layui-form-item">
+                                    <div class="layui-col-lg6">
+                                        <label class="layui-form-label">网络环境</label>
+                                        <div class="layui-input-block">
+                                            <select id="apiNet">
+                                                <option value="">全部</option>
+                                                <option value="政务外网">政务外网</option>
+                                                <option value="感知专网">感知专网</option>
+                                                <option value="互联网">互联网</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-lg6">
+                                        <label class="layui-form-label">IP地址</label>
+                                        <div class="layui-input-block">
+                                            <input id="apiIpv4" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-row layui-col-space10 layui-form-item">
+                                    <div class="layui-col-lg6">
+                                        <label class="layui-form-label">对接方法</label>
+                                        <div class="layui-input-block">
+                                            <select id="apiMethod">
+                                                <option value="">全部</option>
+                                                <option value="POST">POST</option>
+                                                <option value="GET">GET</option>
                                             </select>
                                         </div>
                                     </div>
@@ -84,6 +102,14 @@
                                         <label class="layui-form-label">SK</label>
                                         <div class="layui-input-block">
                                             <input id="secretKey" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-row layui-col-space10 layui-form-item">
+                                    <div class="layui-col-lg12">
+                                        <label class="layui-form-label">签名</label>
+                                        <div class="layui-input-block">
+                                            <textarea id="apiSign" placeholder="" class="layui-textarea"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -152,10 +178,13 @@
                     $('#apiId').val(detJson.apiId);
                     $('#apiName').val(detJson.apiName);
                     $('#apiManufacture').val(detJson.apiManufacture);
+                    $('#apiType').val(detJson.apiType);
                     $('#apiNet').val(detJson.apiNet);
                     $('#apiIpv4').val(detJson.apiIpv4);
+                    $('#apiMethod').val(detJson.apiMethod);
                     $('#accessKey').val(detJson.accessKey);
                     $('#secretKey').val(detJson.secretKey);
+                    $('#apiSign').val(detJson.apiSign);
                     $('#apiRemark').val(detJson.apiRemark);
                     $('#apiState').val(detJson.apiState);
                     layui.form.render();
@@ -172,10 +201,13 @@
         params.apiId=$('#apiId').val();
         params.apiName=$('#apiName').val();
         params.apiManufacture=$('#apiManufacture').val();
+        params.apiType=$('#apiType').val();
         params.apiNet=$('#apiNet').val();
         params.apiIpv4=$('#apiIpv4').val();
+        params.apiMethod=$('#apiMethod').val();
         params.accessKey=$('#accessKey').val();
         params.secretKey=$('#secretKey').val();
+        params.apiSign=$('#apiSign').val();
         params.apiRemark=$('#apiRemark').val();
         params.apiState=$('#apiState').val();
         postdata(params,"/api/apiSave",function () {layer.msg("保存成功！");});

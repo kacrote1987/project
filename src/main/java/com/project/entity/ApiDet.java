@@ -5,12 +5,15 @@ public class ApiDet {
     private Long apiId;
     private String apiName;
     private String apiManufacture;
+    private String apiType;
     private String apiNet;
     private String apiIpv4;
+    private String apiMethod;
+    private String apiState;
     private String accessKey;
     private String secretKey;
+    private String apiSign;
     private String apiRemark;
-    private String apiState;
 
     public String getAction() {
         return action;
@@ -44,6 +47,14 @@ public class ApiDet {
         this.apiManufacture = apiManufacture;
     }
 
+    public String getApiType() {
+        return apiType;
+    }
+
+    public void setApiType(String apiType) {
+        this.apiType = apiType;
+    }
+
     public String getApiNet() {
         return apiNet;
     }
@@ -58,6 +69,22 @@ public class ApiDet {
 
     public void setApiIpv4(String apiIpv4) {
         this.apiIpv4 = apiIpv4;
+    }
+
+    public String getApiMethod() {
+        return apiMethod;
+    }
+
+    public void setApiMethod(String apiMethod) {
+        this.apiMethod = apiMethod;
+    }
+
+    public String getApiState() {
+        return apiState;
+    }
+
+    public void setApiState(String apiState) {
+        this.apiState = apiState;
     }
 
     public String getAccessKey() {
@@ -76,19 +103,19 @@ public class ApiDet {
         this.secretKey = secretKey;
     }
 
+    public String getApiSign() {
+        return apiSign;
+    }
+
+    public void setApiSign(String apiSign) {
+        this.apiSign = apiSign;
+    }
+
     public String getApiRemark() {
         return apiRemark;
     }
 
     public void setApiRemark(String apiRemark) {
         this.apiRemark = apiRemark;
-    }
-
-    public String getApiState() {
-        return apiState;
-    }
-
-    public void setApiState(String apiState) {
-        this.apiState = apiState;
     }
 }

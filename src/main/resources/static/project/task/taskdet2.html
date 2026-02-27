@@ -1,175 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>资产类工单详细</title>
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <link rel="stylesheet" href="../layuiadmin/layui/css/layui.css" media="all">
-  <link rel="stylesheet" href="../layuiadmin/style/admin.css" media="all">
+    <meta charset="utf-8">
+    <title>服务类工单详细</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../layuiadmin/style/admin.css" media="all">
 </head>
 <body>
 <div class="layui-fluid">
-  <div class="layui-card">
-    <div class="layui-card-body">
-      <div class="layui-tab">
-        <ul class="layui-tab-title">
-          <li class="layui-this">工单信息</li>
-          <li>资产信息</li>
-          <li>告警信息</li>
-          <li>流转日志</li>
-        </ul>
-        <div class="layui-tab-content">
-          <div class="layui-tab-item layui-show">
-          <!--            工单信息-->
-          <div class="layui-row layui-col-space12">
-            <div class="layui-col-md2">
-            </div>
-            <div class="layui-col-md8">
-              <div class="layui-card">
-                <input id="action" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
-                <input id="taskId" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
-                <input id="assIds" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
-                <div class="layui-card-body">
-                  <form class="layui-form" action="" lay-filter="component-form-element">
-                    <div class="layui-row layui-col-space10 layui-form-item">
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">工单类别</label>
-                        <div class="layui-input-block">
-                          <input id="typeName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" readonly>
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div class="layui-tab">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">工单信息</li>
+                    <li>流转日志</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <!--            工单信息-->
+                        <div class="layui-row layui-col-space12">
+                            <div class="layui-col-md2">
+                            </div>
+                            <div class="layui-col-md8">
+                                <div class="layui-card">
+                                    <input id="action" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
+                                    <input id="taskId" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
+                                    <div class="layui-card-body">
+                                        <form class="layui-form" action="" lay-filter="component-form-element">
+                                            <div class="layui-row layui-col-space10 layui-form-item">
+                                                <div class="layui-col-lg6">
+                                                    <label class="layui-form-label">工单类别</label>
+                                                    <div class="layui-input-block">
+                                                        <input id="typeId" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="layui-col-lg6">
+                                                    <label class="layui-form-label">工单状态</label>
+                                                    <div class="layui-input-block">
+                                                        <select id="stepCode">
+                                                            <option value="1" selected>派单</option>
+                                                            <option value="2" selected>审核</option>
+                                                            <option value="3" selected>处理</option>
+                                                            <option value="4" selected>确认</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="layui-row layui-col-space10 layui-form-item">
+                                                <div class="layui-col-lg6">
+                                                    <label class="layui-form-label">工单标题</label>
+                                                    <div class="layui-input-block">
+                                                        <input id="taskTitle" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                                    </div>
+                                                </div>
+                                                <div class="layui-col-lg6">
+                                                    <label class="layui-form-label">工单编号</label>
+                                                    <div class="layui-input-block">
+                                                        <input id="taskNo" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="layui-row layui-col-space10 layui-form-item">
+                                                <div class="layui-col-lg6">
+                                                    <label class="layui-form-label">所属项目</label>
+                                                    <div class="layui-input-block">
+                                                        <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                                    </div>
+                                                </div>
+                                                <div class="layui-col-lg6">
+                                                    <label class="layui-form-label">业务部门</label>
+                                                    <div class="layui-input-block">
+                                                        <input id="deptName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="layui-row layui-col-space10 layui-form-item">
+                                                <div class="layui-col-lg12">
+                                                    <label class="layui-form-label">工单内容</label>
+                                                    <div class="layui-input-block">
+                                                        <textarea id="taskContent" placeholder="" class="layui-textarea"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="layui-row layui-col-space10 layui-form-item">
+                                                <div class="layui-col-lg6">
+                                                    <label class="layui-form-label">维护单位</label>
+                                                    <div class="layui-input-block">
+                                                        <input id="maintName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                                    </div>
+                                                </div>
+                                                <div class="layui-col-lg6">
+                                                    <label class="layui-form-label">派单时间</label>
+                                                    <div class="layui-input-block">
+                                                        <input id="taskTime" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md2">
+                            </div>
                         </div>
-                      </div>
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">工单状态</label>
-                        <div class="layui-input-block">
-                          <select id="stepCode">
-                            <option value="1" selected>派单</option>
-                          </select>
-                        </div>
-                      </div>
                     </div>
-                    <div class="layui-row layui-col-space10 layui-form-item">
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">工单标题</label>
-                        <div class="layui-input-block">
-                          <input id="taskTitle" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                    <div class="layui-tab-item" style="display: none">
+                        <!--            流转日志-->
+                        <div class="layui-row layui-col-space12">
+                            <div class="layui-col-md2">
+                            </div>
+                            <div class="layui-col-md8">
+                                <div class="layui-card">
+                                    <div class="layui-card-body">
+                                        <form class="layui-form" action="" lay-filter="component-form-element">
+                                            <div class="layui-row layui-col-space10 layui-form-item">
+                                                <div class="layui-col-lg12">
+                                                    <label class="layui-form-label">处置意见</label>
+                                                    <div class="layui-input-block">
+                                                        <textarea id="" placeholder="" class="layui-textarea"  rows="10" cols="50"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md2">
+                            </div>
                         </div>
-                      </div>
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">工单编号</label>
-                        <div class="layui-input-block">
-                          <input id="taskNo" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                        </div>
-                      </div>
                     </div>
-                    <div class="layui-row layui-col-space10 layui-form-item">
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">所属项目</label>
-                        <div class="layui-input-block">
-                          <select id="projId">
-                            <option value="">全部</option>
-                            <option value="">项目名称</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">业务部门</label>
-                        <div class="layui-input-block">
-                          <select id="unitId">
-                            <option value="">全部</option>
-                            <option value="">部门名称</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="layui-row layui-col-space10 layui-form-item">
-                      <div class="layui-col-lg12">
-                        <label class="layui-form-label">工单内容</label>
-                        <div class="layui-input-block">
-                          <textarea id="taskContent" placeholder="" class="layui-textarea"></textarea>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="layui-row layui-col-space10 layui-form-item">
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">维护单位</label>
-                        <div class="layui-input-block">
-                          <select id="maintId">
-                            <option value="">全部</option>
-                            <option value="">单位名称</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="layui-col-lg6">
-                        <label class="layui-form-label">派单时间</label>
-                        <div class="layui-input-block">
-                          <input id="taskTime" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-                        </div>
-                      </div>
-                    </div>
-                  </form>
                 </div>
-              </div>
             </div>
-            <div class="layui-col-md2">
-            </div>
-          </div>
         </div>
-          <div class="layui-tab-item" style="display: none">
-            <!--            资产信息-->
-            <div class="layui-card-body">
-              <table id="test-table-toolbar" lay-filter="test-table-toolbar"></table>
-              <script type="text/html" id="imgTpl">
-                <img style="display: inline-block; width: 50%; height: 100%;" src={{ d.avatar }}>
-              </script>
-            </div>
-          </div>
-          <div class="layui-tab-item" style="display: none">
-            <!--            告警信息-->
-            <div class="layui-card-body">
-              <table id="test-table-toolbar1" lay-filter="test-table-toolbar"></table>
-              <script type="text/html" id="imgTpl1">
-                <img style="display: inline-block; width: 50%; height: 100%;" src={{ d.avatar }}>
-              </script>
-            </div>
-          </div>
-          <div class="layui-tab-item" style="display: none">
-            <!--            流转日志-->
-            <div class="layui-row layui-col-space12">
-              <div class="layui-col-md2">
-              </div>
-              <div class="layui-col-md8">
-                <div class="layui-card">
-                  <div class="layui-card-body">
-                    <form class="layui-form" action="" lay-filter="component-form-element">
-                      <div class="layui-row layui-col-space10 layui-form-item">
-                        <div class="layui-col-lg12">
-                          <label class="layui-form-label">处置意见</label>
-                          <div class="layui-input-block">
-                            <textarea id="dealContent" placeholder="" class="layui-textarea"  rows="10" cols="50"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <div class="layui-col-md2">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 <div class="layui-form-item layui-layout-admin">
-  <div class="layui-input-block">
-    <div class="layui-footer" style="left: 0;">
-      <button class="layui-btn" lay-submit="submit" lay-filter="component-form-demo1" onclick="submit()">派单</button>
+    <div class="layui-input-block">
+        <div class="layui-footer" style="left: 0;">
+            <button class="layui-btn" lay-submit="submit" lay-filter="component-form-demo1" onclick="save()">保存</button>
+        </div>
     </div>
-  </div>
 </div>
 
 <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
@@ -178,101 +151,58 @@
 <script src="../js/demo.js"></script>
 <script src="../layuiadmin/layui/layui.js"></script>
 <script>
-  layui.config({
-    base: '../layuiadmin/' //静态资源所在路径
-  }).extend({
-    index: 'lib/index' //主入口模块
-  }).use(['index', 'form', 'table', 'laydate'], function(){
-    var $ = layui.$
+    layui.config({
+        base: '../layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'table', 'laydate'], function(){
+        var $ = layui.$
             ,form = layui.form
             ,table = layui.table
             ,laydate = layui.laydate;
 
-    form.render(null, 'component-form-group');
-
-    var taskId=window.location.search.substring(1,window.location.search.length);
-    // 基础信息展示
-    $.ajax({
-      type:"post",
-      url:"/task/taskDet",
-      contentType:"application/json;charset=utf-8",
-      dataType:"json",
-      data:taskId,
-      success:function(detObj){
-        if(detObj.msg==="success"){
-          var assList=detObj.data[0].assList;
-          if(detObj.data[0].checkState===1){
-            layer.msg("项目过保，无法派单");
-          }
-          table.render({
-            elem: '#test-table-toolbar'
-            , id: 'assReload'
-            , data: assList
-            , title: '资产基础信息表'
-            , cols: [[
-              {type: 'checkbox', fixed: 'left', width: '5%'}
-              , {type: 'numbers', title: '序号', width: '5%'}
-              , {field: 'assNo', title: '资产编号', sort: true, width: '10%'}
-              , {field: 'assName', title: '资产名称', sort: true, width: '10%'}
-              , {field: 'assBrand', title: '资产品牌', sort: true, width: '10%'}
-              , {field: 'assModel', title: '资产型号', sort: true, width: '10%'}
-              , {field: 'assNet', title: '网络环境', sort: true, width: '10%'}
-              , {field: 'assIpv4', title: 'IPV4地址', sort: true, width: '10%'}
-              , {field: 'maintName', title: '维护单位', sort: true, width: '10%'}
-              , {field: 'maintState', title: '维护状态', sort: true, width: '10%'}
-              , {field: 'assState', title: '资产状态', sort: true, width: '10%'}
-            ]]
-            , page: true
-            , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
-              return {
-                "code": res.code, //解析接口状态
-                "msg": res.msg, //解析提示文本
-                "count": res.data.total, //解析数据长度
-                "data": res.data.list //解析数据列表
-              };
+        form.render(null, 'component-form-group');
+        var params=window.location.search.substring(1,window.location.search.length);
+        $.ajax({
+            type:"post",
+            url:"/task/taskDet",
+            contentType:"application/json;charset=utf-8",
+            dataType:"json",
+            data:params,
+            success:function(detObj){
+                if(detObj.msg==="success"){
+                    var detJson=detObj.data[0];
+                    $('#taskId').val(detJson.taskId);
+                    $('#typeId').val(detJson.typeId);
+                    $('#taskTitle').val(detJson.taskTitle);
+                    $('#taskNo').val(detJson.taskNo);
+                    $('#taskContent').val(detJson.taskContent);
+                    $('#projName').val(detJson.projName);
+                    $('#deptName').val(detJson.deptName);
+                    $('#maintName').val(detJson.maintName);
+                    $('#taskTime').val(detJson.taskTime);
+                    $('#stepCode').val(detJson.stepCode);
+                }
             }
-          });
-
-          var eventList=detObj.data[0].eventList;
-          table.render({
-            elem: '#test-table-toolbar1'
-            , data: eventList
-            , title: '告警信息表'
-            , cols: [[
-              {type: 'checkbox', fixed: 'left', width: '5%'}
-              , {field: 'eventId', title: '事件ID', width: '5%'}
-              , {field: 'assName', title: '资产名称', width: '10%'}
-              , {field: 'eventType', title: '事件类型', width: '10%'}
-              , {field: 'eventContent', title: '事件内容', sort: true, width: '40%'}
-              , {field: 'eventTime', title: '事件时间', sort: true, width: '10%'}
-              , {field: 'eventSource', title: '事件来源', sort: true, width: '10%'}
-              , {field: 'eventState', title: '事件状态', sort: true, width: '10%'}
-            ]]
-            , page: true
-            , parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
-              return {
-                "code": res.code, //解析接口状态
-                "msg": res.msg, //解析提示文本
-                "count": res.data.total, //解析数据长度
-                "data": res.data.list //解析数据列表
-              };
-            }
-          });
-
-        }
-      }
+        });
     });
 
-  });
-
-  // 基础信息保存
-  function submit(){
-    layer.msg("派单成功！");
-    // var params={};
-    // params.action=$('#action').val();
-    // params.assId=$('#assId').val();
-    // postdata(params,"/ass/asssave",function () {layer.msg("派单成功！");});
-  }
+    // 基础信息保存
+    function save(){
+        var params={};
+        params.action="update";
+        params.taskId=$('#taskId').val();
+        params.typeId=$('#typeId').val();
+        params.taskTitle=$('#taskTitle').val();
+        params.taskNo=$('#taskNo').val();
+        params.taskContent=$('#taskContent').val();
+        params.projName=$('#projName').val();
+        params.deptName=$('#deptName').val();
+        params.maintName=$('#maintName').val();
+        params.taskTime=$('#taskTime').val();
+        params.stepCode=$('#stepCode').val();
+        postdata(params,"/task/taskSave",function () {layer.msg("保存成功！");});
+    }
 </script>
 </body>
 </html>

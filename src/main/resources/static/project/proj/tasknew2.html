@@ -87,7 +87,7 @@
                                                 <div class="layui-col-lg6">
                                                     <label class="layui-form-label">维护单位</label>
                                                     <div class="layui-input-block">
-                                                        <input id="unitbName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" readonly>
+                                                        <input id="maintName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="layui-col-lg6">
@@ -173,7 +173,7 @@
                     $('#projId').val(detJson.projId);
                     $('#projName').val(detJson.projName);
                     $('#deptName').val(detJson.deptName);
-                    $('#unitbName').val(detJson.unitbName);
+                    $('#maintName').val(detJson.unitbName);
                     layui.form.render();
                 }
             }
@@ -194,7 +194,6 @@
     function submit(){
         var params={};
         params.typeId=$('#typeId').val();
-        params.stepCode=$('#stepCode').val();
         params.taskTitle=$('#taskTitle').val();
         params.taskNo=$('#taskNo').val();
         params.projId=$('#projId').val();
@@ -203,6 +202,7 @@
         params.taskContent=$('#taskContent').val();
         params.maintName=$('#unitbName').val();
         params.taskTime=$('#taskTime').val();
+        params.stepCode=$('#stepCode').val();
         postdata(params,"/task/taskNew2",function () {layer.msg("派单成功！");});
     }
 </script>

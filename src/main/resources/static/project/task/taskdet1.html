@@ -30,14 +30,13 @@
               <div class="layui-card">
                 <input id="action" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
                 <input id="taskId" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
-                <input id="assIds" type="text" placeholder="" autocomplete="off" class="layui-input" style="display: none">
                 <div class="layui-card-body">
                   <form class="layui-form" action="" lay-filter="component-form-element">
                     <div class="layui-row layui-col-space10 layui-form-item">
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">工单类别</label>
                         <div class="layui-input-block">
-                          <input id="typeName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" readonly>
+                          <input id="typeId" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" readonly>
                         </div>
                       </div>
                       <div class="layui-col-lg6">
@@ -67,19 +66,13 @@
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">所属项目</label>
                         <div class="layui-input-block">
-                          <select id="projId">
-                            <option value="">全部</option>
-                            <option value="">项目名称</option>
-                          </select>
+                          <input id="projName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">业务部门</label>
                         <div class="layui-input-block">
-                          <select id="unitId">
-                            <option value="">全部</option>
-                            <option value="">部门名称</option>
-                          </select>
+                          <input id="deptName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                     </div>
@@ -95,10 +88,7 @@
                       <div class="layui-col-lg6">
                         <label class="layui-form-label">维护单位</label>
                         <div class="layui-input-block">
-                          <select id="maintId">
-                            <option value="">全部</option>
-                            <option value="">单位名称</option>
-                          </select>
+                          <input id="maintName" type="text" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                       </div>
                       <div class="layui-col-lg6">
@@ -167,7 +157,7 @@
 <div class="layui-form-item layui-layout-admin">
   <div class="layui-input-block">
     <div class="layui-footer" style="left: 0;">
-      <button class="layui-btn" lay-submit="submit" lay-filter="component-form-demo1" onclick="submit()">派单</button>
+      <button class="layui-btn" lay-submit="submit" lay-filter="component-form-demo1" onclick="save()">保存</button>
     </div>
   </div>
 </div>
@@ -190,20 +180,29 @@
 
     form.render(null, 'component-form-group');
 
-    var taskId=window.location.search.substring(1,window.location.search.length);
+    var params=window.location.search.substring(1,window.location.search.length);
     // 基础信息展示
     $.ajax({
       type:"post",
       url:"/task/taskDet",
       contentType:"application/json;charset=utf-8",
       dataType:"json",
-      data:taskId,
+      data:params,
       success:function(detObj){
         if(detObj.msg==="success"){
+          var detJson=detObj.data[0];
+          $('#taskId').val(detJson.taskId);
+          $('#typeId').val(detJson.typeId);
+          $('#taskTitle').val(detJson.taskTitle);
+          $('#taskNo').val(detJson.taskNo);
+          $('#taskContent').val(detJson.taskContent);
+          $('#projName').val(detJson.projName);
+          $('#deptName').val(detJson.deptName);
+          $('#maintName').val(detJson.maintName);
+          $('#taskTime').val(detJson.taskTime);
+          $('#stepCode').val(detJson.stepCode);
+
           var assList=detObj.data[0].assList;
-          if(detObj.data[0].checkState===1){
-            layer.msg("项目过保，无法派单");
-          }
           table.render({
             elem: '#test-table-toolbar'
             , id: 'assReload'
@@ -266,12 +265,20 @@
   });
 
   // 基础信息保存
-  function submit(){
-    layer.msg("派单成功！");
-    // var params={};
-    // params.action=$('#action').val();
-    // params.assId=$('#assId').val();
-    // postdata(params,"/ass/asssave",function () {layer.msg("派单成功！");});
+  function save(){
+    var params={};
+    params.action="update";
+    params.taskId=$('#taskId').val();
+    params.typeId=$('#typeId').val();
+    params.taskTitle=$('#taskTitle').val();
+    params.taskNo=$('#taskNo').val();
+    params.taskContent=$('#taskContent').val();
+    params.projName=$('#projName').val();
+    params.deptName=$('#deptName').val();
+    params.maintName=$('#maintName').val();
+    params.taskTime=$('#taskTime').val();
+    params.stepCode=$('#stepCode').val();
+    postdata(params,"/task/taskSave",function () {layer.msg("保存成功！");});
   }
 </script>
 </body>

@@ -110,11 +110,13 @@
             , cols: [[
                 {type: 'checkbox', fixed: 'left', width: '5%'}
                 , {field: 'apiId', title: '序号', width: '5%'}
-                , {field: 'apiName', title: '平台名称', sort: true, width: '16%'}
-                , {field: 'apiManufacture', title: '平台厂商', sort: true, width: '16%'}
-                , {field: 'apiNet', title: '网络环境', sort: true, width: '16%'}
-                , {field: 'apiIpv4', title: 'IP地址', sort: true, width: '16%'}
-                , {field: 'apiState', title: '对接状态', sort: true, width: '16%'}
+                , {field: 'apiName', title: '平台名称', sort: true, width: '14%'}
+                , {field: 'apiManufacture', title: '平台厂商', sort: true, width: '11%'}
+                , {field: 'apiType', title: '对接方式', sort: true, width: '11%'}
+                , {field: 'apiNet', title: '网络环境', sort: true, width: '11%'}
+                , {field: 'apiIpv4', title: 'IP地址', sort: true, width: '11%'}
+                , {field: 'apiMethod', title: '对接方法', sort: true, width: '11%'}
+                , {field: 'apiState', title: '对接状态', sort: true, width: '11%'}
                 , {fixed: 'right', title: '操作', toolbar: '#test-table-toolbar-barDemo', width: '10%'}
             ]]
             , page: true
@@ -156,8 +158,8 @@
                 case 'add':
                     layer.open({
                         type: 2
-                        , title: '资产入库'
-                        , content: 'assdet.html?0'
+                        , title: '三方平台新增'
+                        , content: 'apidet.html?0'
                         , maxmin: true
                         , area: ['1200px', '600px']
                     });
@@ -168,18 +170,15 @@
                     }, function () {
                         var params = {};
                         params.action = "del";
-                        params.assId = checkStatus.data[0].apiId;
-                        postdata(params, "/ass/asssave", function () {table.reload('assReload');layer.msg("已删除");});
+                        params.apiId = checkStatus.data[0].apiId;
+                        postdata(params, "/api/apiSave", function () {table.reload('apiReload');layer.msg("已删除");});
                     });
                     break;
                 case 'stop':
                     layer.confirm('是否阻断？', {
                         btn: ['是', '否'] //按钮
                     }, function () {
-                        var params = {};
-                        params.action = "del";
-                        params.assId = checkStatus.data[0].apiId;
-                        postdata(params, "/ass/asssave", function () {table.reload('assReload');layer.msg("已阻断");});
+                        layer.msg("待开发");
                     });
                     break;
             };

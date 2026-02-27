@@ -1,10 +1,7 @@
 package com.project.service;
 
 import com.github.pagehelper.PageInfo;
-import com.project.entity.TaskDet;
-import com.project.entity.TaskList;
-import com.project.entity.TaskNew1;
-import com.project.entity.TaskNew2;
+import com.project.entity.*;
 
 import java.util.List;
 
@@ -18,7 +15,12 @@ public interface TaskService {
      * 工单详细
      * @return
      */
-    List<TaskDet> taskDet(Long taskId);
+    List<TaskDet> taskDet(String params);
+    /**
+     * 工单保存
+     * @return
+     */
+    void taskSave(TaskDet params);
     /**
      * 工单新增1
      * @return

@@ -5,11 +5,10 @@ public class ApiList {
     private Long apiId;
     private String apiName;
     private String apiManufacture;
+    private String apiType;
     private String apiNet;
     private String apiIpv4;
-    private String accessKey;
-    private String secretKey;
-    private String apiRemark;
+    private String apiMethod;
     private String apiState;
     private Integer page;
     private Integer limit;
@@ -46,6 +45,14 @@ public class ApiList {
         this.apiManufacture = apiManufacture;
     }
 
+    public String getApiType() {
+        return apiType;
+    }
+
+    public void setApiType(String apiType) {
+        this.apiType = apiType;
+    }
+
     public String getApiNet() {
         return apiNet;
     }
@@ -62,28 +69,12 @@ public class ApiList {
         this.apiIpv4 = apiIpv4;
     }
 
-    public String getAccessKey() {
-        return accessKey;
+    public String getApiMethod() {
+        return apiMethod;
     }
 
-    public void setAccessKey(String accessKey) {
-        this.accessKey = accessKey;
-    }
-
-    public String getSecretKey() {
-        return secretKey;
-    }
-
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
-    }
-
-    public String getApiRemark() {
-        return apiRemark;
-    }
-
-    public void setApiRemark(String apiRemark) {
-        this.apiRemark = apiRemark;
+    public void setApiMethod(String apiMethod) {
+        this.apiMethod = apiMethod;
     }
 
     public String getApiState() {

@@ -2,10 +2,7 @@ package com.project.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.project.entity.TaskDet;
-import com.project.entity.TaskList;
-import com.project.entity.TaskNew1;
-import com.project.entity.TaskNew2;
+import com.project.entity.*;
 import com.project.mapper.TaskMapper;
 import com.project.service.TaskService;
 import org.springframework.stereotype.Service;
@@ -26,14 +23,27 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<TaskDet> taskDet(Long taskId) {
-//        List<TaskDet> taskDetList = taskMapper.taskDet(taskId);
-//        String assIds = taskDetList.get(0).getAssIds();
-//        List<AssList> assList = taskMapper.taskAssList(assIds);
-//        taskDetList.get(0).setAssList(assList);
-//        List<EventList> eventList = taskMapper.eventList(assIds);
-//        taskDetList.get(0).setEventList(eventList);
-        return null;
+    public List<TaskDet> taskDet(String params) {
+        Long taskId=Long.valueOf(params.substring(0,params.indexOf("&")));
+        Long typeId=Long.valueOf(params.substring(params.indexOf("&")+1,params.length()));
+        List<TaskDet> taskDetList = taskMapper.taskDet(taskId);
+        String assIds = taskDetList.get(0).getAssIds();
+        if(typeId!=3 && assIds!=null && !assIds.equals("")){
+            List<AssList> assList = taskMapper.taskAssList(assIds);
+            taskDetList.get(0).setAssList(assList);
+            List<EventList> eventList = taskMapper.taskEventList(assIds);
+            taskDetList.get(0).setEventList(eventList);
+        }
+        return taskDetList;
+    }
+
+    @Override
+    public void taskSave(TaskDet params) {
+        if(params.getAction().equals("del")){
+            taskMapper.deleteTask(params.getTaskId());
+        }else{
+            taskMapper.updateTask(params);
+        }
     }
 
     @Override

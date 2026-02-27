@@ -18,11 +18,27 @@
         order by a.task_time desc
     </select>
     <select id="taskDet" resultType="com.project.entity.TaskDet">
-        select task_id,type_id,task_no,task_content,ass_ids,unit_id,maint_id,task_time,step_code from t_task_main where task_id = #{taskId}
+        select task_id,type_id,task_title,task_no,proj_name,ass_ids,dept_name,task_content,maint_name,task_time,step_code from t_task_main where task_id = #{taskId}
     </select>
+    <select id="taskAssList" resultType="com.project.entity.AssList">
+        select t.ass_no,t.ass_name,t.ass_brand,t.ass_model,t.ass_net,t.ass_ipv4,a.unit_name as maint_name,t.maint_state,t.ass_state from t_ass_basic t
+        left join t_sys_unit a on t.maint_id=a.unit_id where t.ass_id in (${assIds})
+    </select>
+    <select id="taskEventList" resultType="com.project.entity.EventList" >
+        select t.event_id,t.ass_id,a.ass_name,t.event_type,t.event_content,t.event_time,t.event_source,t.event_state from t_ass_event t inner join t_ass_basic a
+        on t.ass_id=a.ass_id where t.ass_id in (${assIds}) order by t.event_time desc
+    </select>
+    <delete id="deleteTask">
+        delete from t_task_main where task_id=#{taskId}
+    </delete>
+    <update id="updateTask">
+        update t_task_main set type_id=#{params.typeId},task_title=#{params.taskTitle},task_no=#{params.taskNo},task_content=#{params.taskContent}
+        ,proj_name=#{params.projName},dept_name=#{params.deptName},maint_name=#{params.maintName},task_time=#{params.taskTime},step_code=#{params.stepCode}
+        where task_id=#{params.taskId}
+    </update>
     <insert id="insertTask2">
-        insert into t_task_main(type_id,task_no,task_content,proj_id,proj_name,dept_name,unitb_name,task_time,step_code)
-        values(#{params.typeId},#{params.taskNo},#{params.taskContent},#{params.projId},#{params.projName},#{params.deptName}
-        ,#{params.unitbName},#{params.taskTime},#{params.stepCode})
+        insert into t_task_main(type_id,task_title,task_no,proj_name,dept_name,task_content,maint_name,task_time,step_code)
+        values(#{params.typeId},#{params.taskTitle},#{params.taskNo},#{params.projName},#{params.deptName},#{params.taskContent}
+        ,#{params.maintName},#{params.taskTime},#{params.stepCode})
     </insert>
 </mapper>

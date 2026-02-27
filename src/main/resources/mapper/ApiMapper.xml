@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybaselectByUsernametiselectUsers.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.mapper.ApiMapper">
     <select id="apiList" resultType="com.project.entity.ApiList" >
-        select api_id,api_name,api_manufacture,api_net,api_ipv4,access_key,secret_key,api_remark,api_state from t_api_basic where 1=1
+        select api_id,api_name,api_manufacture,api_type,api_net,api_ipv4,api_method,api_state from t_api_basic where 1=1
         <if test="params.apiName!=null and params.apiName!=''">
             and api_name like '%' #{params.apiName} '%'
         </if>
@@ -18,23 +18,19 @@
         order by api_id
     </select>
     <select id="apiDet" resultType="com.project.entity.ApiDet">
-        select api_id,api_name,api_manufacture,api_net,api_ipv4,access_key,secret_key,api_remark,api_state from t_api_basic where api_id = #{apiId}
+        select api_id,api_name,api_manufacture,api_type,api_net,api_ipv4,api_method,access_key,secret_key,api_sign,api_remark,api_state from t_api_basic where api_id = #{apiId}
     </select>
     <insert id="insertApi">
-        insert into t_ass_basic(type_code,ass_no,ass_name,ass_tag,ass_model,factory_no,ass_manufacturer,ass_supplier
-        ,ass_cost,purchase_date,ass_dept,ass_addr,ass_state,ass_remark) values(#{params.assType3},#{params.assContr}
-        ,#{params.assNo},#{params.assName},#{params.assTag},#{params.assModel},#{params.assFactoryno},#{params.assManufacturer}
-        ,#{params.assSupplier},#{params.assCost},#{params.purchaseDate},#{params.assDept}
-        ,#{params.assAddr},#{params.assState},#{params.assRemark})
+        insert into t_api_basic(api_name,api_manufacture,api_type,api_net,api_ipv4,api_method,access_key,secret_key,api_sign,api_remark,api_state)
+        values(#{params.apiName},#{params.apiManufacture},#{params.apiType},#{params.apiNet},#{params.apiIpv4},#{params.apiMethod},#{params.accessKey}
+        ,#{params.secretKey},#{params.apiSign},#{params.apiRemark},#{params.apiState})
     </insert>
     <delete id="deleteApi">
         delete from t_api_basic where api_id=#{apiId}
     </delete>
     <update id="updateApi">
-        update t_ass_basic set type_code=#{params.assType3},ass_no=#{params.assNo},ass_name=#{params.assName}
-        ,ass_tag=#{params.assTag},ass_model=#{params.assModel},factory_no=#{params.factoryNo}
-        ,ass_manufacturer=#{params.assManufacturer},ass_supplier=#{params.assSupplier}
-        ,ass_cost=#{params.assCost},purchase_date=#{params.purchaseDate},ass_dept=#{params.assDept}
-        ,ass_addr=#{params.assAddr},ass_state=#{params.assState},ass_remark=#{params.assRemark} where ass_id=#{params.assId}
+    update t_api_basic set api_name=#{params.apiName},api_manufacture=#{params.apiManufacture},api_type=#{params.apiType},api_net=#{params.apiNet}
+    ,api_ipv4=#{params.apiIpv4},api_method=#{params.apiMethod},access_key=#{params.accessKey},secret_key=#{params.secretKey}
+    ,api_sign=#{params.apiSign},api_remark=#{params.apiRemark},api_state=#{params.apiState} where api_id=#{params.apiId}
     </update>
 </mapper>
